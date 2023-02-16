@@ -13,23 +13,24 @@ Streatham GO
 
 ## MoSCoW 
 ### Must have:
-    Promote Sustainability using gamification.
-    Location GPS.
-    Gamekeepers that monitor the state of the game and ensure reliability.
-    Log in system.
-    Leaderboards Team Scores per week.
-    A view where you can see which buildings are currently taken.
+    - Promote Sustainability using gamification.
+    - Location GPS.
+    - Gamekeepers that monitor the state of the game and ensure reliability.
+    - Log in system.
+    - A view where you can see which buildings are currently taken.
+    - Leaderboards Team Scores per week.
+    - Leaderboard of Team wins.
 ### Should have:
-    Gamekeepers monitor reports and set daily challenges.
-    Players allocated into Teams on sign up
-    Teams score points and .
-    A way of verifying what buildings people are in using GPS.
-    Points for.
+    - Gamekeepers monitor reports and set daily challenges.
+    - Players allocated into Teams on sign up
+    - Teams score points and .
+    - A way of verifying what buildings people are in using GPS.
+    - Points for.
 ### Could have:
-    Individual Stats
-    Double points at certain times of day
-    At home challenges that add 'player points'
-    Point variations:
+    - Individual Stats
+    - Double points at certain times of day
+    - At home challenges that add 'player points'
+    - Point variations:
         - Random times of day with double points
         - Extra Points for 'attacking' teams
 ### Won't have:
