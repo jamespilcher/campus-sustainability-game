@@ -4,11 +4,11 @@ Streatham GO
 
 ## Summary of the Game
 
-On sign up, players assigned to one of two Teams.
-A team wins a building by having the most points at the end of the week.
-Players score points for their team by doing 'sustainable actions'.
-There will be a public view where you can see which teams are currently leading where.
-By the end of the week there is a reset, and the Team's win will be recorded
+- On sign up, players assigned to one of two Teams.
+- A team wins a building by having the most points at the end of the week.
+- Players score points for their team by doing 'sustainable actions'.
+- There will be a public view where you can see which teams are currently leading where.
+- By the end of the week there is a reset, and the Team's win will be recorded
 
 
 ## MoSCoW 
