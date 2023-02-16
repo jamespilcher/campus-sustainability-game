@@ -6,16 +6,15 @@ Streatham GO
 
 - On sign up, players assigned to one of two Teams.
 - A team wins a building by having the most points at the end of the week.
-- Players score points for their team by doing 'sustainable actions'.
+- Players score points for their team by completing a quiz question on sustainability.
 - There will be a public view where you can see which teams are currently leading where.
 - By the end of the week there is a reset, and the Team's win will be recorded
-
 
 ## MoSCoW 
 ### Must have:
     - Promote Sustainability using gamification.
     - Location GPS.
-    - Gamekeepers that monitor the state of the game and ensure reliability.
+    - Gamekeepers that monitor the state of the game.
     - Log in system.
     - A view where you can see which buildings are currently taken.
     - Leaderboards Team Scores per week.
