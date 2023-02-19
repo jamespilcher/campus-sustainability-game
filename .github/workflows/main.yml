@@ -1,0 +1,14 @@
+name: test_Django
+
+on: [pull_request, push] # activates the workflow when there is a push or pull request in the repo
+
+jobs:
+  test_project:
+    runs-on: ubuntu-latest # operating system your code will run on
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: pip install flake8
+      - run: pip install -r requirements.txt # install all our dependencies for the project
+      - run: cd streatham_go && pytest # run pytest test
+      - run: flake8 . # run flake8 test
