@@ -44,7 +44,7 @@ pytest
 python3 manage.py migrate
 ```
 
-### 5. Start Dev Server
+### 6. Start Dev Server
 
 ```
 python3 manage.py runserver
