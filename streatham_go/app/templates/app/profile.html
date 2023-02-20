@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
+<h1>Profile</h1>
+<span>Logged in as: {{user.username}}</span><br />
+<span>First Name: {{user.first_name}}</span><br />
+<span>Last Name: {{user.last_name}}</span><br />
+<span>Email: {{user.email}}</span>
+{% endblock %}
