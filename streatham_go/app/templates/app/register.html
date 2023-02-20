@@ -8,7 +8,8 @@
 }
 </style>
 
-<form class="form-register mt-4">
+<form class="form-register mt-4" method="POST" action="{% url 'app:register' %}">
+    {% csrf_token %}
     <center>
       <img
         class="mb-4"
@@ -18,7 +19,6 @@
         height="57"
       />
       <h1 class="h3 mb-3 fw-normal">Register</h1>
-    </center>
 
     {% if error_message %}
     <div class="alert alert-danger" role="alert">
@@ -26,24 +26,27 @@
     </div>
     {% endif %}
 
+    </center>
+
+
     <div class="row g-2">
         <div class="col">
-            <input id="fName" class="form-control" type="text" placeholder="First Name">
+            <input id="fName" name="f_name" class="form-control" type="text" value="{{ f_name }}" placeholder="First Name">
         </div>
         <div class="col">
-            <input id="lName" class="form-control" type="text" placeholder="Last Name">
+            <input id="lName" name="l_name" class="form-control" type="text" value="{{ l_name }}" placeholder="Last Name">
         </div>
     </div>
 
     <div class="row g-3 pt-2 align-items-center">
       <div class="col">
-        <input type="text" class="form-control" placeholder="Username">
+        <input type="text" name="username" class="form-control" value="{{ username }}" placeholder="Username">
       </div>
     </div>
 
     <div class="row g-2 pt-2">
         <div class="col">
-            <input class="form-control" type="text" placeholder="Email">
+            <input class="form-control" name="email" type="text" value="{{ email }}" placeholder="Email">
         </div>
         <div class="col-4">
             <input value="@exeter.ac.uk" class="form-control" type="text" readonly disabled>
@@ -52,13 +55,13 @@
 
     <div class="row g-2 pt-2">
         <div class="col">
-            <input class="form-control" type="password" placeholder="Password">
+            <input class="form-control" name="password" type="password" placeholder="Password">
         </div>
     </div>
 
     <div class="row g-2 pt-2">
         <div class="col">
-            <input class="form-control" type="password" placeholder="Repeat Password">
+            <input class="form-control" name="rpassword" type="password" placeholder="Repeat Password">
         </div>
     </div>
 
@@ -66,7 +69,7 @@
       <button class="w-100 btn btn-lg btn-primary" type="submit">
         Sign in
       </button>
-        <p class="mt-3 mb-3 text-muted">Allready have an account? <a href="{% url 'login' %}">Login</a> here</p>
+        <p class="mt-3 mb-3 text-muted">Allready have an account? <a href="{% url 'app:login' %}">Login</a> here</p>
     </center>
 
 </form>
