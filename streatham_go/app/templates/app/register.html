@@ -1,13 +1,7 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
-<style>
-
-.form-register {
-    max-width: 440px;
-    margin: auto;
-}
-</style>
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/register.css' %}">
 <form class="form-register mt-4" method="POST" action="{% url 'app:register' %}">
     {% csrf_token %}
     <center>

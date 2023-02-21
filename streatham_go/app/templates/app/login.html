@@ -1,60 +1,18 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
-<style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-
-  .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-  }
-
-  .form-signin .checkbox {
-    font-weight: 400;
-  }
-
-  .form-signin .form-floating:focus-within {
-    z-index: 2;
-  }
-
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-</style>
-
-<main class="form-signin" >
-    <form method="POST" action="{% url 'app:login' %}{{next}}">
-  {% csrf_token %}
-    <center>
-      <img
-        class="mb-4"
-        src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
-        alt=""
-        width="72"
-        height="57"
-      />
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/login.css' %}">
+<form method="POST" class="form-signin" action="{% url 'app:login' %}{{next}}">
+{% csrf_token %}
+<center>
+  <img
+    class="mb-4"
+    src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg"
+    alt=""
+    width="72"
+    height="57"
+  />
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     {% if error_message %}
     <div class="alert alert-danger" role="alert">
@@ -62,42 +20,16 @@
     </div>
     {% endif %}
 
-    </center>
+</center>
 
+{{ form }}
 
-    <div class="form-floating">
-      <input
-        type="text"
-        class="form-control"
-        id="floatingInput"
-        name="username"
-        placeholder="User Name"
-      />
-      <label for="floatingInput">User Name</label>
-    </div>
-    <div class="form-floating">
-      <input
-        type="password"
-        class="form-control"
-        id="floatingPassword"
-        name="password"
-        placeholder="Password"
-      />
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <center>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
-        Sign in
-      </button>
-            <p class="mt-3 mb-3 text-muted">Don't have an account? <a href="{% url 'app:register' %}">Register</a> here</p>
-    </center>
-  </form>
-</main>
+<center>
+  <button class="w-100 btn btn-lg btn-primary" type="submit">
+    Sign in
+  </button>
+  <p class="mt-3 mb-3 text-muted">Don't have an account? <a href="{% url 'app:register' %}">Register</a> here</p>
+</center>
+</form>
 
 {% endblock %}
