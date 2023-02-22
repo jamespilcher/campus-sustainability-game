@@ -1,0 +1,77 @@
+<div class="row g-2">
+  <div class="col">
+    {% if form.f_name.errors %}
+    <ol>
+      {% for error in form.f_name.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.f_name.input}}
+  </div>
+  <div class="col">
+    {% if form.l_name.errors %}
+    <ol>
+      {% for error in form.l_name.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.l_name.input}}
+  </div>
+</div>
+
+<div class="row g-3 pt-2 align-items-center">
+  <div class="col">
+    {% if form.username.errors %}
+    <ol>
+      {% for error in form.username.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.username.input}}
+  </div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">
+    {% if form.email.errors %}
+    <ol>
+      {% for error in form.email.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.email.input}}
+  </div>
+  <div class="col-4">
+    <input
+      value="@exeter.ac.uk"
+      class="form-control"
+      type="text"
+      readonly
+      disabled
+    />
+  </div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">
+    {% if form.password.errors %}
+    <ol>
+      {% for error in form.password.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.password.input}}
+  </div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">
+    {% if form.rpassword.errors %}
+    <ol>
+      {% for error in form.rpassword.errors %}
+      <li><strong>{{ error|escape }}</strong></li>
+      {% endfor %}
+    </ol>
+    {% endif %} {{form.rpassword.input}}
+  </div>
+</div>

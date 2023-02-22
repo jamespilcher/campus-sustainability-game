@@ -22,42 +22,7 @@
 
     </center>
 
-
-    <div class="row g-2">
-        <div class="col">
-            <input id="fName" name="f_name" class="form-control" type="text" value="{{ f_name }}" placeholder="First Name">
-        </div>
-        <div class="col">
-            <input id="lName" name="l_name" class="form-control" type="text" value="{{ l_name }}" placeholder="Last Name">
-        </div>
-    </div>
-
-    <div class="row g-3 pt-2 align-items-center">
-      <div class="col">
-        <input type="text" name="username" class="form-control" value="{{ username }}" placeholder="Username">
-      </div>
-    </div>
-
-    <div class="row g-2 pt-2">
-        <div class="col">
-            <input class="form-control" name="email" type="text" value="{{ email }}" placeholder="Email">
-        </div>
-        <div class="col-4">
-            <input value="@exeter.ac.uk" class="form-control" type="text" readonly disabled>
-        </div>
-    </div>
-
-    <div class="row g-2 pt-2">
-        <div class="col">
-            <input class="form-control" name="password" type="password" placeholder="Password">
-        </div>
-    </div>
-
-    <div class="row g-2 pt-2">
-        <div class="col">
-            <input class="form-control" name="rpassword" type="password" placeholder="Repeat Password">
-        </div>
-    </div>
+    {{ form }}
 
     <center class="pt-3">
       <button class="w-100 btn btn-lg btn-primary" type="submit">
