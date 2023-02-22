@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.urls import reverse
+from urllib.parse import urlencode
 from ..forms import RegisterForm
 
 
@@ -25,7 +27,11 @@ def register(request):
                 user.first_name = f_name
                 user.last_name = l_name
                 user.save()
-                return redirect('app:login')
+
+                base_redirect_url = reverse('app:login')
+                qurey_string = urlencode({'register_success': True})
+                url = '{}?{}'.format(base_redirect_url, qurey_string)
+                return redirect(url)
     else:
         form = RegisterForm()
 

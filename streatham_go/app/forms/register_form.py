@@ -31,20 +31,15 @@ class RegisterForm(forms.Form):
         rpassword = cleaned_data.get("rpassword")
 
         if password != rpassword:
-            raise forms.ValidationError(
-                "password and repeted password do not match"
-            )
+            self.add_error("rpassword",
+                           "password and repeted password do not match")
 
         username = cleaned_data.get("username")
 
         if User.objects.filter(username=username).exists():
-            raise forms.ValidationError(
-                "Username allready taken"
-            )
+            self.add_error('username', "Username allready taken")
 
         email = cleaned_data.get("email") + '@exeter.ac.uk'
 
         if User.objects.filter(email=email).exists():
-            raise forms.ValidationError(
-                "Username allready taken"
-            )
+            self.add_error('email', "Email allready taken")

@@ -28,6 +28,8 @@ def login_view(request):
                 context["error_message"] = 'Username or Password Incorrect'
     elif request.method == 'GET':
         form = LoginForm()
+        if request.GET.get('register_success') is not None:
+            context['register_success'] = request.GET['register_success']
         if request.GET.get('next') is not None:
             context['next'] = '?next=' + request.GET['next']
 

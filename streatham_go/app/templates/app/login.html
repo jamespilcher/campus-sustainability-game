@@ -14,6 +14,12 @@
   />
   <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
+    {% if register_success %}
+    <div class="alert alert-success" role="alert">
+        Account Successfuly Created. Please check your email for an activation link 
+    </div>
+    {% endif %}
+
     {% if error_message %}
     <div class="alert alert-danger" role="alert">
         {{error_message}}
