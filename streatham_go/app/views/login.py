@@ -20,18 +20,23 @@ def login_view(request):
             if user is not None:
                 login(request, user)
 
-                if request.GET.get('next') is not None:
-                    return redirect(request.GET['next'])
+                if request.POST.get('next') is not None:
+                    if request.POST['next']:
+                        return redirect(request.POST['next'])
 
                 return redirect("app:home")
             else:
                 context["error_message"] = 'Username or Password Incorrect'
+                if request.POST.get('next') is not None:
+                    context['next'] = request.POST['next']
     elif request.method == 'GET':
         form = LoginForm()
         if request.GET.get('register_success') is not None:
             context['register_success'] = request.GET['register_success']
+        if request.GET.get('logout') is not None:
+            context['logout'] = request.GET['logout']
         if request.GET.get('next') is not None:
-            context['next'] = '?next=' + request.GET['next']
+            context['next'] = request.GET['next']
 
     context['form'] = form
 

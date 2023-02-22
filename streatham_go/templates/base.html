@@ -23,24 +23,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/home/">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'app:home' %}">Home</a>
             </li>
+            {% endif %}
           </ul>
           <ul class="nav justify-content-end">
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/profile/">Profile</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/logout/">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:logout' %}">Logout</a>
                 </li>
               {% else %}
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/login/">Login</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/register/">Register</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:register' %}">Register</a>
                 </li>
               {% endif %}
           </ul>

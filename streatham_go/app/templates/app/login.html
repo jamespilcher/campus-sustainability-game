@@ -2,7 +2,7 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'app/login.css' %}">
-<form method="POST" class="form-signin" action="{% url 'app:login' %}{{next}}">
+<form method="POST" class="form-signin" action="{% url 'app:login' %}">
 {% csrf_token %}
 <center>
   <img
@@ -20,6 +20,12 @@
     </div>
     {% endif %}
 
+    {% if logout %}
+    <div class="alert alert-success" role="alert">
+        Logged Out! Goodbye
+    </div>
+    {% endif %}
+
     {% if error_message %}
     <div class="alert alert-danger" role="alert">
         {{error_message}}
@@ -31,6 +37,7 @@
 {{ form }}
 
 <center>
+    <input type="hidden" value="{{next}}" name="next"\>
   <button class="w-100 btn btn-lg btn-primary" type="submit">
     Sign in
   </button>

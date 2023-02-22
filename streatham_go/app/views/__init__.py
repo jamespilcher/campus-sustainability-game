@@ -7,3 +7,4 @@ from .logout import *
 from .login import *
 
 from .profile import *
+from .leaderboard import *
