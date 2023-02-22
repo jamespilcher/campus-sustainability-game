@@ -10,7 +10,6 @@ def register(request):
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
     context = {}
-    error_message = ""
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -22,7 +21,7 @@ def register(request):
 
             user = User.objects.create_user(username, email, password)
             if not user:
-                error_message = "Failed to create User"
+                context['error'] = True
             else:
                 user.first_name = f_name
                 user.last_name = l_name
@@ -35,7 +34,6 @@ def register(request):
     else:
         form = RegisterForm()
 
-    context["error_message"] = error_message
     context['form'] = form
 
     return render(request, 'app/register.html', context)

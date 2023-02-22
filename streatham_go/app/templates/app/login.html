@@ -16,19 +16,19 @@
 
     {% if register_success %}
     <div class="alert alert-success" role="alert">
-        Account Successfuly Created. Please check your email for an activation link 
+        {{REGISTER_SUCCESS}}
     </div>
     {% endif %}
 
     {% if logout %}
     <div class="alert alert-success" role="alert">
-        Logged Out! Goodbye
+        {{LOGOUT_SUCCESS}}
     </div>
     {% endif %}
 
-    {% if error_message %}
+    {% if error %}
     <div class="alert alert-danger" role="alert">
-        {{error_message}}
+        {{LOGIN_FAILURE}}
     </div>
     {% endif %}
 

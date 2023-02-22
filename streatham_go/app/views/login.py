@@ -26,7 +26,7 @@ def login_view(request):
 
                 return redirect("app:home")
             else:
-                context["error_message"] = 'Username or Password Incorrect'
+                context["error"] = True
                 if request.POST.get('next') is not None:
                     context['next'] = request.POST['next']
     elif request.method == 'GET':
