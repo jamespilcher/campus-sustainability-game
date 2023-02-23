@@ -14,7 +14,7 @@ class RegisterForm(forms.Form):
                                                   'placeholder': 'Username',
                                                   'class': 'form-control'}))
     email = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
-                                                  'placeholder': 'email',
+                                                  'placeholder': 'Email',
                                                   'class': 'form-control'}))
     password = forms.CharField(max_length=100,
                                widget=forms.PasswordInput(attrs={
@@ -22,7 +22,7 @@ class RegisterForm(forms.Form):
                                                   'class': 'form-control'}))
     rpassword = forms.CharField(max_length=100,
                                 widget=forms.PasswordInput(attrs={
-                                    'placeholder': 'Repete Password',
+                                    'placeholder': 'Repeat Password',
                                     'class': 'form-control'}))
 
     def clean(self):
@@ -32,14 +32,14 @@ class RegisterForm(forms.Form):
 
         if password != rpassword:
             self.add_error("rpassword",
-                           "password and repeted password do not match")
+                           "password and repeated password do not match!")
 
         username = cleaned_data.get("username")
 
         if User.objects.filter(username=username).exists():
-            self.add_error('username', "Username allready taken")
+            self.add_error('username', "Username already taken!")
 
         email = cleaned_data.get("email") + '@exeter.ac.uk'
 
         if User.objects.filter(email=email).exists():
-            self.add_error('email', "Email allready taken")
+            self.add_error('email', "Email already taken!")
