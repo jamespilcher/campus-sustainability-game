@@ -17,13 +17,16 @@ def login_view(request):
 
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
+                if not user.is_active:
+                    context["inactive"] = True
+                else:
+                    login(request, user)
 
-                if request.POST.get('next') is not None:
-                    if request.POST['next']:
-                        return redirect(request.POST['next'])
+                    if request.POST.get('next') is not None:
+                        if request.POST['next']:
+                            return redirect(request.POST['next'])
 
-                return redirect("app:home")
+                    return redirect("app:home")
             else:
                 context["error"] = True
                 if request.POST.get('next') is not None:

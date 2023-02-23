@@ -32,6 +32,12 @@
     </div>
     {% endif %}
 
+    {% if inactive %}
+    <div class="alert alert-danger" role="alert">
+        {{LOGIN_INACTIVE}}
+    </div>
+    {% endif %}
+
 </center>
 
 {{ form }}

@@ -132,4 +132,9 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-LOGIN_URL = "/accounts/login"
+# Set the redirect login URL
+LOGIN_URL = "accounts:login"
+
+# Allow Inactive Users to login so custom error message can be displayed
+AUTHENTICATION_BACKENDS = (('django.contrib.auth.backends.'
+                            'AllowAllUsersModelBackend'), )
