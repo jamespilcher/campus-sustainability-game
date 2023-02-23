@@ -1,7 +1,6 @@
 import pytest
 from django.urls import reverse
 from django.contrib.auth.models import User
-from urllib.parse import urlencode
 from django.test import TestCase
 
 
