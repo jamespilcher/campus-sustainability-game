@@ -1,17 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.utils.encoding import force_str, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_decode
 
 from ..tokens import email_verification_token
+from ..decorators import anonymous_required
 
 
-def activate(request, user_id):
+@anonymous_required
+def activate(request, username):
     context = {}
     try:
-        uid = force_str(urlsafe_base64_decode(user_id))
-        user = User.objects.get(pk=uid)
-    except (ValueError, DjangoUnicodeDecodeError):
+        user = User.objects.get(username=username)
+    except (ValueError, User.DoesNotExist):
         context["user_not_found"] = True
         user = None
 

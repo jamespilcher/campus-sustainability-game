@@ -1,7 +1,6 @@
-<div>
-  <a
-    href="{{protocol}}://{{ domain }}{% url 'accounts:activate' user_id=uid %}?token={{token}}"
-  >
-    Please activate your account</a
-  >
-</div>
+<html>
+  <body>
+    <h1>{{target_user.f_name}} {{target_user.l_name}}</h1>
+    <a href="{{url}}">Please activate your account</a>
+  </body>
+</html>

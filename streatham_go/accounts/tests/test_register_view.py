@@ -29,7 +29,7 @@ def test_register_view_authenticated(user, client):
 
 
 @pytest.mark.django_db
-def test_register_view_success(user, client):
+def test_register_view_success(client):
     url = reverse('accounts:register')
     responce = client.post(url, {
                                'f_name': 'new',
@@ -40,12 +40,14 @@ def test_register_view_success(user, client):
                                'email': 'newuser'
                            }, follow=True)
 
-    next = reverse('accounts:login') + '?' + urlencode(
-            {'register_success': True})
+    logged_in = client.login(username='newuser', password='12345')
 
     assert responce.status_code == 200
     assert len(responce.redirect_chain) == 1
-    TestCase().assertRedirects(responce, next)
+    assert logged_in
+
+    user = User.objects.get(username='newuser')
+    assert not user.is_active
 
 
 test_data = [

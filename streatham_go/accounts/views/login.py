@@ -39,6 +39,8 @@ def login_view(request):
             context['logout'] = request.GET['logout']
         if request.GET.get('next') is not None:
             context['next'] = request.GET['next']
+        if request.GET.get('dev_url') is not None:
+            context['dev_url'] = request.GET['dev_url']
 
     context['form'] = form
 
