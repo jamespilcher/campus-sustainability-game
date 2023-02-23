@@ -20,6 +20,12 @@
     </div>
     {% endif %}
 
+    {% if email_error %}
+    <div class="alert alert-danger" role="alert">
+        {{REGISTER_EMAIL_FAILURE}}
+    </div>
+    {% endif %}
+
     </center>
 
     {{ form }}
