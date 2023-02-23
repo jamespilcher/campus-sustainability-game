@@ -1,2 +1,57 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
-leaderboard {% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="column-header">Rank</div>
+            <div class="column-content">
+                <ol>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="column-header">Username</div>
+            <div class="column-content">
+                <ol>
+                    <li>John</li>
+                    <li>Jane</li>
+                    <li>Bob</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="column-header">XP Level</div>
+            <div class="column-content">
+                <ol>
+                    <li>100</li>
+                    <li>95</li>
+                    <li>85</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="column-header">Wins</div>
+            <div class="column-content">
+                <ol>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                </ol>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="column-header">Quizzes Done</div>
+            <div class="column-content">
+                <ol>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
