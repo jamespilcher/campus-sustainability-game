@@ -1,3 +1,10 @@
+body{
+  background-image: url(bg1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -13,10 +20,14 @@
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  max-width: 440px;
   margin: auto;
+  margin-top: 10px;
+  background-color: #e2e1e1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  opacity: 0.95;
 }
 
 .form-signin .checkbox {

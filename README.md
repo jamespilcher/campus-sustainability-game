@@ -94,4 +94,4 @@ python3 manage.py runserver
 
 ### Won't have:
 
-    -
+    - test
