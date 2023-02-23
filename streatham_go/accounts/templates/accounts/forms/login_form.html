@@ -1,0 +1,5 @@
+{% for field in form %}
+<div class="form-floating">
+  {{ feild.errors}} {{ field }} {{ field.label_tag }}
+</div>
+{% endfor %}

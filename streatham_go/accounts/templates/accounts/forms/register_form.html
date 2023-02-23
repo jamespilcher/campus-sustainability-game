@@ -1,0 +1,32 @@
+{%for field in form %} {%if field.errors%} {%for error in field.errors%}
+<div class="alert alert-danger" role="alert">{{error}}</div>
+{%endfor%} {%endif%} {% endfor %}
+<div class="row g-2">
+  <div class="col">{{form.f_name}}</div>
+  <div class="col">{{form.l_name}}</div>
+</div>
+
+<div class="row g-3 pt-2 align-items-center">
+  <div class="col">{{form.username}}</div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">{{form.email}}</div>
+  <div class="col-4">
+    <input
+      value="@exeter.ac.uk"
+      class="form-control"
+      type="text"
+      readonly
+      disabled
+    />
+  </div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">{{form.password}}</div>
+</div>
+
+<div class="row g-2 pt-2">
+  <div class="col">{{form.rpassword}}</div>
+</div>

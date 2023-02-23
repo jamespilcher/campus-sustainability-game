@@ -4,10 +4,14 @@ Django==4.1.6
 django-bootstrap5==22.2
 exceptiongroup==1.1.0
 Faker==12.0.1
+flake8==6.0.0
 iniconfig==2.0.0
+mccabe==0.7.0
 mixer==7.2.2
 packaging==23.0
 pluggy==1.0.0
+pycodestyle==2.10.0
+pyflakes==3.0.1
 pytest==7.2.1
 pytest-django==4.5.2
 python-dateutil==2.8.2
