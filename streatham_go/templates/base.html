@@ -32,20 +32,20 @@
           <ul class="nav justify-content-end">
               {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'app:profile' %}">Profile</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:profile' %}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'app:logout' %}">Logout</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:logout' %}">Logout</a>
                 </li>
               {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'app:login' %}">Login</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'app:register' %}">Register</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'accounts:register' %}">Register</a>
                 </li>
               {% endif %}
           </ul>

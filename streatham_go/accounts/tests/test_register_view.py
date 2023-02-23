@@ -21,16 +21,16 @@ def user() -> User:
 def test_register_view_authenticated(user, client):
     client.login(username=user.username, password='12345')
 
-    url = reverse('app:register')
+    url = reverse('accounts:register')
     responce = client.get(url, follow=True)
-    next = reverse('app:index')
+    next = reverse('app:home')
 
     TestCase().assertRedirects(responce, next)
 
 
 @pytest.mark.django_db
 def test_register_view_success(user, client):
-    url = reverse('app:register')
+    url = reverse('accounts:register')
     responce = client.post(url, {
                                'f_name': 'new',
                                'l_name': 'user',
@@ -40,7 +40,8 @@ def test_register_view_success(user, client):
                                'email': 'newuser'
                            }, follow=True)
 
-    next = reverse('app:login') + '?' + urlencode({'register_success': True})
+    next = reverse('accounts:login') + '?' + urlencode(
+            {'register_success': True})
 
     assert responce.status_code == 200
     assert len(responce.redirect_chain) == 1
@@ -78,7 +79,7 @@ def test_register_view_invalid_form(user,
                                     password,
                                     rpassword,
                                     email):
-    url = reverse('app:register')
+    url = reverse('accounts:register')
     responce = client.post(url, {
                                'f_name': f_name,
                                'l_name': l_name,

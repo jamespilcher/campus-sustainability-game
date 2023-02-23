@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class RegisterForm(forms.Form):
-    template_name = 'app/forms/register_form.html'
+    template_name = 'accounts/forms/register_form.html'
     f_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={
                                                   'placeholder': 'First Name',
                                                   'class': 'form-control'}))

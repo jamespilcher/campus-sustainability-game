@@ -18,7 +18,7 @@ def user() -> User:
 
 @pytest.mark.django_db
 def test_login_view_success(user, client):
-    url = reverse('app:login')
+    url = reverse('accounts:login')
     responce = client.post(url, {
                                'username': user.username,
                                'password': '12345'
@@ -36,7 +36,7 @@ def test_login_view_success(user, client):
 
 @pytest.mark.django_db
 def test_login_view_fail(user, client):
-    url = reverse('app:login')
+    url = reverse('accounts:login')
     responce = client.post(url, {
                                'username': user.username,
                                'password': 'wrong_password'
@@ -49,8 +49,8 @@ def test_login_view_fail(user, client):
 
 @pytest.mark.django_db
 def test_login_view_success_next(user, client):
-    next = reverse('app:profile')
-    url = reverse('app:login')
+    next = reverse('accounts:profile')
+    url = reverse('accounts:login')
 
     responce = client.post(url, {
                                'username': user.username,
@@ -72,8 +72,8 @@ def test_login_view_success_next(user, client):
 def test_login_view_authenticated(user, client):
     client.login(username=user.username, password='12345')
 
-    url = reverse('app:login')
+    url = reverse('accounts:login')
     responce = client.get(url, follow=True)
-    next = reverse('app:index')
+    next = reverse('app:home')
 
     TestCase().assertRedirects(responce, next)

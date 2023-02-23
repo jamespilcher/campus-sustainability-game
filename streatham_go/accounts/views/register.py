@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from urllib.parse import urlencode
 from ..forms import RegisterForm
+from ..decorators import anonymous_required
 
 
+@anonymous_required
 def register(request):
-    if request.user.is_authenticated:
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-
     context = {}
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -27,7 +26,7 @@ def register(request):
                 user.last_name = l_name
                 user.save()
 
-                base_redirect_url = reverse('app:login')
+                base_redirect_url = reverse('accounts:login')
                 qurey_string = urlencode({'register_success': True})
                 url = '{}?{}'.format(base_redirect_url, qurey_string)
                 return redirect(url)
@@ -36,4 +35,4 @@ def register(request):
 
     context['form'] = form
 
-    return render(request, 'app/register.html', context)
+    return render(request, 'accounts/register.html', context)

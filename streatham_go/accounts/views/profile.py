@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 @login_required
 def profile(request):
-    return render(request, 'app/profile.html')
+    return render(request, 'accounts/profile.html')

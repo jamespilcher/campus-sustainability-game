@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
 from ..forms import LoginForm
+from ..decorators import anonymous_required
 
 
+@anonymous_required
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect(request.META.get('HTTP_REFERER', '/'))
-
     context = {}
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -40,4 +39,4 @@ def login_view(request):
 
     context['form'] = form
 
-    return render(request, 'app/login.html', context)
+    return render(request, 'accounts/login.html', context)

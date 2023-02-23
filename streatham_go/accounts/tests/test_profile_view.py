@@ -4,8 +4,8 @@ from django.test import TestCase
 
 
 def test_profile_view_unauthenticated(client):
-    url = reverse('app:profile')
+    url = reverse('accounts:profile')
     responce = client.get(url, follow=True)
-    next = reverse('app:login') + '?' + urlencode({'next': url})
+    next = reverse('accounts:login') + '?' + urlencode({'next': url})
 
     TestCase().assertRedirects(responce, next)

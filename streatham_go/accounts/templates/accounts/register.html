@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'app/register.css' %}">
-<form class="form-register mt-4" method="POST" action="{% url 'app:register' %}">
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
+<form class="form-register mt-4" method="POST" action="{% url 'accounts:register' %}">
     {% csrf_token %}
     <center>
       <img
@@ -28,7 +28,7 @@
       <button class="w-100 btn btn-lg btn-primary" type="submit">
         Register
       </button>
-        <p class="mt-3 mb-3 text-muted">Allready have an account? <a href="{% url 'app:login' %}">Login</a> here</p>
+        <p class="mt-3 mb-3 text-muted">Allready have an account? <a href="{% url 'accounts:login' %}">Login</a> here</p>
     </center>
 
 </form>
