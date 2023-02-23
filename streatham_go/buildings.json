@@ -1,0 +1,171 @@
+[
+  { "model" : "app.Location",
+    "pk" : 1,
+    "fields" : {
+      "name" : "Forum",
+      "distance" : 10.0,
+      "latitude" : "50.735344013066786",
+      "longitude" : "-3.533710030939591"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 2,
+    "fields" : {
+      "name" : "Northcott",
+      "distance" : 10.0,
+      "latitude" : "50.73582171608894",
+      "longitude" : "-3.535271915803187"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 3,
+    "fields" : {
+      "name" : "GreatHall",
+      "distance" : 10.0,
+      "latitude" : "50.73544778631505",
+      "longitude" : "-3.534539161978226"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 4,
+    "fields" : {
+      "name" : "PeterChalk",
+      "distance" : 10.0,
+      "latitude" : "50.73622338337576",
+      "longitude" : "-3.5360465251645556"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 5,
+    "fields" : {
+      "name" : "Physics",
+      "distance" : 10.0,
+      "latitude" : "50.73688318839217",
+      "longitude" : "-3.5364699499494314"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 6,
+    "fields" : {
+      "name" : "SportsHall",
+      "distance" : 10.0,
+      "latitude" : "50.73726496718506",
+      "longitude" : "-3.5372199328183966"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 7,
+    "fields" : {
+      "name" : "SportsPark",
+      "distance" : 10.0,
+      "latitude" : "50.73791877453287",
+      "longitude" : "-3.5370780472341403"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 8,
+    "fields" : {
+      "name" : "Laver",
+      "distance" : 10.0,
+      "latitude" : "50.737432607144235",
+      "longitude" : "-3.533506820884475"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 9,
+    "fields" : {
+      "name" : "Harrison",
+      "distance" : 10.0,
+      "latitude" : "50.73764890697027",
+      "longitude" : "-3.5325805866801314"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 10,
+    "fields" : {
+      "name" : "SWIOT",
+      "distance" : 10.0,
+      "latitude" : "50.73809826649347",
+      "longitude" : "-3.530602170926035"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 11,
+    "fields" : {
+      "name" : "Amory",
+      "distance" : 10.0,
+      "latitude" : "50.736417054595734",
+      "longitude" : "-3.531731962213996"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 12,
+    "fields" : {
+      "name" : "Business",
+      "distance" : 10.0,
+      "latitude" : "50.735617764035744",
+      "longitude" : "-3.529888429494681"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 13,
+    "fields" : {
+      "name" : "LemonGrove",
+      "distance" : 10.0,
+      "latitude" : "50.73497112744672",
+      "longitude" : "-3.5296850179419477"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 14,
+    "fields" : {
+      "name" : "Hatherly",
+      "distance" : 10.0,
+      "latitude" : "50.7340577938275",
+      "longitude" : "-3.533160818474208"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 15,
+    "fields" : {
+      "name" : "Queens",
+      "distance" : 10.0,
+      "latitude" : "50.734030038627466",
+      "longitude" : "-3.535080342831906"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 16,
+    "fields" : {
+      "name" : "Washington",
+      "distance" : 10.0,
+      "latitude" : "50.73316346751228",
+      "longitude" : "-3.5365078750394496"
+    }
+  },
+  {
+    "model" : "app.Location",
+    "pk" : 17,
+    "fields" : {
+      "name" : "ReedHall",
+      "distance" : 10.0,
+      "latitude" : "50.73526623979671",
+      "longitude" : "-3.5374977559130816"
+    }
+  }
+]
