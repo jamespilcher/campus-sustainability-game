@@ -11,22 +11,35 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+SETTINGS_DIR = Path(__file__).resolve().parent
 
+# Read Env
+env = environ.Env()
+environ.Env.read_env(SETTINGS_DIR.joinpath('.env'))
+
+# check if in dev env
+DEBUG = env('DEBUG') == 'True'
+
+if not DEBUG:
+    # Email settings
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = env('EMAIL_HOST')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-g30hr$0as_p+"\
-             "39eb^lywk!dx6c6ya)c$($%g%1^0-dn#eq8)z0"
+SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
@@ -132,4 +145,9 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-LOGIN_URL = "/accounts/login"
+# Set the redirect login URL
+LOGIN_URL = "accounts:login"
+
+# Allow Inactive Users to login so custom error message can be displayed
+AUTHENTICATION_BACKENDS = (('django.contrib.auth.backends.'
+                            'AllowAllUsersModelBackend'), )

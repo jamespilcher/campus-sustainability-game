@@ -5,10 +5,12 @@ Streatham GO
 
 ## Build Instructions
 
+**NOTE** for windows use `python` not `python3`
+
 ### 1. Create a virtual env
 
 ```
-python3 -m venv .env
+python3 -m venv .venv
 ```
 
 ### 2. Activate venv
@@ -16,13 +18,13 @@ python3 -m venv .env
 For Mac:
 
 ```
-source .env/bin/activate
+source .venv/bin/activate
 ```
 
 For Window:
 
 ```
-.env\Scripts\activate
+.venv\Scripts\activate
 ```
 
 ### 3. Install Requirements
@@ -31,23 +33,49 @@ For Window:
 pip3 install -r requirements.txt
 ```
 
-### 4. Run Tests (optional)
+### 4. Create .env file
+
+```
+touch streatham_go/streatham_go/.env
+```
+
+open new file and add the following settings
+
+- `DEBUG=[True|False]`
+- `SECRET_KEY=[check discord]`
+- `EMAIL_HOST=smtp.gmail.com`
+- `EMAIL_HOST_USER=streathamgo@gmail.com`
+- `EMAIL_HOST_PASSWORD=[check discord]`
+
+### 5. Run Tests (optional)
 
 ```
 cd streatham_go
 pytest
 ```
 
-### 5. Migrate Database (only need to run if you have made changes to db or first run)
+### 6. Migrate Database (only need to run if you have made changes to db or first run)
 
 ```
+cd streatham_go
 python3 manage.py migrate
 ```
 
-### 6. Start Dev Server
+### 7. Start Dev Server
 
 ```
+cd streatham_go
 python3 manage.py runserver
+```
+
+## Adding new deps
+
+If you have installed a new package via `pip3` (`pip` for windows), you MUST add this to the `requirements.txt` file
+
+To do so (in base directory):
+
+```
+pip3 freeze > requirements.txt
 ```
 
 ## Summary of the Game
@@ -93,5 +121,3 @@ python3 manage.py runserver
     - Double points at certain times of day
 
 ### Won't have:
-
-    - test

@@ -32,6 +32,18 @@
     </div>
     {% endif %}
 
+    {% if inactive %}
+    <div class="alert alert-danger" role="alert">
+        {{LOGIN_INACTIVE}}
+    </div>
+    {% endif %}
+
+    {% if dev_url %}
+    <div class="alert alert-success" role="alert">
+        Account created succesfully. DEV ACTIVATION URL: <a href="{{dev_url}}">Here</a>
+    </div>
+    {% endif %}
+
 </center>
 
 {{ form }}
