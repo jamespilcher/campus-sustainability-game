@@ -17,7 +17,7 @@ jobs:
       - name: Setup .env
         uses: SpicyPizza/create-envfile@v1.3
         with:
-          envkey_DEBUG: True
+          envkey_DEBUG: "True"
           envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
           directory: streatham_go/streatham_go
           file_name: .env
