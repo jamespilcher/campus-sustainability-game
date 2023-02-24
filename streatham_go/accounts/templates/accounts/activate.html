@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
+
+
+{% if success %}
+<center>
+    <h1>Success!</h1>
+    <p>Your account is now active! Login <a href="{% url 'accounts:login' %}">Here</a></p>
+</center>
+{% endif %}
+
+{% if user_not_found %}
+<center>
+    <h1>User Not Found :/</h1>
+    <p>
+        Cant find user, make an account
+        <a href="{% url 'accounts:register' %}">Here</a>!
+    </p>
+</center>
+{% endif %}
+
+{% if invalid_token %}
+<center>
+    <h1>Invalid Token</h1>
+    <p>
+        Check your email for an activation link or make a new account
+        <a href="{% url 'accounts:register' %}">Here</a>!
+    </p>
+</center>
+{% endif %}
+
+
+{% endblock %}
