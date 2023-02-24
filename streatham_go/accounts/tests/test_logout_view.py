@@ -4,12 +4,14 @@ from urllib.parse import urlencode
 from django.contrib.auth.models import User
 from django.test import TestCase
 
+pytest.USER_PASSWORD = '12345'
+
 
 @pytest.fixture
 def user() -> User:
     u = User.objects.create_user('ethanhofton',
                                  'eh736@exeter.ac.uk',
-                                 '12345')
+                                 pytest.USER_PASSWORD)
     u.first_name = 'Ethan'
     u.last_name = 'Hofton'
     u.save()
@@ -19,7 +21,7 @@ def user() -> User:
 
 @pytest.mark.django_db
 def test_logout_view_logout(user, client):
-    client.login(username=user.username, password='12345')
+    client.login(username=user.username, password=pytest.USER_PASSWORD)
 
     url = reverse('accounts:logout')
     responce = client.get(url, follow=True)
