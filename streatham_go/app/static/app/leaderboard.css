@@ -1,0 +1,40 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #5AC599;
+    color: #fff;
+    /* Make text not bold */
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+}
+
+
+/* If a row in the table is hovered over it should be highlighted*/
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 10%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 40%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 20%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 20%;
+}
