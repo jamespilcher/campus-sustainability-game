@@ -5,10 +5,13 @@ jobs:
   test_project:
     runs-on: ubuntu-latest # operating system your code will run on
     steps:
-      - name: Setup
+      - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup
         uses: actions/setup-python@v2
-        run: pip install flake8
+
+      - name: Install Requirements
         run: pip install -r requirements.txt # install all our dependencies for the project
 
       - name: Setup .env
@@ -19,6 +22,8 @@ jobs:
           directory: streatham_go/streatham_go
           file_name: .env
 
-      - name: Test and Lint
-        run: cd streatham_go && pytest # run pytest test
+      - name: Test
+        run: pytest streatham_go # run pytest test
+
+      - name: Lint
         run: flake8 . # run flake8 test
