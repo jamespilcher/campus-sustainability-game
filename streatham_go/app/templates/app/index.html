@@ -1,10 +1,10 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}{% bootstrap_messages %}
 
 <DOCTYPE! html>
-<html lang="en"></html>
+<html lang="en">
 
 {% load static %}
-
+<base href="/">
 <link rel="stylesheet" href="{% static 'app/index.css' %}">
     <body style="background-color: #f5f5f5;">
         <div class="wrapper">
@@ -31,9 +31,5 @@
             </div>
         </div>
     </body>
-    <style>
-
-        
-    </style>
 </html>
 {% endblock %}
