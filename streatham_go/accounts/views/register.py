@@ -4,6 +4,7 @@ from django.urls import reverse
 from urllib.parse import urlencode
 from ..forms import RegisterForm
 from ..decorators import anonymous_required
+from app.models import Leaderboard
 
 
 @anonymous_required
@@ -25,6 +26,9 @@ def register(request):
                 user.first_name = f_name
                 user.last_name = l_name
                 user.save()
+
+                # Create a leaderboard entry for the user
+                leaderboard_entry = Leaderboard.objects.create(user=user)
 
                 base_redirect_url = reverse('accounts:login')
                 qurey_string = urlencode({'register_success': True})
