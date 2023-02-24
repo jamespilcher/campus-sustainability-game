@@ -5,10 +5,20 @@ jobs:
   test_project:
     runs-on: ubuntu-latest # operating system your code will run on
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - run: pip install flake8
-      - run: pip install -r requirements.txt # install all our dependencies for the project
-      - run: cd streatham_go/streatham_go && echo "DEBUG=True" > .env
-      - run: cd streatham_go && pytest # run pytest test
-      - run: flake8 . # run flake8 test
+      - name: Setup
+        uses: actions/checkout@v2
+        uses: actions/setup-python@v2
+        run: pip install flake8
+        run: pip install -r requirements.txt # install all our dependencies for the project
+
+      - name: Setup .env
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_DEBUG: True
+          envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          directory: streatham_go/streatham_go
+          file_name: .env
+
+      - name: Test and Lint
+        run: cd streatham_go && pytest # run pytest test
+        run: flake8 . # run flake8 test
