@@ -9,6 +9,6 @@ jobs:
       - uses: actions/setup-python@v2
       - run: pip install flake8
       - run: pip install -r requirements.txt # install all our dependencies for the project
-      - run: cd streatham_go && echo "DEBUG=True" > .env
+      - run: cd streatham_go/streatham_go && echo "DEBUG=True" > .env
       - run: cd streatham_go && pytest # run pytest test
       - run: flake8 . # run flake8 test
