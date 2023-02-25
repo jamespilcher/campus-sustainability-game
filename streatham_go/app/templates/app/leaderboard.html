@@ -12,12 +12,12 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in globalLeaderboard %}
+            {% for user in user_data %}
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.profile.level }}</td>
-                <td>{{ user.profile.quiz_count }}</td>
+                <td>{{ user.level }}</td>
+                <td>{{ user.quiz_count }}</td>
             </tr>
             {% endfor %}
         </tbody>
