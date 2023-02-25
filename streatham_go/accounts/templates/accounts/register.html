@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'accounts/register.css' %}" href="{% static 'accounts/ExeterLogo.png'%}">
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
 <form class="form-register mt-4" method="POST" action="{% url 'accounts:register' %}">
     <center>
       <img
