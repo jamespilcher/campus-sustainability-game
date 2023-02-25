@@ -1,2 +1,35 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
-landing {% endblock %}
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}{% bootstrap_messages %}
+
+<DOCTYPE! html>
+<html lang="en">
+
+{% load static %}
+<base href="/">
+<link rel="stylesheet" href="{% static 'app/index.css' %}">
+    <body style="background-color: #f5f5f5;">
+        <div class="wrapper">
+            <img
+                class="mb-4 mt-4"
+                src="{% static 'app/uni.jpeg'%}"
+                alt=""
+                width="750"
+                height="350"
+                />
+            <div class="mb-4 mt-4">
+                <h2 class="header">
+                    Welcome to Streatham Go!
+                </h2>
+                <p> 
+                    This is a website where you can play a game which promotes sustainability and also allows you to explore the campus of the University of Exeter.
+                    There will be a public leaderboard where you can battle your way up to the top by answering a quiz question at a randomised location, where this location will change every day.
+                    The quicker you answer the question the more points you get! 
+                    
+                </p>
+                <a href="{% url 'accounts:register' %}" class="btn btn-info" role="button">
+                    SIGN UP NOW!
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock %}
