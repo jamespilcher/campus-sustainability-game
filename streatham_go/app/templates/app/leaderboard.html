@@ -1,6 +1,10 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/leaderboard.css' %}">
 <br>
+<div class="container my-5">
+    <h1 class="display-4">Leaderboard</h1>
+    <p class="lead mb-4">Here you can see the top 10 users on the site, and your own position.</p>
+</div>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
@@ -12,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in user_data %}
+            {% for user in user_data|slice:":10" %}
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ user.username }}</td>
@@ -21,6 +25,12 @@
             </tr>
             {% endfor %}
         </tbody>
+        <tr class="currentUserRow">
+            <td>{{ current_user_rank }}</td>
+            <td>{{ current_user_data.user.username }}</td>
+            <td>{{ current_user_data.level }}</td>
+            <td>{{ current_user_data.quiz_count }}</td>
+        </tr>
     </table>
 </div>
 {% endblock %}
