@@ -15,8 +15,8 @@ h1{
 .progress-container{
     display: flex;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 50px;
     width: 500px;
 }
 
@@ -38,16 +38,80 @@ h1{
 
 .progress-level-1,
 .progress-level-2 {
-  width: 50px;
-  text-align: center;
-  font-size: 25px;
-  font-style: bold;
+    width: 50px;
+    text-align: center;
+    font-size: 25px;
+    font-style: bold;
 }
 
 .progress-level-1 {
-  margin-right: 3px;
+    margin-right: 3px;
 }
 
 .progress-level-2 {
-  margin-left: 3px;
+    margin-left: 3px;
 }
+
+.jumbotron{
+  height: 350px;
+  width: 1000px;
+  position: relative;
+  background-color: #cdcdcd;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.jumbotron::after {
+content: "";
+position: absolute;
+top: 0;
+bottom: 0;
+left: 50%;
+border-left: 1px solid #8f8f90;
+}
+
+h1.badges{
+    margin-left: 20px;
+}
+
+.badges-textL, .badges-textR {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+  text-align: center;
+  text-decoration-line: underline;
+  text-decoration-color: #5f5e5e;
+  margin-right: 0;
+  margin-bottom: 10px;
+}
+
+.badges-textL {
+  padding-left: 20px;
+}
+
+.badges-textR {
+  padding-left: 150px;
+}
+
+.jumbotron::after, .jumbotron::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 1px solid #919191;
+}
+
+.jumbotron::before {
+  content: " ";
+  width: calc(50% - 10px);
+}
+
+.jumbotron::after {
+  content: " ";
+  width: calc(50% - 10px);
+  right: 0;
+}
+
