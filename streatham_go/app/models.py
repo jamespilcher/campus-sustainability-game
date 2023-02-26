@@ -10,7 +10,7 @@ class Leaderboard(models.Model):
     quiz_count = models.IntegerField(default=0)
 
     @classmethod
-    def get_current_user_rank(user, user_data, current_user_data):
+    def get_current_user_rank(self, user, user_data, current_user_data):
         return user_data.index(
             {
                 'username': user.username,
@@ -19,11 +19,11 @@ class Leaderboard(models.Model):
             }) + 1
 
     @classmethod
-    def get_current_user_data(user, leaderboard_data):
+    def get_current_user_data(self, user, leaderboard_data):
         return leaderboard_data.filter(user=user).first()
 
     @classmethod
-    def get_user_data(leaderboard_data):
+    def get_user_data(self, leaderboard_data):
         user_data = []
         for user_leaderboard_data in leaderboard_data:
             user_data.append({
