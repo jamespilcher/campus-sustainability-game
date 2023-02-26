@@ -12,9 +12,42 @@ h1{
     color: #212529;
 }
 
-.xpBar{
-    margin-left: 400px;
-    font-size: 25px;
-    font-weight: 700;
-    color: black;
+.progress-container{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 500px;
+}
+
+.progress{
+    flex: 1;
+    height: 20px;
+    background-color: #d1d3d6;
+    padding: 3px;
+    border-radius: 5px;
+}
+.progress-bar{
+    border-radius: 5px;
+    width: 75%;
+}
+
+.progress-bar-striped{
+    background-color: #5AC599;
+}
+
+.progress-level-1,
+.progress-level-2 {
+  width: 50px;
+  text-align: center;
+  font-size: 25px;
+  font-style: bold;
+}
+
+.progress-level-1 {
+  margin-right: 3px;
+}
+
+.progress-level-2 {
+  margin-left: 3px;
 }

@@ -3,9 +3,33 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
 <center>
+
+    <script>
+        window.onload = choosePic;
+      
+        var newPP = new Array(
+            "{% static 'accounts/pp1.jpeg' %}", 
+            "{% static 'accounts/pp2.jpeg' %}", 
+            "{% static 'accounts/pp3.jpeg' %}",
+            "{% static 'accounts/pp4.jpeg' %}",
+            "{% static 'accounts/pp5.png' %}",
+            "{% static 'accounts/pp6.jpeg' %}",);
+
+        var previousIndex = -1; 
+      
+        function choosePic() {
+          var randomNum = Math.floor(Math.random() * newPP.length);
+          while (randomNum == previousIndex) { 
+            randomNum = Math.floor(Math.random() * newPP.length);
+            }
+          previousIndex = randomNum; 
+          document.getElementById("profile-pic").src = newPP[randomNum];
+        }
+      </script>
+
     <img
         class="mb-4"
-        src="{% static 'accounts/pp.jpeg' %}"
+        id="profile-pic"
         alt=""
         width="120"
         height="120"
@@ -15,13 +39,24 @@
         {{user.username}}
     </h1>
 
+    <div class="progress-container">
+        <div class="progress-level-1">
+            5
+        </div> 
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                role="progressbar" 
+                aria-valuemin="0" 
+                aria-valuemax="100">
+            </div>
+        </div>
+        <div class="progress-level-2">
+            6
+        </div>
+    </div>
+
+
 </center>
-
-    <div class="xpBar">
-        <div class="progressfill"></div>
-        <div class=""
-    </div>    
-
 
 <!-- <span>Logged in as: {{user.username}}</span><br />
 <span>First Name: {{user.first_name}}</span><br />
