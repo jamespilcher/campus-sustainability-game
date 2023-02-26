@@ -10,6 +10,7 @@ pytest.USER_PASSWORD = '12345'
 
 
 @pytest.fixture
+@pytest.mark.django_db
 def user() -> User:
     u = User.objects.create_user('testUser',
                                  'testUser@exeter.ac.uk',
@@ -19,6 +20,26 @@ def user() -> User:
     u.save()
 
     return u
+
+
+@pytest.mark.django_db
+def test_leaderboard_view_authenticated(user, client):
+    client.login(username=user.username, password=pytest.USER_PASSWORD)
+    Leaderboard.objects.create(user=user, level=1, quiz_count=0)
+
+    url = reverse('app:leaderboard')
+    response = client.get(url, follow=True)
+
+    assert response.status_code == 200
+    assert len(response.redirect_chain) == 0
+
+
+def test_leaderboard_view_unauthenticated(client):
+    url = reverse('app:leaderboard')
+    response = client.get(url, follow=True)
+    next = reverse('accounts:login') + '?' + urlencode({'next': url})
+
+    TestCase().assertRedirects(response, next)
 
 
 @pytest.mark.django_db
@@ -45,9 +66,10 @@ def test_leaderboard_view_with_users(client, user):
         Leaderboard.objects.create(user=user_1, level=2, quiz_count=0),
         Leaderboard.objects.create(user=user_2, level=3, quiz_count=1),
         Leaderboard.objects.create(user=user_3, level=4, quiz_count=2),
-        Leaderboard.objects.create(user=user)
-
+        Leaderboard.objects.create(user=user, level=1, quiz_count=0)
     ]
+    for lb in leaderboard_data:
+        lb.save()
 
     # test leaderboard view
     url = reverse('app:leaderboard')
@@ -77,23 +99,5 @@ def test_leaderboard_view_with_users(client, user):
         {'username': 'user1', 'level': 2, 'quiz_count': 0},
         {'username': 'testUser', 'level': 1, 'quiz_count': 0}
     ]
+    
     assert response.context['user_data'] == expected_user_data
-
-
-def test_leaderboard_view_unauthenticated(client):
-    url = reverse('app:leaderboard')
-    response = client.get(url, follow=True)
-    next = reverse('accounts:login') + '?' + urlencode({'next': url})
-
-    TestCase().assertRedirects(response, next)
-
-
-@pytest.mark.django_db
-def test_leaderboard_view_authenticated(user, client):
-    client.login(username=user.username, password=pytest.USER_PASSWORD)
-
-    url = reverse('app:leaderboard')
-    response = client.get(url, follow=True)
-
-    assert response.status_code == 200
-    assert len(response.redirect_chain) == 0
