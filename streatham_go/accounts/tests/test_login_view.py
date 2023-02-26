@@ -3,12 +3,15 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
 
+pytest.USER_PASSWORD = '12345'
+pytest.USER_WRONG_PASSWORD = 'wrong_password'
+
 
 @pytest.fixture
 def user() -> User:
     u = User.objects.create_user('ethanhofton',
                                  'eh736@exeter.ac.uk',
-                                 '12345')
+                                 pytest.USER_PASSWORD)
     u.first_name = 'Ethan'
     u.last_name = 'Hofton'
     u.save()
@@ -21,7 +24,7 @@ def test_login_view_success(user, client):
     url = reverse('accounts:login')
     responce = client.post(url, {
                                'username': user.username,
-                               'password': '12345'
+                               'password': pytest.USER_PASSWORD
                            }, follow=True)
 
     assert responce.status_code == 200
@@ -39,7 +42,7 @@ def test_login_view_fail(user, client):
     url = reverse('accounts:login')
     responce = client.post(url, {
                                'username': user.username,
-                               'password': 'wrong_password'
+                               'password': pytest.USER_WRONG_PASSWORD
                            })
 
     assert responce.status_code == 200
@@ -54,7 +57,7 @@ def test_login_view_success_next(user, client):
 
     responce = client.post(url, {
                                'username': user.username,
-                               'password': '12345',
+                               'password': pytest.USER_PASSWORD,
                                'next': next,
                            }, follow=True)
 
@@ -70,7 +73,7 @@ def test_login_view_success_next(user, client):
 
 @pytest.mark.django_db
 def test_login_view_authenticated(user, client):
-    client.login(username=user.username, password='12345')
+    client.login(username=user.username, password=pytest.USER_PASSWORD)
 
     url = reverse('accounts:login')
     responce = client.get(url, follow=True)

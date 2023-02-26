@@ -1,15 +1,16 @@
 import pytest
 from django.urls import reverse
 from django.contrib.auth.models import User
-from urllib.parse import urlencode
 from django.test import TestCase
+
+pytest.USER_PASSWORD = '12345'
 
 
 @pytest.fixture
 def user() -> User:
     u = User.objects.create_user('ethanhofton',
                                  'eh736@exeter.ac.uk',
-                                 '12345')
+                                 pytest.USER_PASSWORD)
     u.first_name = 'Ethan'
     u.last_name = 'Hofton'
     u.save()
@@ -19,7 +20,7 @@ def user() -> User:
 
 @pytest.mark.django_db
 def test_register_view_authenticated(user, client):
-    client.login(username=user.username, password='12345')
+    client.login(username=user.username, password=pytest.USER_PASSWORD)
 
     url = reverse('accounts:register')
     responce = client.get(url, follow=True)
@@ -29,23 +30,25 @@ def test_register_view_authenticated(user, client):
 
 
 @pytest.mark.django_db
-def test_register_view_success(user, client):
+def test_register_view_success(client):
     url = reverse('accounts:register')
     responce = client.post(url, {
                                'f_name': 'new',
                                'l_name': 'user',
                                'username': 'newuser',
-                               'password': '12345',
-                               'rpassword': '12345',
+                               'password': pytest.USER_PASSWORD,
+                               'rpassword': pytest.USER_PASSWORD,
                                'email': 'newuser'
                            }, follow=True)
 
-    next = reverse('accounts:login') + '?' + urlencode(
-            {'register_success': True})
+    logged_in = client.login(username='newuser', password=pytest.USER_PASSWORD)
 
     assert responce.status_code == 200
     assert len(responce.redirect_chain) == 1
-    TestCase().assertRedirects(responce, next)
+    assert logged_in
+
+    user = User.objects.get(username='newuser')
+    assert not user.is_active
 
 
 test_data = [
@@ -91,3 +94,4 @@ def test_register_view_invalid_form(user,
 
     assert responce.status_code == 200
     assert len(responce.redirect_chain) == 0
+    assert not User.objects.filter(username=username, email=email).exists()

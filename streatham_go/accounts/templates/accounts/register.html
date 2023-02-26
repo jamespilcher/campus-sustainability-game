@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'accounts/register.css' %}" href="{% static 'accounts/ExeterLogo.png'%}">
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
 <form class="form-register mt-4" method="POST" action="{% url 'accounts:register' %}">
     <center>
       <img
@@ -19,6 +19,18 @@
       {% if error %}
       <div class="alert alert-danger" role="alert">
           {{REGISTER_FAILURE}}
+      </div>
+      {% endif %}
+
+      {% if email_error %}
+      <div class="alert alert-danger" role="alert">
+          {{REGISTER_EMAIL_FAILURE}}
+      </div>
+      {% endif %}
+
+      {% if dev_url %}
+      <div class="alert alert-success" role="alert">
+          Account created succesfully. DEV ACTIVATION URL: <a href="{{dev_url}}">Here</a>
       </div>
       {% endif %}
 
