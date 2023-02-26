@@ -34,27 +34,7 @@ h1{
 }
 
 .progress-bar-striped{
-    background-color: #5AC599;
-}
-
-.bg-custom-primary {
-  background-color: #5AC599;
-}
-
-.modal-title{
-  font-size: 30px;
-  font-weight: bold;
-  color: #212529;
-  text-align: center;
-  padding: 10px;
-}
-
-.modal-body{
-  font-size: 20px;
-  font-weight: bold;
-  color: #212529;
-  text-align: left;
-  padding: 20px;
+    background-color: #5AC599 !important;
 }
 
 .progress-level-1,
@@ -71,6 +51,22 @@ h1{
 
 .progress-level-2 {
     margin-left: 3px;
+}
+
+.modal-title{
+  font-size: 30px;
+  font-weight: bold;
+  color: #212529;
+  text-align: center;
+  padding: 10px;
+}
+
+.modal-body{
+  font-size: 20px;
+  font-weight: bold;
+  color: #212529;
+  text-align: left;
+  padding: 20px;
 }
 
 .jumbotron{
