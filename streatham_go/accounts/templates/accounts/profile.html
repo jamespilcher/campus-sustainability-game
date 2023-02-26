@@ -1,7 +1,30 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
-<h1>Profile</h1>
-<span>Logged in as: {{user.username}}</span><br />
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+<center>
+    <img
+        class="mb-4"
+        src="{% static 'accounts/pp.jpeg' %}"
+        alt=""
+        width="120"
+        height="120"
+    />
+
+    <h1>
+        {{user.username}}
+    </h1>
+
+</center>
+
+    <div class="xpBar">
+        <div class="progressfill"></div>
+        <div class=""
+    </div>    
+
+
+<!-- <span>Logged in as: {{user.username}}</span><br />
 <span>First Name: {{user.first_name}}</span><br />
 <span>Last Name: {{user.last_name}}</span><br />
-<span>Email: {{user.email}}</span>
+<span>Email: {{user.email}}</span> -->
 {% endblock %}

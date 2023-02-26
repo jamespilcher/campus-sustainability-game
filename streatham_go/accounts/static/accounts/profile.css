@@ -1,0 +1,20 @@
+img{
+    margin-top: 50px;
+    height: 200px;
+    width: 200px;
+    border: 3px solid #212529;
+    border-radius: 50%;
+}
+
+h1{
+    font-size: 45px;
+    font-weight: 700;
+    color: #212529;
+}
+
+.xpBar{
+    margin-left: 400px;
+    font-size: 25px;
+    font-weight: 700;
+    color: black;
+}
