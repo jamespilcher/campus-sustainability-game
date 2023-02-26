@@ -99,5 +99,4 @@ def test_leaderboard_view_with_users(client, user):
         {'username': 'user1', 'level': 2, 'quiz_count': 0},
         {'username': 'testUser', 'level': 1, 'quiz_count': 0}
     ]
-    
     assert response.context['user_data'] == expected_user_data
