@@ -9,14 +9,15 @@ img{
 h1{
     font-size: 45px;
     font-weight: 700;
+    font-style: bold;
     color: #212529;
 }
 
 .progress-container{
     display: flex;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     width: 500px;
 }
 
@@ -53,8 +54,8 @@ h1{
 }
 
 .jumbotron{
-  height: 350px;
-  width: 1000px;
+  height: 400px;
+  width: 1200px;
   position: relative;
   background-color: #cdcdcd;
   margin-top: 20px;
@@ -64,12 +65,12 @@ h1{
 }
 
 .jumbotron::after {
-content: "";
-position: absolute;
-top: 0;
-bottom: 0;
-left: 50%;
-border-left: 1px solid #8f8f90;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 1px solid #8f8f90;
 }
 
 h1.badges{
@@ -77,7 +78,7 @@ h1.badges{
 }
 
 .badges-textL, .badges-textR {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   margin-right: 20px;
   text-align: center;
@@ -115,3 +116,22 @@ h1.badges{
   right: 0;
 }
 
+.badgeIcon1, .badgeIcon2, .badgeIcon3, .badgeIcon4,
+.badgeIcon5, .badgeIcon6, .badgeIcon7, .badgeIcon8{
+    height: 110px;
+    width: 110px;
+    background-image: url(achievement.png);
+    background-size: cover;
+    background-position: center center;
+    border: 2px solid #212529;
+    border-radius: 50%;
+    margin-left: 25px;
+}
+
+.badgeRow1{
+    margin-top: 40px;
+}
+
+.badgeRow2{
+    margin-top: 200px;
+}
