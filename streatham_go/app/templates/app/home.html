@@ -9,19 +9,42 @@
     </div>
     <div class="card-body">
       <h5 class="card-title"> {{ building_name }} </h5>
-      <iframe
-      width="70%"
-      height="350px"
-      style="border:5"
-      loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPeYs2ou_i08cAjqSj62kwEffeoaHrI4Q
-        &q=ChIJB5U0_0WkbUgRT26SYsDKdJg
-        &center={{ building_lat }},{{ building_lon }}
-        &zoom=17
-        &maptype=satellite" >
-    </iframe>
+      <div id="googleMap" style="width:100%;height:400px"></div>
+
+      {{ building_lat|json_script:'lat' }}
+      {{ building_lon|json_script:'lon' }}
+
+      <script>
+        function myMap() {
+          lat = JSON.parse(document.getElementById('lat').textContent);
+          lon = JSON.parse(document.getElementById('lon').textContent);
+          var mapProp= {
+            disableDefaultUI: true,
+
+            zoom:17,
+            minZoom: 17,
+            maxZoom: 20,
+            // restriction: {     broken for some reason :(
+            //   latLngBounds: {
+            //     north: 50.74372,
+            //     south: 50.72028,
+            //     east: -3.55258,
+            //     west: -3.51178,
+            //   },
+            // },
+            center: new google.maps.LatLng(lat,lon),
+            mapId: "27c6b9a1bc6d90d5"
+          };
+          var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+          var marker = new google.maps.Marker({position:map.center});
+          marker.setMap(map);
+        }
+        </script>
+
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPeYs2ou_i08cAjqSj62kwEffeoaHrI4Q&callback=myMap"
+      ></script>
+
       <p class="card-text">Pro tip: Blah Blah Blah!</p>
       <a href="#" class="btn btn-outline-success">I Have Arrived!</a>
     </div>

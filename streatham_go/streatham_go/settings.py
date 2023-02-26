@@ -38,6 +38,7 @@ if not DEBUG:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
+GOOGLE_API_KEY = env('GOOGLE_API_KEY')
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 

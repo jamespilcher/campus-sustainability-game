@@ -1,5 +1,6 @@
 import datetime
 import random
+from django.conf import settings
 from django.shortcuts import render
 from app.models import Location
 # from django.contrib.auth.decorators import login_required
@@ -8,8 +9,8 @@ from app.models import Location
 def _generate_building_location():
 
     # Seed random number generator with date
-    a = datetime.datetime.now() + datetime.timedelta(days=3)
-    b = a.strftime("%Y%m%d")
+    a = datetime.datetime.now() + datetime.timedelta(days=4)
+    b = a.strftime("%Y%m%d" + settings.SECRET_KEY)  # add django seed
     random.seed(b)
 
     # Select todays random location
@@ -27,7 +28,7 @@ def home(request):
     context = {
         'building_name': daily_location.name,
         'building_lat': daily_location.latitude,
-        'building_lon': daily_location.longitude
+        'building_lon': daily_location.longitude,
+        'GOOGLE_API_KEY': settings.GOOGLE_API_KEY
     }
-    print(daily_location.longitude)
     return render(request, 'app/home.html', context)
