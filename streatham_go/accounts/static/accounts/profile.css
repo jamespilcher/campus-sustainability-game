@@ -37,6 +37,26 @@ h1{
     background-color: #5AC599;
 }
 
+.bg-custom-primary {
+  background-color: #5AC599;
+}
+
+.modal-title{
+  font-size: 30px;
+  font-weight: bold;
+  color: #212529;
+  text-align: center;
+  padding: 10px;
+}
+
+.modal-body{
+  font-size: 20px;
+  font-weight: bold;
+  color: #212529;
+  text-align: left;
+  padding: 20px;
+}
+
 .progress-level-1,
 .progress-level-2 {
     width: 50px;
@@ -134,4 +154,15 @@ h1.badges{
 
 .badgeRow2{
     margin-top: 200px;
+}
+
+.btn1{
+  width: 300px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  background: #5AC599;
+  border-color: #5AC599;
 }

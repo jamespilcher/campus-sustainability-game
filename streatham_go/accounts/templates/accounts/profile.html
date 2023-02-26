@@ -2,6 +2,8 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+
 <center>
 
     <script>
@@ -44,12 +46,12 @@
             5
         </div> 
         <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" 
-                role="progressbar" 
-                aria-valuemin="0" 
+            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuemin="0"
                 aria-valuemax="100">
             </div>
-        </div>
+        </div>        
         <div class="progress-level-2">
             6
         </div>
@@ -82,11 +84,32 @@
         </div>
       </div>
 
+      <button type="button" class="btn1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Account Details
+      </button>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> Account Details </h5>
+            </div>
+            <div class="modal-body">
+                <span>Username: {{user.username}}</span><br />
+                <span>First Name: {{user.first_name}}</span><br />
+                <span>Last Name: {{user.last_name}}</span><br />
+                <span>Email: {{user.email}}</span><br />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </center>
 
-
-<!-- <span>Logged in as: {{user.username}}</span><br />
-<span>First Name: {{user.first_name}}</span><br />
-<span>Last Name: {{user.last_name}}</span><br />
-<span>Email: {{user.email}}</span> -->
 {% endblock %}
