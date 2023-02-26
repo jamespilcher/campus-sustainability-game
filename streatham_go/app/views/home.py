@@ -8,7 +8,7 @@ from app.models import Location
 def _generate_building_location():
 
     # Seed random number generator with date
-    a = datetime.datetime.now() + datetime.timedelta(days=4)
+    a = datetime.datetime.now() + datetime.timedelta(days=3)
     b = a.strftime("%Y%m%d")
     random.seed(b)
 
@@ -26,7 +26,8 @@ def home(request):
 
     context = {
         'building_name': daily_location.name,
-        'building_lat': daily_location.longitude,
-        'building_lon': daily_location.latitude,
+        'building_lat': daily_location.latitude,
+        'building_lon': daily_location.longitude
     }
+    print(daily_location.longitude)
     return render(request, 'app/home.html', context)

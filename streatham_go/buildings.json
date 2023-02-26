@@ -22,7 +22,7 @@
     "model" : "app.Location",
     "pk" : 3,
     "fields" : {
-      "name" : "GreatHall",
+      "name" : "Great Hall",
       "distance" : 10.0,
       "latitude" : "50.73544778631505",
       "longitude" : "-3.534539161978226"
@@ -32,7 +32,7 @@
     "model" : "app.Location",
     "pk" : 4,
     "fields" : {
-      "name" : "PeterChalk",
+      "name" : "Peter Chalk",
       "distance" : 10.0,
       "latitude" : "50.73622338337576",
       "longitude" : "-3.5360465251645556"
@@ -62,7 +62,7 @@
     "model" : "app.Location",
     "pk" : 7,
     "fields" : {
-      "name" : "SportsPark",
+      "name" : "Sports Park",
       "distance" : 10.0,
       "latitude" : "50.73791877453287",
       "longitude" : "-3.5370780472341403"
@@ -122,7 +122,7 @@
     "model" : "app.Location",
     "pk" : 13,
     "fields" : {
-      "name" : "LemonGrove",
+      "name" : "Lemongrove",
       "distance" : 10.0,
       "latitude" : "50.73497112744672",
       "longitude" : "-3.5296850179419477"
@@ -162,7 +162,7 @@
     "model" : "app.Location",
     "pk" : 17,
     "fields" : {
-      "name" : "ReedHall",
+      "name" : "Reed Hall",
       "distance" : 10.0,
       "latitude" : "50.73526623979671",
       "longitude" : "-3.5374977559130816"
