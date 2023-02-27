@@ -1,13 +1,14 @@
 img{
-    margin-top: 50px;
-    height: 200px;
-    width: 200px;
+    margin-top: 20px;
+    height: 150px;
+    width: 150px;
     border: 3px solid #212529;
     border-radius: 50%;
 }
 
 h1{
-    font-size: 45px;
+    margin-top: 20px;
+    font-size: 40px;
     font-weight: 700;
     font-style: bold;
     color: #212529;
@@ -16,7 +17,7 @@ h1{
 .progress-container{
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 500px;
 }
@@ -70,13 +71,13 @@ h1{
 }
 
 .jumbotron{
-  height: 400px;
+  height: 380px;
   width: 1200px;
   position: relative;
   background-color: #cdcdcd;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 20px;
 }
 
@@ -149,7 +150,7 @@ h1.badges{
 }
 
 .badgeRow2{
-    margin-top: 200px;
+    margin-top: 170px;
 }
 
 .btn1{
