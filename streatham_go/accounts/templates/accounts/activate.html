@@ -3,18 +3,17 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/activate.css' %}">
 
-<div class="logo">
-<img
+
+<div class="box">
+    <center>
+    <img
     class="mb-4"
     src= "{% static 'accounts/ExeterLogo.png' %}"
     alt=""
     width="120"
     height="120"
-
-  />
-</div>
-
-<div class="box">
+    />
+    </center>
     <div class = "text">
     {% if success %}
         <h1>Success!</h1>

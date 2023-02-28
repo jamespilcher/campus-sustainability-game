@@ -8,7 +8,8 @@ body{
   }
 
 h1{
-    font-size: 100px;
+    font-size: 40px;
+    text-align: center;
 }
 
 p{
@@ -16,6 +17,8 @@ p{
 }
 
 .box{
+    position: relative;
+    top: 5px;
     border: 3px solid #5AC599;
     padding: 10px;
     box-sizing: border-box;
@@ -26,26 +29,15 @@ p{
     background-color: #f0f0f0;
     opacity: 0.9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
 }
+
+.box img {
+    max-width: 100px;
+    height: auto;
+  }
 
 .text{
-    font-size: 18px;
+    font-size: 16px;
 }
-
-.logo {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    max-width: 400px;
-    padding-top: 20px;
-  }
-  
-  .logo img {
-    max-width: 100%;
-    height: auto;
-    border: 6px solid #333; /* change the border size and color as desired */
-    border-radius: 60%; /* create a circular shape */
-    background-color: #f0f0f0;
-    opacity: 0.9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
