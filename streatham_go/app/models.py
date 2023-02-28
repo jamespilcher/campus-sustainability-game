@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Leaderboard(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
-    xp = models.IntegerField(default=50)
+    xp = models.IntegerField(default=0)
     quiz_count = models.IntegerField(default=0)
 
     @classmethod
