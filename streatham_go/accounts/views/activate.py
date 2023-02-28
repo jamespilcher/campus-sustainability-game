@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from ..tokens import email_verification_token
 from ..decorators import anonymous_required
 from app.models import Leaderboard
+# from ..models import Profile
 
 
 @anonymous_required
