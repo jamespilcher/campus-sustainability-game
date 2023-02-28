@@ -106,7 +106,8 @@ def test_leaderboard_view_with_users(client, user):
 
 
 @pytest.mark.django_db
-def test_leaderboard_view_user_added_to_leaderboard_after_activation(user, client):
+def test_leaderboard_view_user_added_to_leaderboard_after_activation(
+        user, client):
     url = reverse('accounts:register')
     response = client.post(url, {
                                'f_name': 'test',
