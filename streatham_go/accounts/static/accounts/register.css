@@ -16,3 +16,14 @@ body{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
+
+.btn{
+  background-color: #5AC599; 
+  border-color: #5AC599;
+}
+
+.btn:hover{
+  background-color:#5AC599;
+  border-color: black;
+  color:white;
+}
