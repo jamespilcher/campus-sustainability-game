@@ -29,7 +29,7 @@
     <img class="mb-4" id="profile-pic" alt="" width="120" height="120" />
 
     <h1>
-        {{user.username}}
+        {{current_user.username}}
     </h1>
 
     <div class="progress-container">
@@ -73,6 +73,7 @@
         </div>
     </div>
 
+    {% if current_user == user %}
     <button type="button" class="btn1" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Account Details
       </button>
@@ -95,6 +96,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 

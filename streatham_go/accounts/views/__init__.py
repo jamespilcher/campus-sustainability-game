@@ -4,3 +4,4 @@ from .logout import *
 from .login import *
 from .profile import *
 from .activate import *
+from .search import *
