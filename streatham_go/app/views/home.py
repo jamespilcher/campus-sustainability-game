@@ -9,7 +9,7 @@ from app.models import Location
 def _generate_building_location():
 
     # Seed random number generator with date
-    a = datetime.datetime.now() + datetime.timedelta(days=4)
+    a = datetime.datetime.now() + datetime.timedelta(days=3)
     b = a.strftime("%Y%m%d" + settings.SECRET_KEY)  # add django seed
     random.seed(b)
 

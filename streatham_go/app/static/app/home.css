@@ -1,4 +1,14 @@
 #map {
-    height: 100%; /* The height is 400 pixels */
-    width: 100%; /* The width is the width of the web page */
+    height: 1000px; /* The height is 400 pixels */
+    width: 1000px; /* The width is the width of the web page */
+    transform: scale(0.5);
+  }
+
+.maplabel {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #930000;
+    padding: 3px;
+    white-space: nowrap;
+    text-align: center;
   }

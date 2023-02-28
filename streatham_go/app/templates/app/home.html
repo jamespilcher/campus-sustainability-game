@@ -3,21 +3,28 @@
 
 <link rel="stylesheet" href="{% static 'app/home.css' %}" />
 
-<div class="card bg-light text-center mx-auto rounded-0" id="foreground2" style = "width: 50%">
-    <div class="card-header" id="foreground" >
-      Your Quest begins now... Go to
+<div class="card mx-auto rounded-0" style = "width: 60%;background-color: rgb(255, 240, 220);">
+    <div class="card-header" >
+      <b>Today's Quest-Giver: {{ building_name }}</b>
     </div>
     <div class="card-body">
-      <h5 class="card-title"> {{ building_name }} </h5>
-      <div id="googleMap" style="width:100%;height:400px"></div>
+      <h5 class="card-title">  </h5>
+      <div id="googleMap" style="height:450px;transform-origin:top;transform:scale(0.95);">
 
       {{ building_lat|json_script:'lat' }}
       {{ building_lon|json_script:'lon' }}
+      {{ building_name|json_script:'name' }}
+
+      <div style="display:none">
+        <img src="{% static 'app\example32.png' %}" alt="icon maker" id="icon">
+      </div>
 
       <script>
         function myMap() {
           lat = JSON.parse(document.getElementById('lat').textContent);
           lon = JSON.parse(document.getElementById('lon').textContent);
+          name = JSON.parse(document.getElementById('name').textContent);
+          iconURL = document.getElementById("icon").src;
           var mapProp= {
             disableDefaultUI: true,
 
@@ -36,17 +43,34 @@
             mapId: "27c6b9a1bc6d90d5"
           };
           var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-          var marker = new google.maps.Marker({position:map.center});
+          var iconMarker = {
+            url:iconURL, 
+            labelOrigin: new google.maps.Point(20,-10),
+            scaledSize: new google.maps.Size(40, 40)
+          }
+          var labelMarker = {
+            text: name,
+            color: "white",
+            fontSize: "16px",
+            fontFamily: "Courier New",
+            className: "maplabel"
+          }
+          var marker = new google.maps.Marker({position:map.center, label: labelMarker, icon: iconMarker});
           marker.setMap(map);
         }
         </script>
 
       <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPeYs2ou_i08cAjqSj62kwEffeoaHrI4Q&callback=myMap"
+        src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=myMap"
       ></script>
-
-      <p class="card-text">Pro tip: Blah Blah Blah!</p>
-      <a href="#" class="btn btn-outline-success">I Have Arrived!</a>
+    </div>
+      <p class="card-text text-left"> (IMG OF CHARACTER) CHARACTER_NAME: Hey traveller, come meet me at __ ___ you know the place with the ____... I'll make it worth your while!</p>
+    <div style="text-align: right;">
+      <div class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
+        <button type="button" class="btn btn-outline-danger">Insult</button>
+        <button type="button" class="btn btn-outline-warning">Any Tips?</button>
+        <a href="#" class="btn btn-outline-success">I'm here</a>
+      </div>
     </div>
     <div class="card-footer text-muted">
       Time Remaining: 12h 29m 47s
