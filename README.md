@@ -21,10 +21,25 @@ For Mac:
 source .venv/bin/activate
 ```
 
-For Window:
+For Windows:
+
+By default windows prevents you from being able to run scripts.
+In order to by pass this you must first enter this command,
+making sure that you are running the terminal as admin.
+
+```
+Set-ExecutionPolicy RemoteSigned
+```
+Then you may run this line.
 
 ```
 .venv\Scripts\activate
+```
+After running the scripts, you may return to the original setting
+by entering the following command:
+
+```
+Set-ExecutionPolicy RemoteSigned
 ```
 
 ### 3. Install Requirements
