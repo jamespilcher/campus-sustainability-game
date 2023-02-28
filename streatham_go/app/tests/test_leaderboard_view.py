@@ -97,10 +97,10 @@ def test_leaderboard_view_with_users(client, user):
 
     # check the user_data list is sorted correctly
     expected_user_data = [
-        {'username': 'user3', 'level': 4, 'quiz_count': 2},
-        {'username': 'user2', 'level': 3, 'quiz_count': 1},
-        {'username': 'user1', 'level': 2, 'quiz_count': 0},
-        {'username': 'testUser', 'level': 1, 'quiz_count': 0}
+        {'username': 'user3', 'level': 4, 'quiz_count': 2, 'xp': 0},
+        {'username': 'user2', 'level': 3, 'quiz_count': 1, 'xp': 0},
+        {'username': 'user1', 'level': 2, 'quiz_count': 0, 'xp': 0},
+        {'username': 'testUser', 'level': 1, 'quiz_count': 0, 'xp': 0},
     ]
     assert response.context['user_data'] == expected_user_data
 
