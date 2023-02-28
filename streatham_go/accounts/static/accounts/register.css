@@ -1,5 +1,5 @@
 body{
-  background-image: url(bg.jpeg);
+  background-image: url(bg.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -7,23 +7,29 @@ body{
   width: 100%;
 }
 
+h1,p{
+  font-family: Luminari, fantasy;
+}
+
+
 .form-register {
   max-width: 440px;
   margin: auto;
   margin-top: 30px;
-  background-color: #f0f0f0;
+  background-color: #fff8e8;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 10px;
 }
 
 .btn{
-  background-color: #5AC599; 
-  border-color: #5AC599;
+  font-family: Luminari, fantasy;
+  background-color: #958A6E; 
+  border-color: #958A6E;
 }
 
 .btn:hover{
-  background-color:#5AC599;
-  border-color: black;
+  background-color:#958A6E;
+  border-color: #554832;
   color:white;
 }
