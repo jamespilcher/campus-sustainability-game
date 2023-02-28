@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 from ..tokens import email_verification_token
 from ..decorators import anonymous_required
+from app.models import Leaderboard
 
 
 @anonymous_required
@@ -24,6 +25,8 @@ def activate(request, username):
                 email_verification_token.check_token(user, token)):
             user.is_active = True
             user.save()
+            leaderboard = Leaderboard.objects.create(user=user)
+            leaderboard.save()
 
             context["success"] = True
         else:
