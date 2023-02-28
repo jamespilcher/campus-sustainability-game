@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.db import transaction
 from django.utils.html import strip_tags
+from app.models import Leaderboard
 
 
 def _get_activation_url(request, user):
@@ -79,6 +80,8 @@ def register(request):
                     transaction.set_rollback(True)
                 else:
                     user.save()
+                    leaderboard = Leaderboard.objects.create(user=user)
+                    leaderboard.save()
 
                     base_redirect_url = reverse('accounts:login')
                     query = {'register_success': True}

@@ -1,7 +1,6 @@
 #map {
-    height: 1000px; /* The height is 400 pixels */
-    width: 1000px; /* The width is the width of the web page */
-    transform: scale(0.5);
+    height: 600; /* The height is 400 pixels */
+    transform: scale(0.95);
   }
 
 .maplabel {
@@ -12,3 +11,10 @@
     white-space: nowrap;
     text-align: center;
   }
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    
+  }
+}
