@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Leaderboard(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
+    xp = models.IntegerField(default=0)
     quiz_count = models.IntegerField(default=0)
 
     @classmethod
@@ -15,6 +16,7 @@ class Leaderboard(models.Model):
             {
                 'username': user.username,
                 'level': current_user_data.level,
+                'xp': current_user_data.xp,
                 'quiz_count': current_user_data.quiz_count
             }) + 1
 
@@ -29,6 +31,7 @@ class Leaderboard(models.Model):
             user_data.append({
                 'username': user_leaderboard_data.user.username,
                 'level': user_leaderboard_data.level,
+                'xp': user_leaderboard_data.xp,
                 'quiz_count': user_leaderboard_data.quiz_count
             })
         return user_data
