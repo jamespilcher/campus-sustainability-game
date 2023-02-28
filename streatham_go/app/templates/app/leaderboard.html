@@ -17,21 +17,25 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in user_data|slice:":10" %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.level }}</td>
-                <td>{{ user.quiz_count }}</td>
-            </tr>
-            {% endfor %}
+            {% for user in user_data|slice:":10" %} {% if user.username == current_user_data.user.username %}
+            <tr class="currentUserRow">
+                {% else %}
+                <tr>
+                    {% endif %}
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.level }}</td>
+                    <td>{{ user.quiz_count }}</td>
+                </tr>
+                {% endfor %} {% if current_user_rank > 10 %}
+                <tr class="currentUserRow">
+                    <td>{{ current_user_rank }}</td>
+                    <td>{{ current_user_data.user.username }}</td>
+                    <td>{{ current_user_data.level }}</td>
+                    <td>{{ current_user_data.quiz_count }}</td>
+                </tr>
+                {% endif %}
         </tbody>
-        <tr class="currentUserRow">
-            <td>{{ current_user_rank }}</td>
-            <td>{{ current_user_data.user.username }}</td>
-            <td>{{ current_user_data.level }}</td>
-            <td>{{ current_user_data.quiz_count }}</td>
-        </tr>
     </table>
 </div>
 {% endblock %}
