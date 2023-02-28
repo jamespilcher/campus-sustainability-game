@@ -2,14 +2,13 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'app/home.css' %}" />
-
 <div class="card container rounded-0" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
       <b>Today's Quest-Giver: {{ building_name }}</b>
     </div>
     <div class="card-body">
       <h5 class="card-title">  </h5>
-      <div id="googleMap" style="height:450px;transform-origin:top;transform:scale(0.95);">
+      <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
 
       {{ building_lat|json_script:'lat' }}
       {{ building_lon|json_script:'lon' }}
@@ -68,26 +67,36 @@
       </div>
 
   <div class="container-fluid">
-      <div class="row g-2">
+      <div class="row g-2 form-group">
           <div class="col-2 col-lg-1 mx-auto" style="image-rendering: pixelated">
-            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%">
+            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload="say('{{ building_name }} is located at {{ building_lat}}N and {{ building_lon}}W')">
           </div>
-          <div class="col">
-            Hey traveller, come meet me at __ ___ you know the place with the ____... I'll make it worth your while!
+          <div class="col" id="dialogue">
           </div>
       </div>
-  </div>
+      <div style="text-align: center;">
+        <br>
+        <div class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
+          <button type="button" class="btn btn-danger">Insult</button>
+          <a href="/question.html" class="btn btn-success">I'm here</a>
+          <button type="button" class="btn btn-warning">Any Tips?</button>
+        </div>
+      </div>
 
-    <div style="text-align: right;">
-      <div class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
-        <button type="button" class="btn btn-outline-danger">Insult</button>
-        <button type="button" class="btn btn-outline-warning">Any Tips?</button>
-        <a href="/question.html" class="btn btn-outline-success">I'm here</a>
-      </div>
-    </div>
-    <div class="card-footer text-muted">
-      Time Remaining: 12h 29m 47s
-    </div>
+      <script> 
+ /* The speed/duration of the effect in milliseconds */
+        function say(msg) {
+            document.getElementById('dialogue').innerHTML = msg;
+          }
+      </script>
+
+      
+
+  </div>
+  <br>
+  <div class="card-footer text-muted">
+    Time Remaining: 12h 29m 47s
+  </div>
   </div>
 
 {% endblock %}
