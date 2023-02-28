@@ -1,32 +1,42 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
 
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/activate.css' %}">
 
-{% if success %}
-<center>
-    <h1>Success!</h1>
-    <p>Your account is now active! Login <a href="{% url 'accounts:login' %}">Here</a></p>
-</center>
-{% endif %}
 
-{% if user_not_found %}
-<center>
-    <h1>User Not Found :/</h1>
-    <p>
-        Cant find user, make an account
-        <a href="{% url 'accounts:register' %}">Here</a>!
-    </p>
-</center>
-{% endif %}
+<div class="box">
+    <center>
+    <img
+    class="mb-4"
+    src= "{% static 'accounts/ExeterLogo.png' %}"
+    alt=""
+    width="120"
+    height="120"
+    />
+    </center>
+    <div class = "text">
+    {% if success %}
+        <h1>Success!</h1>
+        <p>Your account is now active! Login <a href="{% url 'accounts:login' %}">Here</a></p>
+    {% endif %}
 
-{% if invalid_token %}
-<center>
-    <h1>Invalid Token</h1>
-    <p>
-        Check your email for an activation link or make a new account
-        <a href="{% url 'accounts:register' %}">Here</a>!
-    </p>
-</center>
-{% endif %}
+    {% if user_not_found %}
+        <h1>User Not Found</h1>
+        <p>
+            Cant find user, make an account
+            <a href="{% url 'accounts:register' %}">Here</a>!
+        </p>
+    {% endif %}
+
+    {% if invalid_token %}
+        <h1>Invalid Token</h1>
+        <p>
+            Check your email for an activation link or make a new account
+            <a href="{% url 'accounts:register' %}">Here</a>!
+        </p>
+    {% endif %}
+    </div>
+</div>
 
 
 {% endblock %}
