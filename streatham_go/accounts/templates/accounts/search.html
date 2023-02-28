@@ -1,2 +1,31 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %}
-search {% endblock %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "accounts/search.css" %}" />
+<div class="card mt-5">
+    {# icon and search-box #}
+        <div class="card-body">
+            <div class="row justify-content-md-center align-middle">
+                <div class="col-md-auto align-self-center">
+                  <i id="search-icon" class="fas fa-search"></i>
+                </div>
+              <div class="col">
+              <input id="user-search" type="search" class="form-control pt-2 pb-2" placeholder="Search Users" aria-label="Search" />
+              </div>
+            </div>
+        </div>
+</div>
+
+{# artist-list section #}
+<div class="card mt-3">
+    <div class="card-body">
+        <div id="replaceable-content">
+            {% include 'accounts/search-results-partial.html' %}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'accounts/javascript/search.js' %}"></script>
+{% endblock %}
