@@ -10,28 +10,7 @@ img{
     border-width: 3px;
 }
 
-@media all and (max-width: 500px){
-    body{
-        width: auto;
-        height: auto;
-    }
 
-    h2.header{
-        font-size: 24px;
-        padding-top: 10px;
-    }
-
-    img{
-        position:center;
-        float: none;
-        width:365px;
-        height:200px;
-    }
-
-    a.btn{
-        position: center;
-    }
-}
 
 .wrapper{
     padding-top: 120px;
@@ -76,3 +55,32 @@ a.btn:hover{
     border-color: #212529;
 }
 
+@media all and (max-width: 500px){
+    .wrapper{
+        padding-top: 0px;
+        margin-right: 0px;
+    }
+
+    body{
+        width: 100%;
+        height: auto;
+        overflow-x: hidden;
+    }
+
+    h2.header{
+        margin: 0 auto;
+        font-size: 24px;
+        padding-top: 10px;
+    }
+
+    img{
+        position:center;
+        float: none;
+        width:365px;
+        height:200px;
+    }
+
+    a.btn{
+        margin-left: 60px;
+    }
+}
