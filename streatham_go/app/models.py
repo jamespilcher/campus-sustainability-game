@@ -2,17 +2,21 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+class Question(models.Model):
+    question = models.CharField(max_length=200)
+    a = models.CharField(max_length=200)
+    b = models.CharField(max_length=200)
+    c = models.CharField(max_length=200)
+    d = models.CharField(max_length=200)
+    answer = models.CharField(max_length=1)
+
+
 class Location(models.Model):
     name = models.CharField(max_length=50)
-    distance = models.IntegerField()
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.location
-    
-
-# Create your models here.
+    location_message = models.CharField(max_length=200)
+    # icon = models.ImageField(upload_to='icons/', blank=True) for image functionality
 
 
 class Leaderboard(models.Model):
