@@ -1,0 +1,16 @@
+{% if users %}
+{% for user_profile in users %}
+<div class="card mt-2">
+    <div class="card-body">
+        <h3>{{ user_profile.first_name }} {{ user_profile.last_name }}</h3>
+        <a href="{% url 'accounts:profile' user_profile.username %}">@{{ user_profile.username }}</a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="card">
+    <div class="card-body">
+        No Users Found
+    </div>
+</div>
+{% endif %}

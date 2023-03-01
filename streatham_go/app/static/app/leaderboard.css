@@ -8,16 +8,12 @@ table {
 thead {
     background-color: #5AC599;
     color: #fff;
-    /* Make text not bold */
 }
 
 th {
     padding: 10px;
     text-align: left;
 }
-
-
-/* If a row in the table is hovered over it should be highlighted*/
 
 th:nth-child(1),
 td:nth-child(1) {
@@ -45,4 +41,21 @@ td:nth-child(4) {
 
 .currentUserRow td {
     color: #fff !important;
+}
+
+@media only screen and (max-width: 767px) {
+    p.lead {
+        font-size: 1.5rem;
+    }
+    .container.my-5 {
+        padding: 1rem;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table td,
+    .table th {
+        font-size: 0.8rem;
+        padding: 2px;
+    }
 }

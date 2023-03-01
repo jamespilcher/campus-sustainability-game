@@ -3,6 +3,8 @@ attrs==22.2.0
 Django==4.1.6
 django-bootstrap5==22.2
 django-environ==0.9.0
+django-jquery==3.1.0
+django-static-fontawesome==5.15.4.0
 exceptiongroup==1.1.0
 Faker==12.0.1
 flake8==6.0.0

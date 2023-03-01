@@ -66,10 +66,10 @@ def test_leaderboard_view_with_users(client, user):
         pytest.USER_PASSWORD
     )
     leaderboard_data = [
-        Leaderboard.objects.create(user=user_1, level=2, quiz_count=0),
-        Leaderboard.objects.create(user=user_2, level=3, quiz_count=1),
-        Leaderboard.objects.create(user=user_3, level=4, quiz_count=2),
-        Leaderboard.objects.create(user=user, level=1, quiz_count=0)
+        Leaderboard.objects.create(user=user_1, level=3, quiz_count=0, xp=0),
+        Leaderboard.objects.create(user=user_2, level=3, quiz_count=1, xp=50),
+        Leaderboard.objects.create(user=user_3, level=2, quiz_count=2, xp=50),
+        Leaderboard.objects.create(user=user, level=1, quiz_count=0, xp=50)
     ]
     for lb in leaderboard_data:
         lb.save()
@@ -96,11 +96,13 @@ def test_leaderboard_view_with_users(client, user):
     assert response.context['current_user_rank'] == 4
 
     # check the user_data list is sorted correctly
+    # users with higher level should be first
+    # users with same level should be sorted by highest xp
     expected_user_data = [
-        {'username': 'user3', 'level': 4, 'quiz_count': 2, 'xp': 0},
-        {'username': 'user2', 'level': 3, 'quiz_count': 1, 'xp': 0},
-        {'username': 'user1', 'level': 2, 'quiz_count': 0, 'xp': 0},
-        {'username': 'testUser', 'level': 1, 'quiz_count': 0, 'xp': 0},
+        {'username': 'user2', 'level': 3, 'quiz_count': 1, 'xp': 50},
+        {'username': 'user1', 'level': 3, 'quiz_count': 0, 'xp': 0},
+        {'username': 'user3', 'level': 2, 'quiz_count': 2, 'xp': 50},
+        {'username': 'testUser', 'level': 1, 'quiz_count': 0, 'xp': 50},
     ]
     assert response.context['user_data'] == expected_user_data
 

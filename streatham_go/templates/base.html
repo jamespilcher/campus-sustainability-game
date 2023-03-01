@@ -44,6 +44,11 @@
             .container-fluid {
                 padding-right: 0px;
             }
+
+            .navbar-collapse {
+            display: flex;
+            flex-wrap: nowrap;
+            }
         </style>
     </head>
 
@@ -58,17 +63,20 @@
                     <ul class="nav me-auto mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link border-right {% if 'home' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:home'%}">Home</a>
+                            <a class="nav-link border-right {% if 'home' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if 'leaderboard' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
+                            <a class="nav-link border-right {% if 'leaderboard' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if 'search' in request.path %}active{% endif %}" aria-current="page" href="{% url 'accounts:search' %}">Search</a>
                         </li>
                         {% endif %}
                     </ul>
                     <ul class="nav ml-auto">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link border-right {% if 'profile' in request.path %}active{% endif %}" aria-current="page" href="{% url 'accounts:profile' %}">Profile</a>
+                            <a class="nav-link border-right {% if 'profile' in request.path %}active{% endif %}" aria-current="page" href="{% url 'accounts:profile' user.username %}">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'accounts:logout' %}">Logout</a>
@@ -88,6 +96,7 @@
         <div class="container">
             {% block content %} {% endblock content %}
         </div>
+
     </body>
 
 </html>

@@ -54,10 +54,11 @@ pip3 install -r requirements.txt
 touch streatham_go/streatham_go/.env
 ```
 
-open new file and add the following settings
+open new file and add the following settings.
+**NOTE** If using DEBUG=True, EMAIL_* settings not needed
 
 - `DEBUG=[True|False]`
-- `SECRET_KEY=[check discord]`
+- `SECRET_KEY=[a secret key (can be anything)]`
 - `EMAIL_HOST=smtp.gmail.com`
 - `EMAIL_HOST_USER=streathamgo@gmail.com`
 - `EMAIL_HOST_PASSWORD=[check discord]`
@@ -73,6 +74,7 @@ pytest
 
 ```
 cd streatham_go
+python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
@@ -106,14 +108,13 @@ pip3 freeze > requirements.txt
 
 ### Must have:
 
-    - Challenges: Quiz questions
+    - Challenges: Quiz questions about sustainability
     - Promote Sustainability using gamification.
-    - Location GPS.
+    - A way of verifying what buildings people are in using GPS.
+    - Global Leaderboard to see top 10 players
     - Gamekeepers that monitor the state of the game.
     - Log in system.
-    - A view where you can see which buildings are currently taken.
-    - Leaderboards Team Scores per week.
-    - Leaderboard of Team wins.
+    - Personified buildings
     - A list of multiple choice quiz questions.
 
 ### Should have:
@@ -122,12 +123,11 @@ pip3 freeze > requirements.txt
     - Stat tracking
     - Points decrease a factor of time since seeing the question
     - Gamekeepers monitor reports and set daily challenges.
-    - A way of verifying what buildings people are in using GPS.
 
 ### Could have:
 
     - Challenges: Articles
-    - Personified buildings
+    - Private Leaderboards For Friends.
     - Different views on the leaderboard (last week, last month, total)
     - At home challenges that add to 'player points'
     - Individual/Friendship Stats, private character levelling.
