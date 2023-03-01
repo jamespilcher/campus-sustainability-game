@@ -106,14 +106,13 @@ pip3 freeze > requirements.txt
 
 ### Must have:
 
-    - Challenges: Quiz questions
+    - Challenges: Quiz questions about sustainability
     - Promote Sustainability using gamification.
-    - Location GPS.
+    - A way of verifying what buildings people are in using GPS.
+    - Global Leaderboard to see top 10 players
     - Gamekeepers that monitor the state of the game.
     - Log in system.
-    - A view where you can see which buildings are currently taken.
-    - Leaderboards Team Scores per week.
-    - Leaderboard of Team wins.
+    - Personified buildings
     - A list of multiple choice quiz questions.
 
 ### Should have:
@@ -122,12 +121,11 @@ pip3 freeze > requirements.txt
     - Stat tracking
     - Points decrease a factor of time since seeing the question
     - Gamekeepers monitor reports and set daily challenges.
-    - A way of verifying what buildings people are in using GPS.
 
 ### Could have:
 
     - Challenges: Articles
-    - Personified buildings
+    - Private Leaderboards For Friends.
     - Different views on the leaderboard (last week, last month, total)
     - At home challenges that add to 'player points'
     - Individual/Friendship Stats, private character levelling.
