@@ -13,7 +13,8 @@
                 <th>Rank</th>
                 <th>Username</th>
                 <th>Level</th>
-                <th>No. Quizzes</th>
+                <th>XP</th>
+                <th>Quiz Count</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.level }}</td>
+                    <td>{{ user.xp }}</td>
                     <td>{{ user.quiz_count }}</td>
                 </tr>
                 {% endfor %} {% if current_user_rank > 10 %}
@@ -32,6 +34,7 @@
                     <td>{{ current_user_rank }}</td>
                     <td>{{ current_user_data.user.username }}</td>
                     <td>{{ current_user_data.level }}</td>
+                    <td>{{ current_user_data.xp }}</td>
                     <td>{{ current_user_data.quiz_count }}</td>
                 </tr>
                 {% endif %}
