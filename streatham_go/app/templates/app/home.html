@@ -2,6 +2,24 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'app/home.css' %}" />
+
+
+<script>
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}</script>
 <div class="card container rounded-0" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
       <b>Today's Quest-Giver: {{ building_name }}</b>
@@ -78,18 +96,54 @@
         <br>
         <div class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
           <button type="button" class="btn btn-danger">Insult</button>
-          <a href="/question.html" class="btn btn-success">I'm here</a>
+          <button type="button" class="btn btn-success" onclick="getLocation()">I'm here</button>
           <button type="button" class="btn btn-warning">Any Tips?</button>
         </div>
       </div>
 
       <script> 
- /* The speed/duration of the effect in milliseconds */
         function say(msg) {
             document.getElementById('dialogue').innerHTML = msg;
           }
       </script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+      <script>
+        function error(err){
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+          say("Sorry, we couldn't find your location. Please try again later.")
+        }
+        function success(pos){
+          data = {'lon' : pos.coords.longitude,
+            'lat': pos.coords.latitude
+        }
+          console.log(data)
+          $.ajax({
+          url: "{% url 'app:check_coords' %}",
+          type: "POST",
+          data: data,
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
+          },
+          success: (data) => {
+            console.log(data);
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        });
+
+        }
+        function getLocation(){
+          const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+          };
+          navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+      </script>
       
 
   </div>
