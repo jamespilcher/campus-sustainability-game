@@ -4,7 +4,7 @@ from django.test import TestCase
 
 
 def test_profile_view_unauthenticated(client):
-    url = reverse('accounts:profile')
+    url = reverse('accounts:profile', kwargs={'username': 'user'})
     responce = client.get(url, follow=True)
     next = reverse('accounts:login') + '?' + urlencode({'next': url})
 

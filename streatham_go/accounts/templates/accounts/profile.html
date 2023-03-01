@@ -28,52 +28,88 @@
 
     <img class="mb-4" id="profile-pic" alt="" width="120" height="120" />
 
-    <h1>
-        {{user.username}}
-    </h1>
-
-    <div class="progress-container">
-        <div class="progress-level-1">
-            {{current_user_data.level}}
-        </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}" style="width: {{ current_user_data.xp }}%;">
-                {{current_user_data.xp}}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>
+                {{current_user.username}}
+                </h1>
             </div>
         </div>
-        <div class="progress-level-2">
-            {{ current_user_data.level|add:1 }}
+        <div class="row">
+            <div class="col">
+                {% if not self %}
+                <button id="friend-button" class="btn btn-primary {% if are_friends %}disabled{% endif %}" {% if are_friends%}disabled{% endif %}>
+                    {% if are_friends %}
+                    Friends
+                    {% elif not self %}
+                    Add Friend
+                    {% endif %}
+                </button>
+                {% endif %}
+            </div>
         </div>
     </div>
 
-    <div class="container">
+    {% if current_user_data.level %}
+    <div class="container mt-3">
         <div class="row">
-            <div>
-                <div class="jumbotron text-center">
-                    <div class="badges-textL float-md-start">
+            <div class="col-1">
+                {{current_user_data.level}}
+            </div>
+            <div class="col">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}" style="width: {{ current_user_data.xp }}%;">
+                        {{current_user_data.xp}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                {{ current_user_data.level|add:1 }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="container-fluid mt-3">
+        <div class="row gy-3">
+            <div class="col-12 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
                         Badges
                     </div>
-                    <div class="badges-textR float-md-center">
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="card">
+                    <div class="card-header">
                         Friends
                     </div>
-                    <div class="badgeRow1">
-                        <div class="badgeIcon1 float-md-start"></div>
-                        <div class="badgeIcon2 float-md-start"></div>
-                        <div class="badgeIcon3 float-md-start"></div>
-                        <div class="badgeIcon4 float-md-start"></div>
-                    </div>
-                    <div class="badgeRow2">
-                        <div class="badgeIcon5 float-md-start"></div>
-                        <div class="badgeIcon6 float-md-start"></div>
-                        <div class="badgeIcon7 float-md-start"></div>
-                        <div class="badgeIcon8 float-md-start"></div>
+                    <div class="card-body">
+                        <div clss="container">
+                            {% if friends %}
+                                {% for friend in friends %}  
+                                <div class="row gy-3"> 
+                                    <div class="col-12">
+                                        <h3><a class="link" href="{% url 'accounts:profile' friend.username %}">{{friend.username}}</a><h3>
+                                    </div>
+                                </div> 
+                                {% endfor %}
+                            {% else %}
+                                <p class="lead" style="margin-bottom:0;">Nothing To See Here...</p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <button type="button" class="btn1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {% if current_user == user %}
+    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Account Details
       </button>
 
@@ -95,9 +131,10 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
 
 </center>
 

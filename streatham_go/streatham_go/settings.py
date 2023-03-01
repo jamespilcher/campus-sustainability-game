@@ -40,7 +40,8 @@ if not DEBUG:
 SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
-
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 
 # Application definition
 
@@ -51,9 +52,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_static_fontawesome",
     "django_bootstrap5",
-    "app",
     "accounts",
+    "jquery",
+    "app",
 ]
 
 MIDDLEWARE = [

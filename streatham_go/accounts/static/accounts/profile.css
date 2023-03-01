@@ -3,11 +3,11 @@ body{
 }
 
 img {
-    margin-top: 20px;
-    height: 150px;
-    width: 150px;
-    border: 3px solid #212529;
-    border-radius: 50%;
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+  border: 3px solid #212529;
+  border-radius: 50%;
 }
 
 h1,.progress-level-1,.progress-level-2,.btn1, .modal-title, .modal-body, .badges-textL, .badges-textR {
@@ -22,223 +22,34 @@ h1 {
     color: #212529;
 }
 
-.progress-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 500px;
-}
-
 .progress {
     flex: 1;
     height: 20px;
     background-color: #f5f5f5;
     padding: 3px;
     border-radius: 5px;
-}
 
 .progress-bar {
-    border-radius: 5px;
-    /* width: 75%; */
+  border-radius: 5px;
+  /* width: 75%; */
 }
 
 .progress-bar-striped {
-    background-color: #5AC599 !important;
-}
-
-.progress-level-1,
-.progress-level-2 {
-    width: 50px;
-    text-align: center;
-    font-size: 25px;
-    font-style: bold;
-}
-
-.progress-level-1 {
-    margin-right: 3px;
-}
-
-.progress-level-2 {
-    margin-left: 3px;
+  background-color: #5ac599 !important;
 }
 
 .modal-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #212529;
-    text-align: center;
-    padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #212529;
+  text-align: center;
+  padding: 10px;
 }
 
 .modal-body {
-    font-size: 20px;
-    font-weight: bold;
-    color: #212529;
-    text-align: left;
-    padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #212529;
+  text-align: left;
+  padding: 20px;
 }
-
-.jumbotron {
-    height: 380px;
-    width: 1200px;
-    position: relative;
-    background-color: RGB(255,240,220);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.jumbotron::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    border-left: 1px solid #8f8f90;
-}
-
-h1.badges {
-    margin-left: 20px;
-}
-
-.badges-textL,
-.badges-textR {
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 20px;
-    text-align: center;
-    text-decoration-line: underline;
-    text-decoration-color: #5f5e5e;
-    margin-right: 0;
-    margin-bottom: 10px;
-}
-
-.badges-textL {
-    padding-left: 20px;
-}
-
-.badges-textR {
-    padding-left: 150px;
-}
-
-.jumbotron::after,
-.jumbotron::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    border-left: 1px solid #919191;
-}
-
-.jumbotron::before {
-    content: " ";
-    width: calc(50% - 10px);
-}
-
-.jumbotron::after {
-    content: " ";
-    width: calc(50% - 10px);
-    right: 0;
-}
-
-.badgeIcon1,
-.badgeIcon2,
-.badgeIcon3,
-.badgeIcon4,
-.badgeIcon5,
-.badgeIcon6,
-.badgeIcon7,
-.badgeIcon8 {
-    height: 110px;
-    width: 110px;
-    background-image: url(achievement.png);
-    background-size: cover;
-    background-position: center center;
-    border: 2px solid #212529;
-    border-radius: 50%;
-    margin-left: 25px;
-}
-
-.badgeRow1 {
-    margin-top: 40px;
-}
-
-.badgeRow2 {
-    margin-top: 170px;
-}
-
-.btn1 {
-    width: 300px;
-    margin-bottom: 30px;
-    border-radius: 20px;
-    padding: 10px;
-    color: white;
-    font-size: 20px;
-    background: #958A6E;
-    border-color: #958A6E;
-}
-
-.btn1:hover{
-    background-color:#958A6E;
-    border-color: #554832;
-    color:white;
-  }
-
-  @media screen and (max-width: 600px) {
-    img{
-        height: 110px;
-        width: 110px;
-    }
-
-    h1{
-        font-size: 32px;
-    }
-
-    .progress-container {
-        width: auto;
-    }
-
-    .jumbotron {
-      width: auto;
-      height: auto;
-    }
-
-    .jumbotron::after,
-    .jumbotron::before {
-        border-left: 1px solid transparent;
-        display: none;
-    }
-
-    .badges-textL, .badges-textR{
-        font-size: 20px;
-        padding-left: 0;
-        margin-bottom: 0px;
-    }
-
-    .badges-textL{
-        margin-top: 20px;
-    }
-
-    .badges-textR{
-        margin: 80px;
-    }
-
-    .badgeIcon4,
-    .badgeIcon5,
-    .badgeIcon6,
-    .badgeIcon7,
-    .badgeIcon8 {
-        display: none;
-    }
-
-    .badgeIcon1, .badgeIcon2, .badgeIcon3 {
-        height: 70px;
-        width: 70px;
-        float: left;
-        padding-top: 0;
-        display: none;
-      }
-  }

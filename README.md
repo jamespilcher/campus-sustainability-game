@@ -54,10 +54,11 @@ pip3 install -r requirements.txt
 touch streatham_go/streatham_go/.env
 ```
 
-open new file and add the following settings
+open new file and add the following settings.
+**NOTE** If using DEBUG=True, EMAIL_* settings not needed
 
 - `DEBUG=[True|False]`
-- `SECRET_KEY=[check discord]`
+- `SECRET_KEY=[a secret key (can be anything)]`
 - `EMAIL_HOST=smtp.gmail.com`
 - `EMAIL_HOST_USER=streathamgo@gmail.com`
 - `EMAIL_HOST_PASSWORD=[check discord]`
@@ -73,6 +74,7 @@ pytest
 
 ```
 cd streatham_go
+python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
