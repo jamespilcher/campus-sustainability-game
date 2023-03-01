@@ -25,9 +25,11 @@
                     The quicker you answer the question the more points you get! 
                     
                 </p>
+                {% if not user.is_authenticated %}
                 <a href="{% url 'accounts:register' %}" class="btn btn-info" role="button">
                     SIGN UP NOW!
                 </a>
+                {% endif %}
             </div>
         </div>
     </body>
