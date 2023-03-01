@@ -1,174 +1,48 @@
 img {
-    margin-top: 20px;
-    height: 150px;
-    width: 150px;
-    border: 3px solid #212529;
-    border-radius: 50%;
+  margin-top: 20px;
+  height: 150px;
+  width: 150px;
+  border: 3px solid #212529;
+  border-radius: 50%;
 }
 
 h1 {
-    margin-top: 20px;
-    font-size: 40px;
-    font-weight: 700;
-    font-style: bold;
-    color: #212529;
-}
-
-.progress-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 500px;
+  margin-top: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  font-style: bold;
+  color: #212529;
 }
 
 .progress {
-    flex: 1;
-    height: 20px;
-    background-color: #d1d3d6;
-    padding: 3px;
-    border-radius: 5px;
+  flex: 1;
+  height: 20px;
+  background-color: #d1d3d6;
+  padding: 3px;
+  border-radius: 5px;
 }
 
 .progress-bar {
-    border-radius: 5px;
-    /* width: 75%; */
+  border-radius: 5px;
+  /* width: 75%; */
 }
 
 .progress-bar-striped {
-    background-color: #5AC599 !important;
-}
-
-.progress-level-1,
-.progress-level-2 {
-    width: 50px;
-    text-align: center;
-    font-size: 25px;
-    font-style: bold;
-}
-
-.progress-level-1 {
-    margin-right: 3px;
-}
-
-.progress-level-2 {
-    margin-left: 3px;
+  background-color: #5ac599 !important;
 }
 
 .modal-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #212529;
-    text-align: center;
-    padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #212529;
+  text-align: center;
+  padding: 10px;
 }
 
 .modal-body {
-    font-size: 20px;
-    font-weight: bold;
-    color: #212529;
-    text-align: left;
-    padding: 20px;
-}
-
-.jumbotron {
-    height: 380px;
-    width: 1200px;
-    position: relative;
-    background-color: #cdcdcd;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.jumbotron::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    border-left: 1px solid #8f8f90;
-}
-
-h1.badges {
-    margin-left: 20px;
-}
-
-.badges-textL,
-.badges-textR {
-    font-size: 28px;
-    font-weight: bold;
-    margin-right: 20px;
-    text-align: center;
-    text-decoration-line: underline;
-    text-decoration-color: #5f5e5e;
-    margin-right: 0;
-    margin-bottom: 10px;
-}
-
-.badges-textL {
-    padding-left: 20px;
-}
-
-.badges-textR {
-    padding-left: 150px;
-}
-
-.jumbotron::after,
-.jumbotron::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    border-left: 1px solid #919191;
-}
-
-.jumbotron::before {
-    content: " ";
-    width: calc(50% - 10px);
-}
-
-.jumbotron::after {
-    content: " ";
-    width: calc(50% - 10px);
-    right: 0;
-}
-
-.badgeIcon1,
-.badgeIcon2,
-.badgeIcon3,
-.badgeIcon4,
-.badgeIcon5,
-.badgeIcon6,
-.badgeIcon7,
-.badgeIcon8 {
-    height: 110px;
-    width: 110px;
-    background-image: url(achievement.png);
-    background-size: cover;
-    background-position: center center;
-    border: 2px solid #212529;
-    border-radius: 50%;
-    margin-left: 25px;
-}
-
-.badgeRow1 {
-    margin-top: 40px;
-}
-
-.badgeRow2 {
-    margin-top: 170px;
-}
-
-.btn1 {
-    width: 300px;
-    margin-bottom: 30px;
-    border-radius: 20px;
-    padding: 10px;
-    color: white;
-    font-size: 20px;
-    background: #5AC599;
-    border-color: #5AC599;
+  font-size: 20px;
+  font-weight: bold;
+  color: #212529;
+  text-align: left;
+  padding: 20px;
 }
