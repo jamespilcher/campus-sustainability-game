@@ -33,15 +33,16 @@ function getCookie(name) {
       {{ building_name|json_script:'name' }}
 
       <script>
+        // Generate google map centred on building
         function myMap() {
           lat = JSON.parse(document.getElementById('lat').textContent);
           lon = JSON.parse(document.getElementById('lon').textContent);
           name = JSON.parse(document.getElementById('name').textContent);
 
-          boundsNorth = 50.740400,// Number(lat) + 0.006
-          boundsSouth = 50.730000, // Number(lat) - 0.006
-          boundsEast = -3.524000 // Number(lon) + 0.01
-          boundsWest = -3.542700 // Number(lon) - 0.01
+          boundsNorth = 50.740400
+          boundsSouth = 50.730000
+          boundsEast = -3.524000
+          boundsWest = -3.542700
 
 
           var mapProp = {
@@ -84,67 +85,93 @@ function getCookie(name) {
       ></script>
       </div>
 
+      
+      <script>
+        function say(msg) {
+            document.getElementById('dialogue').innerHTML = msg;
+          }
+
+        function updateButtons(responses) {
+            document.getElementById('buttons').innerHTML = responses;
+        }
+
+        function welcome(){
+            say("{{ building_message }}")
+
+            responses = "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
+            "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
+            "<button type='button' class='btn btn-warning' onclick='say(\"Any Tips?\")'>Any Tips?</button>"
+
+            updateButtons(responses)
+        }
+
+        function ready(){
+            say("I have a question for you. Are you ready?")
+
+            responses = "<button type='button' class='btn btn-success' onclick='question()'>Yes</button>" +
+            "<button type='button' class='btn btn-danger' onclick='welcome()'>No</button>"
+            updateButtons(responses)
+        }
+
+        function question(){
+            message = "{{ question }} <br> <br>" +
+            "A) " + "{{ a }} <br>" +
+            "B) " + "{{ b }} <br>" +
+            "C) " + "{{ c }} <br>" +
+            "D) " + "{{ d }}"
+            say(message)
+            
+            responses = "<button type='button' class='btn btn-warning' onclick='say(\"a\")'>A</button>" +
+            "<button type='button' class='btn btn-primary' onclick='say(\"b\")'>B</button>" +
+            "<button type='button' class='btn btn-danger' onclick='say(\"c\")'>C</button>" +
+            "<button type='button' class='btn btn-success' onclick='say(\"d\")'>D</button>"
+
+            updateButtons(responses)
+        }
+
+
+        // location checking
+
+        function error(err){
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+            say("Sorry, we couldn't find your location. Please try again later.")
+          }
+          function success(pos){
+            data = pos.coords.longitude + "," + pos.coords.latitude
+            // TODO: check if the user is within the bounds of the map on the backend
+            if (true){
+              ready()
+            };
+
+          }
+          function getLocation(){
+            const options = {
+              enableHighAccuracy: true,
+              timeout: 5000,
+              maximumAge: 0,
+            };
+            navigator.geolocation.getCurrentPosition(success, error, options);
+          }
+      </script>
+
+
+
+
+
   <div class="container-fluid">
       <div class="row g-2 form-group">
           <div class="col-2 col-lg-1 mx-auto" style="image-rendering: pixelated">
-            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload="say('{{ building_name }} is located at {{ building_lat}}N and {{ building_lon}}W')">
+            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload='welcome()'>
           </div>
           <div class="col" id="dialogue">
           </div>
       </div>
       <div style="text-align: center;">
         <br>
-        <div class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
-          <button type="button" class="btn btn-danger">Insult</button>
-          <button type="button" class="btn btn-success" onclick="getLocation()">I'm here</button>
-          <button type="button" class="btn btn-warning">Any Tips?</button>
+        <div id="buttons" class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
+
         </div>
       </div>
-
-      <script> 
-        function say(msg) {
-            document.getElementById('dialogue').innerHTML = msg;
-          }
-      </script>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-      <script>
-        function error(err){
-          console.warn(`ERROR(${err.code}): ${err.message}`);
-          say("Sorry, we couldn't find your location. Please try again later.")
-        }
-        function success(pos){
-          data = {'lon' : pos.coords.longitude,
-            'lat': pos.coords.latitude
-        }
-          console.log(data)
-          $.ajax({
-          url: "{% url 'app:check_coords' %}",
-          type: "POST",
-          data: data,
-          headers: {
-            "X-Requested-With": "XMLHttpRequest",
-            "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
-          },
-          success: (data) => {
-            console.log(data);
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        });
-
-        }
-        function getLocation(){
-          const options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0,
-          };
-          navigator.geolocation.getCurrentPosition(success, error, options);
-        }
-      </script>
-      
 
   </div>
   <br>
