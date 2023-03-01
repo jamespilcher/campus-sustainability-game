@@ -13,25 +13,34 @@
                 <th>Rank</th>
                 <th>Username</th>
                 <th>Level</th>
-                <th>No. Quizzes</th>
+                <th>XP</th>
+                <th>Quiz Count</th>
             </tr>
         </thead>
         <tbody>
             {% for u in user_data|slice:":10" %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td><a href="{% url 'accounts:profile' u.username %}">{{ u.username }}</a></td>
-                <td>{{ u.level }}</td>
-                <td>{{ u.quiz_count }}</td>
-            </tr>
-            {% endfor %}
+                {% if u.username == current_user_data.user.username %}
+                    <tr class="currentUserRow">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td>{{ forloop.counter }}</td>
+                    <td><a href="{% url 'accounts:profile' u.username %}">{{ u.username }}</a></td>
+                    <td>{{ u.level }}</td>
+                    <td>{{ u.xp }}</td>
+                    <td>{{ u.quiz_count }}</td>
+                </tr>
+                {% endfor %}
+                {% if current_user_rank > 10 %}
+                <tr class="currentUserRow">
+                    <td>{{ current_user_rank }}</td>
+                    <td><a href="{% url 'accounts:profile' current_user_data.user.username %}">{{ current_user_data.user.username }}</a></td>
+                    <td>{{ current_user_data.level }}</td>
+                    <td>{{ current_user_data.xp }}</td>
+                    <td>{{ current_user_data.quiz_count }}</td>
+                </tr>
+                {% endif %}
         </tbody>
-        <tr class="currentUserRow">
-            <td>{{ current_user_rank }}</td>
-            <td>{{ current_user_data.user.username }}</td>
-            <td>{{ current_user_data.level }}</td>
-            <td>{{ current_user_data.quiz_count }}</td>
-        </tr>
     </table>
 </div>
 {% endblock %}

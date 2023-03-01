@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from urllib.parse import urlencode
 from ..models import Friend
-from django.db.models import Q
 
 pytest.USER_PASSWORD = '12345'
 pytest.USER_WRONG_PASSWORD = 'wrong_password'
