@@ -93,7 +93,7 @@ def test_home_view_with_location(client, user):
 
 
 @pytest.mark.django_db
-def test_home_view_no_locations_or_questions(client, user_factory):
+def test_home_view_no_locations_or_questions(client, user):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
 
     # Clear all locations and questions from the database
