@@ -1,37 +1,39 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/leaderboard.css' %}">
 <br>
-<div class="container my-5">
-    <h1 class="display-4">Leaderboard</h1>
-    <p class="lead mb-4">Here you can see the top 10 users on the site, and your own position.</p>
-    <p class="lead mb-4">You can also see your own progress on the <a href="{% url 'accounts:profile' %}">profile page</a>.</p>
-</div>
-<div class="table-responsive">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Level</th>
-                <th>No. Quizzes</th>
+<body>
+    <div class="container my-5">
+        <h1 class="display-4">Leaderboard</h1>
+        <p class="lead mb-4">Here you can see the top 10 users on the site, and your own position.</p>
+        <p class="lead mb-4">You can also see your own progress on the <a href="{% url 'accounts:profile' %}">profile page</a>.</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Level</th>
+                    <th>No. Quizzes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_data|slice:":10" %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.level }}</td>
+                    <td>{{ user.quiz_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tr class="currentUserRow">
+                <td>{{ current_user_rank }}</td>
+                <td>{{ current_user_data.user.username }}</td>
+                <td>{{ current_user_data.level }}</td>
+                <td>{{ current_user_data.quiz_count }}</td>
             </tr>
-        </thead>
-        <tbody>
-            {% for user in user_data|slice:":10" %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.level }}</td>
-                <td>{{ user.quiz_count }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tr class="currentUserRow">
-            <td>{{ current_user_rank }}</td>
-            <td>{{ current_user_data.user.username }}</td>
-            <td>{{ current_user_data.level }}</td>
-            <td>{{ current_user_data.quiz_count }}</td>
-        </tr>
-    </table>
-</div>
+        </table>
+    </div>
+</body>
 {% endblock %}
