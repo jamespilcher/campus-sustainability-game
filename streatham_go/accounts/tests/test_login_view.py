@@ -52,7 +52,7 @@ def test_login_view_fail(user, client):
 
 @pytest.mark.django_db
 def test_login_view_success_next(user, client):
-    next = reverse('accounts:profile')
+    next = reverse('accounts:profile', kwargs={'username': user.username})
     url = reverse('accounts:login')
 
     responce = client.post(url, {
