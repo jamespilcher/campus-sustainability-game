@@ -5,21 +5,16 @@
 
 
 <script>
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      // Does this cookie string begin with the name we want?
-      if (cookie.substring(0, name.length + 1) === (name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}</script>
+  var building_message = '{{ building_message }}';
+  var question = '{{ question }}'
+  var a = '{{ a }}'
+  var b = '{{ b }}'
+  var c = '{{ c }}'
+  var d = '{{ d }}'
+</script>
+<script src=" {% static 'app\conversation.js' %} "></script>
+
+
 <div class="card container rounded-0" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
       <b>Today's Quest-Giver: {{ building_name }}</b>
@@ -85,83 +80,11 @@ function getCookie(name) {
       ></script>
       </div>
 
-      
-      <script>
-        function say(msg) {
-            document.getElementById('dialogue').innerHTML = msg;
-          }
-
-        function updateButtons(responses) {
-            document.getElementById('buttons').innerHTML = responses;
-        }
-
-        function welcome(){
-            say("{{ building_message }}")
-
-            responses = "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
-            "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
-            "<button type='button' class='btn btn-warning' onclick='say(\"Any Tips?\")'>Any Tips?</button>"
-
-            updateButtons(responses)
-        }
-
-        function ready(){
-            say("I have a question for you. Are you ready?")
-
-            responses = "<button type='button' class='btn btn-success' onclick='question()'>Yes</button>" +
-            "<button type='button' class='btn btn-danger' onclick='welcome()'>No</button>"
-            updateButtons(responses)
-        }
-
-        function question(){
-            message = "{{ question }} <br> <br>" +
-            "A) " + "{{ a }} <br>" +
-            "B) " + "{{ b }} <br>" +
-            "C) " + "{{ c }} <br>" +
-            "D) " + "{{ d }}"
-            say(message)
-            
-            responses = "<button type='button' class='btn btn-warning' onclick='say(\"a\")'>A</button>" +
-            "<button type='button' class='btn btn-primary' onclick='say(\"b\")'>B</button>" +
-            "<button type='button' class='btn btn-danger' onclick='say(\"c\")'>C</button>" +
-            "<button type='button' class='btn btn-success' onclick='say(\"d\")'>D</button>"
-
-            updateButtons(responses)
-        }
-
-
-        // location checking
-
-        function error(err){
-            console.warn(`ERROR(${err.code}): ${err.message}`);
-            say("Sorry, we couldn't find your location. Please try again later.")
-          }
-          function success(pos){
-            data = pos.coords.longitude + "," + pos.coords.latitude
-            // TODO: check if the user is within the bounds of the map on the backend
-            if (true){
-              ready()
-            };
-
-          }
-          function getLocation(){
-            const options = {
-              enableHighAccuracy: true,
-              timeout: 5000,
-              maximumAge: 0,
-            };
-            navigator.geolocation.getCurrentPosition(success, error, options);
-          }
-      </script>
-
-
-
-
 
   <div class="container-fluid">
       <div class="row g-2 form-group">
           <div class="col-2 col-lg-1 mx-auto" style="image-rendering: pixelated">
-            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload='welcome()'>
+            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload='welcomeScene()'>
           </div>
           <div class="col" id="dialogue">
           </div>
@@ -172,7 +95,6 @@ function getCookie(name) {
 
         </div>
       </div>
-
   </div>
   <br>
   <div class="card-footer text-muted">
