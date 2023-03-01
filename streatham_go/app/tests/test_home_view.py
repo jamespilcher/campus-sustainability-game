@@ -20,10 +20,9 @@ def user() -> User:
     u.save()
     return u
 
-
+@pytest.mark.django_db
 def test_home_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
-
     url = reverse('app:home')
     response = client.get(url, follow=True)
     assert response.status_code == 200
