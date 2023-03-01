@@ -6,7 +6,7 @@
     <center>
       <img
         class="mb-4"
-        src="{% static 'accounts/ExeterLogo.png' %}"
+        src="{% static 'accounts/logo.png' %}"
         alt=""
         width="120"
         height="120"
@@ -15,7 +15,7 @@
 
     {% csrf_token %}
     <center>
-      <h1 class="h3 mb-3 fw-normal">Register Form</h1>
+      <h1 class="h3 mb-3 fw-normal" id="header">Register Form</h1>
       {% if error %}
       <div class="alert alert-danger" role="alert">
           {{REGISTER_FAILURE}}
@@ -39,9 +39,7 @@
       {{form}}
 
       <center class="pt-3">
-        <button class="w-100 btn btn-lg btn-primary" type="submit" style = 
-        "background-color: #5AC599; 
-        border-color: #5AC599;">
+        <button class="w-100 btn btn-lg btn-primary" type="submit">
           Register
         </button>
           <p class="mt-3 mb-3 text-muted">Already have an account? 

@@ -1,5 +1,5 @@
 body{
-    background-image: url(bg.jpeg);
+    background-image: url(bg.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -7,25 +7,15 @@ body{
     width: 100%;
   }
   
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+  h1,p{
+    font-family: Luminari, fantasy;
   }
-  
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-  
+
   .form-signin {
     max-width: 440px;
     margin: auto;
     margin-top: 30px ;
-    background-color: #f0f0f0;
+    background-color: #fff8e8;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -46,7 +36,21 @@ body{
   }
   
   .form-signin input[type="password"] {
+    margin-top: 8px;
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 10;
+    border-radius: 10;
+  }
+  
+  button.btn{
+    font-family: Luminari, fantasy;
+    background-color:#958A6E; 
+    border-color:#958A6E; 
+    color:white;
+  }
+
+  button.btn:hover{
+    background-color:#958A6E; 
+    color:white;
+    border-color:#554832; 
   }
