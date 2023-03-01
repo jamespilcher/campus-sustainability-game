@@ -71,9 +71,9 @@
     </div>
     {% endif %}
 
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col">
+    <div class="container-fluid mt-3">
+        <div class="row gy-3">
+            <div class="col-12 col-sm-6">
                 <div class="card">
                     <div class="card-header">
                         Badges
@@ -83,24 +83,24 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-12 col-sm-6">
                 <div class="card">
                     <div class="card-header">
                         Friends
                     </div>
                     <div class="card-body">
                         <div clss="container">
-                            <div class="row" id="friends-row">
                             {% if friends %}
                                 {% for friend in friends %}  
-                                    <div class="col">
-                                        {{friend.username}}
+                                <div class="row gy-3"> 
+                                    <div class="col-12">
+                                        <h3><a class="link" href="{% url 'accounts:profile' friend.username %}">{{friend.username}}</a><h3>
                                     </div>
+                                </div> 
                                 {% endfor %}
                             {% else %}
                                 <p class="lead" style="margin-bottom:0;">Nothing To See Here...</p>
                             {% endif %}
-                            </div> 
                         </div>
                     </div>
                 </div>
