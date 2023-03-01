@@ -66,10 +66,10 @@
                             <a class="nav-link border-right {% if 'home' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:home' %}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if 'leaderboard' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
+                            <a class="nav-link border-right {% if 'leaderboard' in request.path %}active{% endif %}" aria-current="page" href="{% url 'app:leaderboard' %}">Leaderboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border-right {% if 'search' in request.path %}active{% endif %}" aria-current="page" href="{% url 'accounts:search' %}">Search</a>
+                            <a class="nav-link {% if 'search' in request.path %}active{% endif %}" aria-current="page" href="{% url 'accounts:search' %}">Search</a>
                         </li>
                         {% endif %}
                     </ul>
