@@ -1,3 +1,7 @@
+body{
+    background-color: #ddc6ab;
+}
+
 img {
     margin-top: 20px;
     height: 150px;
@@ -6,9 +10,13 @@ img {
     border-radius: 50%;
 }
 
+h1,.progress-level-1,.progress-level-2,.btn1, .modal-title, .modal-body, .badges-textL, .badges-textR {
+    font-family: Luminari, fantasy;
+}
+
 h1 {
-    margin-top: 20px;
-    font-size: 40px;
+    margin-top: 10px;
+    font-size: 45px;
     font-weight: 700;
     font-style: bold;
     color: #212529;
@@ -25,7 +33,7 @@ h1 {
 .progress {
     flex: 1;
     height: 20px;
-    background-color: #d1d3d6;
+    background-color: #f5f5f5;
     padding: 3px;
     border-radius: 5px;
 }
@@ -75,7 +83,7 @@ h1 {
     height: 380px;
     width: 1200px;
     position: relative;
-    background-color: #cdcdcd;
+    background-color: RGB(255,240,220);
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -169,6 +177,12 @@ h1.badges {
     padding: 10px;
     color: white;
     font-size: 20px;
-    background: #5AC599;
-    border-color: #5AC599;
+    background: #958A6E;
+    border-color: #958A6E;
 }
+
+.btn1:hover{
+    background-color:#958A6E;
+    border-color: #554832;
+    color:white;
+  }
