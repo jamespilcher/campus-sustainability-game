@@ -186,3 +186,59 @@ h1.badges {
     border-color: #554832;
     color:white;
   }
+
+  @media screen and (max-width: 600px) {
+    img{
+        height: 110px;
+        width: 110px;
+    }
+
+    h1{
+        font-size: 32px;
+    }
+
+    .progress-container {
+        width: auto;
+    }
+
+    .jumbotron {
+      width: auto;
+      height: auto;
+    }
+
+    .jumbotron::after,
+    .jumbotron::before {
+        border-left: 1px solid transparent;
+        display: none;
+    }
+
+    .badges-textL, .badges-textR{
+        font-size: 20px;
+        padding-left: 0;
+        margin-bottom: 0px;
+    }
+
+    .badges-textL{
+        margin-top: 20px;
+    }
+
+    .badges-textR{
+        margin: 80px;
+    }
+
+    .badgeIcon4,
+    .badgeIcon5,
+    .badgeIcon6,
+    .badgeIcon7,
+    .badgeIcon8 {
+        display: none;
+    }
+
+    .badgeIcon1, .badgeIcon2, .badgeIcon3 {
+        height: 70px;
+        width: 70px;
+        float: left;
+        padding-top: 0;
+        display: none;
+      }
+  }
