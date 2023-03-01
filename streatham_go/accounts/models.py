@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Friend(models.Model):
-    user1 = models.OneToOneField(User,
-                                 on_delete=models.CASCADE,
-                                 related_name="user1")
-    user2 = models.OneToOneField(User,
-                                 on_delete=models.CASCADE,
-                                 related_name="user2")
+    user1 = models.ForeignKey(User,
+                              on_delete=models.CASCADE,
+                              related_name="user1")
+    user2 = models.ForeignKey(User,
+                              on_delete=models.CASCADE,
+                              related_name="user2")
 
     @classmethod
     def are_friends(self, user1, user2):
