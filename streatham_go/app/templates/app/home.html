@@ -3,6 +3,11 @@
 
 <link rel="stylesheet" href="{% static 'app/home.css' %}" />
 
+{% if messages %}
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+{% else %}
 
 <script>
   var building_message = '{{ building_message }}';
@@ -102,5 +107,6 @@
     Time Remaining: 12h 29m 47s
   </div>
   </div>
+{% endif %}
 
 {% endblock %}
