@@ -20,6 +20,7 @@ def user() -> User:
     u.save()
     return u
 
+
 @pytest.mark.django_db
 def test_home_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
@@ -101,16 +102,16 @@ def test_home_view_no_locations_or_questions(client, user):
     Question.objects.all().delete()
 
     # Make a GET request to the home view
-    url = reverse('home')
+    url = reverse('app:home')
     response = client.get(url)
 
     # Check that the response status code is 200
     assert response.status_code == 200
 
     # Check that the response contains an error message
-    assert b"""Found no locations in database.
-                Please add some locations 
-                in the admin panel.""" in response.content
-    assert b"""Found no questions in database. 
-                Please add some questions 
-                in the admin panel.""" in response.content
+    assert ("Found no locations in database. "
+            "Please add some locations "
+            "in the admin panel.") in str(response.content)
+    assert ("Found no questions in database. "
+            "Please add some questions "
+            "in the admin panel.") in str(response.content)

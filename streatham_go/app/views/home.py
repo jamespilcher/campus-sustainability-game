@@ -35,15 +35,16 @@ def _generate_building_location():
 
 @login_required
 def home(request):
-
+    context = {}
     if Location.objects.count() == 0:
-        messages.error(request, """Found no locations in database. 
-                            Please add some locations in the admin panel.""")
-
-    elif Question.objects.count() == 0:
-        messages.error(request, """Found no questions in database. 
-                            Please add some questions in the admin panel.""")
-    else:
+        messages.error(request, ("Found no locations in database. "
+                                 "Please add some locations in the "
+                                 "admin panel."))
+    if Question.objects.count() == 0:
+        messages.error(request, ("Found no questions in database. "
+                                 "Please add some questions in the "
+                                 "admin panel."))
+    if not Location.objects.count() == 0 and not Question.objects.count() == 0:
         daily_location = _generate_building_location()
         daily_question = _generate_building_question()
         context = {
