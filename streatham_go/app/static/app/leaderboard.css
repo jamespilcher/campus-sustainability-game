@@ -1,0 +1,84 @@
+table,
+th,
+td {
+    border: 1px solid black;
+    background-color: white;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #363636;
+}
+
+thead {
+    background-color: #decda4;
+    color: #fff;
+}
+
+th {
+    padding: 10px;
+    text-align: left;
+}
+
+h1,
+p {
+    color: #fff;
+}
+
+h1,
+p,
+.currentUserRow,
+th,
+td {
+    font-family: Luminari, fanatsy;
+}
+
+
+/* If a row in the table is hovered over it should be highlighted*/
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 10%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 40%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 20%;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 20%;
+}
+
+.currentUserRow {
+    background-color: #decda4;
+}
+
+.currentUserRow td {
+    color: #fff !important;
+}
+
+@media only screen and (max-width: 767px) {
+    p.lead {
+        font-size: 1.5rem;
+    }
+    .container.my-5 {
+        padding: 1rem;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .table td,
+    .table th {
+        font-size: 0.8rem;
+        padding: 2px;
+    }
+}

@@ -1,0 +1,56 @@
+body{
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh; 
+    width: 100%;
+  }
+  
+  h1,p{
+    font-family: Luminari, fantasy;
+  }
+
+  .form-signin {
+    max-width: 440px;
+    margin: auto;
+    margin-top: 30px ;
+    background-color: #fff8e8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+  }
+  
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    border-radius: 10;
+    border-radius: 10;
+  }
+  
+  button.btn{
+    font-family: Luminari, fantasy;
+    background-color:#958A6E; 
+    border-color:#958A6E; 
+    color:white;
+  }
+
+  button.btn:hover{
+    background-color:#958A6E; 
+    color:white;
+    border-color:#554832; 
+  }
