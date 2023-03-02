@@ -7,13 +7,8 @@ img {
 }
 
 h1,
-.progress-level-1,
-.progress-level-2,
-.btn1,
 .modal-title,
-.modal-body,
-.badges-textL,
-.badges-textR {
+.modal-body {
     font-family: Luminari, fantasy;
 }
 
