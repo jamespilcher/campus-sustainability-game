@@ -23,6 +23,9 @@ environ.Env.read_env(SETTINGS_DIR.joinpath('.env'))
 
 # check if in dev env
 DEBUG = env('DEBUG') == 'True'
+VERSION_MAJOR = 1
+VERSION_MINOR = 0
+VERSION_PATCH = 0
 
 if not DEBUG:
     # Email settings
