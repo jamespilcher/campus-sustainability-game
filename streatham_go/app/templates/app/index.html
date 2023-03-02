@@ -6,7 +6,7 @@
 {% load static %}
 <base href="/">
 <link rel="stylesheet" href="{% static 'app/index.css' %}">
-    <body style="background-color: #f5f5f5;">
+    <body>
         <div class="wrapper">
             <img
                 class="mb-4 mt-4"
@@ -25,9 +25,11 @@
                     The quicker you answer the question the more points you get! 
                     
                 </p>
+                {% if not user.is_authenticated %}
                 <a href="{% url 'accounts:register' %}" class="btn btn-info" role="button">
                     SIGN UP NOW!
                 </a>
+                {% endif %}
             </div>
         </div>
     </body>

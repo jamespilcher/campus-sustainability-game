@@ -1,12 +1,21 @@
+body{
+    background-color: #bba284;
+}
+
+table, th, td{
+    border: 1px solid black;
+    background-color: white;
+}
+
 table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid #363636;
 }
 
 thead {
-    background-color: #5AC599;
+    background-color: #decda4;
     color: #fff;
 }
 
@@ -14,6 +23,16 @@ th {
     padding: 10px;
     text-align: left;
 }
+
+h1, p{
+    color: #fff;
+}
+
+h1, p, .currentUserRow, th, td{
+    font-family: Luminari, fanatsy;
+}
+
+/* If a row in the table is hovered over it should be highlighted*/
 
 th:nth-child(1),
 td:nth-child(1) {
@@ -36,7 +55,7 @@ td:nth-child(4) {
 }
 
 .currentUserRow {
-    background-color: #5AC599;
+    background-color: #decda4;
 }
 
 .currentUserRow td {
