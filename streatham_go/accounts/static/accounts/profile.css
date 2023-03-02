@@ -1,16 +1,14 @@
-body{
-    background-color: #bba284;
-}
-
 img {
-  margin-top: 20px;
-  height: 150px;
-  width: 150px;
-  border: 3px solid #212529;
-  border-radius: 50%;
+    margin-top: 20px;
+    height: 150px;
+    width: 150px;
+    border: 3px solid #212529;
+    border-radius: 50%;
 }
 
-h1,.progress-level-1,.progress-level-2,.btn1, .modal-title, .modal-body, .badges-textL, .badges-textR {
+h1,
+.modal-title,
+.modal-body {
     font-family: Luminari, fantasy;
 }
 
@@ -19,7 +17,7 @@ h1 {
     font-size: 45px;
     font-weight: 700;
     font-style: bold;
-    color: #212529;
+    color: #fff;
 }
 
 .progress {
@@ -28,28 +26,29 @@ h1 {
     background-color: #f5f5f5;
     padding: 3px;
     border-radius: 5px;
+}
 
 .progress-bar {
-  border-radius: 5px;
-  /* width: 75%; */
+    border-radius: 5px;
+    /* width: 75%; */
 }
 
 .progress-bar-striped {
-  background-color: #5ac599 !important;
+    background-color: #5ac599 !important;
 }
 
 .modal-title {
-  font-size: 30px;
-  font-weight: bold;
-  color: #212529;
-  text-align: center;
-  padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #212529;
+    text-align: center;
+    padding: 10px;
 }
 
 .modal-body {
-  font-size: 20px;
-  font-weight: bold;
-  color: #212529;
-  text-align: left;
-  padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #212529;
+    text-align: left;
+    padding: 20px;
 }
