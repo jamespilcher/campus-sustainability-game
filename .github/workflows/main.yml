@@ -19,6 +19,7 @@ jobs:
         with:
           envkey_DEBUG: "True"
           envkey_SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          envkey_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           directory: streatham_go/streatham_go
           file_name: .env
 

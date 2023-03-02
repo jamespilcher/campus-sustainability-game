@@ -1,0 +1,13 @@
+#map {
+    height: 600; /* The height is 400 pixels */
+    transform: scale(0.95);
+  }
+
+.maplabel {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #930000;
+    padding: 3px;
+    white-space: nowrap;
+    text-align: center;
+  }
