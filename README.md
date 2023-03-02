@@ -59,18 +59,12 @@ open new file and add the following settings.
 
 - `DEBUG=[True|False]`
 - `SECRET_KEY=[a secret key (can be anything)]`
+- `GOOGLE_API_KEY=[google maps API key]`
 - `EMAIL_HOST=smtp.gmail.com`
 - `EMAIL_HOST_USER=streathamgo@gmail.com`
 - `EMAIL_HOST_PASSWORD=[check discord]`
 
-### 5. Run Tests (optional)
-
-```
-cd streatham_go
-pytest
-```
-
-### 6. Migrate Database (only need to run if you have made changes to db or first run)
+### 5. Migrate Database
 
 ```
 cd streatham_go
@@ -78,7 +72,23 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-### 7. Start Dev Server
+### 6. Populate Database
+
+```
+cd streatham_go
+python3 manage.py loaddata questions.json
+python3 manage.py loaddata buildings.json
+```
+
+### 7. Run Tests (optional)
+
+```
+cd streatham_go
+pytest
+```
+
+
+### 8. Start Dev Server
 
 ```
 cd streatham_go
