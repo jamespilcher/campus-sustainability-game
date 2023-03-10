@@ -16,7 +16,7 @@ class Location(models.Model):
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
     location_message = models.CharField(max_length=200)
-    icon = models.ImageField(upload_to='icons/', blank=True)
+    icon = models.ImageField(upload_to='app/icons/', blank=True, null=True)
 
 
 class Leaderboard(models.Model):
