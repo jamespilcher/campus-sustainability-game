@@ -47,6 +47,8 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
 
+MEDIA_ROOT = BASE_DIR.joinpath('media')
+
 # Application definition
 
 INSTALLED_APPS = [
