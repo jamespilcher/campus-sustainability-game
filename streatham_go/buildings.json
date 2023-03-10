@@ -6,7 +6,8 @@
       "name": "Forum",
       "latitude": "50.735344013066786",
       "longitude": "-3.533710030939591",
-      "location_message": "You there! Yes, you! Come and join me on campus for a special quest!"
+      "location_message": "You there! Yes, you! Come and join me on campus for a special quest!",
+      "icon": "icons/forum.png"
     }
   },
   {
@@ -16,7 +17,8 @@
       "name": "Northcott",
       "latitude": "50.73582171608894",
       "longitude": "-3.535271915803187",
-      "location_message": "*BELCH* Oh hello there traveller. Care to *BURP* help me out with something? I'm by the top of the *WURP* hill."
+      "location_message": "*BELCH* Oh hello there traveller. Care to *BURP* help me out with something? I'm by the top of the *WURP* hill.",
+      "icon": "icons/northcott.png"
     }
   },
   {
@@ -26,7 +28,8 @@
       "name": "Great Hall",
       "latitude": "50.73544778631505",
       "longitude": "-3.534539161978226",
-      "location_message": "Salutations young one. I require some assistance. You couldn't spare me some precious time could you? I reside on Stocker Road."
+      "location_message": "Salutations young one. I require some assistance. You couldn't spare me some precious time could you? I reside on Stocker Road.",
+      "icon": "icons/greathall.png"
     }
   },
   {
@@ -36,7 +39,8 @@
       "name": "Peter Chalk",
       "latitude": "50.73622338337576",
       "longitude": "-3.5360465251645556",
-      "location_message": "GREETINGS STUDENT. I AM HERE TO OFFER YOU A TASK. WILL YOU ACCEPT? I AM FORWARDING MY CO-ORDINATES TO YOU NOW."
+      "location_message": "GREETINGS STUDENT. I AM HERE TO OFFER YOU A TASK. WILL YOU ACCEPT? I AM FORWARDING MY CO-ORDINATES TO YOU NOW.",
+      "icon": "icons/peterchalk.png"
     }
   },
   {
@@ -46,7 +50,8 @@
       "name": "Physics",
       "latitude": "50.73688318839217",
       "longitude": "-3.5364699499494314",
-      "location_message": "A pleasure to hear from you again. Please, we should reconvene at my tower. You really must see the city from the top. It is marvellous."
+      "location_message": "A pleasure to hear from you again. Please, we should reconvene at my tower. You really must see the city from the top. It is marvellous.",
+      "icon": "icons/physics.png"
     }
   },
   {
@@ -56,7 +61,8 @@
       "name": "Sports Hall",
       "latitude": "50.73726496718506",
       "longitude": "-3.5372199328183966",
-      "location_message": "Hey buddy! Got some free time? I'm right at the top of campus. Can't miss it. Stocker Road!"
+      "location_message": "Hey buddy! Got some free time? I'm right at the top of campus. Can't miss it. Stocker Road!",
+      "icon": "icons/sportshall.png"
     }
   },
   {
@@ -66,7 +72,8 @@
       "name": "Sports Park",
       "latitude": "50.73791877453287",
       "longitude": "-3.5370780472341403",
-      "location_message": "Hey the view here is amazing. You should come check it out! Stocker Road, can't miss it!"
+      "location_message": "Hey the view here is amazing. You should come check it out! Stocker Road, can't miss it!",
+      "icon": "icons/sportspark.png"
     }
   },
   {
@@ -76,7 +83,8 @@
       "name": "Laver",
       "latitude": "50.737432607144235",
       "longitude": "-3.533506820884475",
-      "location_message": "Wassah dudeeee. Hey check it we got a real cool thing going on here. N Park Road. Be there or be square bro."
+      "location_message": "Wassah dudeeee. Hey check it we got a real cool thing going on here. N Park Road. Be there or be square bro.",
+      "icon": "icons/laver.png"
     }
   },
   {
@@ -86,7 +94,8 @@
       "name": "Harrison",
       "latitude": "50.73764890697027",
       "longitude": "-3.5325805866801314",
-      "location_message": "How do you do? Would you care to assist me? N Park Road. The one with loads of stairs!"
+      "location_message": "How do you do? Would you care to assist me? N Park Road. The one with loads of stairs!",
+      "icon": "icons/harrison.png"
     }
   },
   {
@@ -96,7 +105,8 @@
       "name": "SWIOT",
       "latitude": "50.73809826649347",
       "longitude": "-3.530602170926035",
-      "location_message": " help_needed = true, location = 'EX4 4RN' "    
+      "location_message": " help_needed = true, location = 'EX4 4RN' ",
+      "icon": "icons/swiot.png"
     }
   },
   {
@@ -106,7 +116,8 @@
       "name" : "Amory",
       "latitude" : "50.736417054595734",
       "longitude" : "-3.531731962213996",
-      "location_message": "I am receiving a communication link from a human! I come in peace! Let's talk business on Rennes Drive!"
+      "location_message": "I am receiving a communication link from a human! I come in peace! Let's talk business on Rennes Drive!",
+      "icon": "icons/amory.png"
     }
   },
   {
@@ -116,7 +127,8 @@
       "name" : "Business",
       "latitude" : "50.735617764035744",
       "longitude" : "-3.529888429494681",
-      "location_message": "My goodness. It is so good to see you. Let's catch up at the usual spot on Rennes Drive. I have something for you!"
+      "location_message": "My goodness. It is so good to see you. Let's catch up at the usual spot on Rennes Drive. I have something for you!",
+      "icon": "icons/business.png"
     }
   },
   {
@@ -126,7 +138,8 @@
       "name" : "Lemongrove",
       "latitude" : "50.73497112744672",
       "longitude" : "-3.5296850179419477",
-      "location_message": "Looking slightly more sober today! Maybe I can help with that hangover? St German's Road. The path is a bit less perilous in daylight!"
+      "location_message": "Looking slightly more sober today! Maybe I can help with that hangover? St German's Road. The path is a bit less perilous in daylight!",
+      "icon": "icons/lemongrove.png"
     }
   },
   {
@@ -136,7 +149,8 @@
       "name" : "Hatherly",
       "latitude" : "50.7340577938275",
       "longitude" : "-3.533160818474208",
-      "location_message": "*ahem* H-h-hello again. C-c-ca-can you help? P-p-puh-prince of wales road."
+      "location_message": "*ahem* H-h-hello again. C-c-ca-can you help? P-p-puh-prince of wales road.",
+      "icon": "icons/hatherly.png"
     }
   },
   {
@@ -146,7 +160,8 @@
       "name" : "Queens",
       "latitude" : "50.734030038627466",
       "longitude" : "-3.535080342831906",
-      "location_message": "Your highness demands your attention. She awaits you at The Queen's Drive."
+      "location_message": "Your highness demands your attention. She awaits you at The Queen's Drive.",
+      "icon": "icons/queens.png"
     }
   },
   {
@@ -156,7 +171,8 @@
       "name" : "Washington",
       "latitude" : "50.73316346751228",
       "longitude" : "-3.5365078750394496",
-      "location_message": "Yes I live there. Yes that big building. Yes the one you've never been to!"
+      "location_message": "Yes I live there. Yes that big building. Yes the one you've never been to!",
+      "icon": "icons/washington.png"
     }
   },
   {
@@ -166,7 +182,8 @@
       "name" : "Reed Hall",
       "latitude" : "50.73526623979671",
       "longitude" : "-3.5374977559130816",
-      "location_message": "You are telling me you haven't seen the hall? You must come at once! On Streatham Drive with all the gardens and the fountains. Please come and explore for yourself!"
+      "location_message": "You are telling me you haven't seen the hall? You must come at once! On Streatham Drive with all the gardens and the fountains. Please come and explore for yourself!",
+      "icon": "icons/reed.png"
     }
   }
 ]
