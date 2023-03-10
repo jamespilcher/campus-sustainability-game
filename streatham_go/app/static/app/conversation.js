@@ -8,11 +8,11 @@ function updateButtons(responses) {
     document.getElementById('buttons').innerHTML = responses;
 }
 
-function welcomeScene(){
-    say(building_message)
+function welcomeScene(welcomeMessage){
+    say(welcomeMessage)
     responses = "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
     "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
-    "<button type='button' class='btn btn-warning' onclick='say(\"Any Tips?\")'>Any Tips?</button>"
+    "<button type='button' class='btn btn-warning' onclick='say(\"Open in Maps\")'>Open in Maps</button>"
 
     updateButtons(responses)
 }

@@ -1,7 +1,5 @@
 # import datetime
 # import random
-import json
-from django.core.serializers.json import DjangoJSONEncoder
 from django.conf import settings
 from django.shortcuts import render
 from app.models import Location
@@ -22,7 +20,7 @@ from django.contrib import messages
 #     return random_question
 
 
-# @login_required
+@login_required
 def home(request):
     context = {}
     if Location.objects.count() == 0:
@@ -31,7 +29,6 @@ def home(request):
                                  "admin panel."))
     else:
         locations = Location.objects.all()
-
         context = {
             'locations': locations,
             'GOOGLE_API_KEY': settings.GOOGLE_API_KEY

@@ -10,14 +10,17 @@
 {% else %}
 
 <script>  
-  var location_positions =[]
+  var location_latitude =[]
+  var location_longitude =[]
   var location_names = []
   var location_icons = []
   var location_messages = []
 </script>
 {% for location in locations %}
     <script>  
-      location_positions.push( ['{{ location.latitude }}','{{ location.longitude }}'] )
+      // this is a horrible implementation! Want to generate it as a list of JS object on the backend instead...
+      location_latitude.push('{{ location.latitude }}')
+      location_longitude.push('{{ location.longitude }}')
       location_names.push('{{ location.name }}')
       location_icons.push('{{ location.icon.url }}')
       location_messages.push('{{ location.location_message }}')
@@ -25,13 +28,13 @@
 {% endfor %}
 <script src=" {% static 'app\conversation.js' %} "></script>
 
-<div class="card container rounded-0" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
+<div class="card container rounded-0" style = "height:100vh;font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
       <b>Today's Quest-Giver:</b>
     </div>
     <div class="card-body">
       <h5 class="card-title"> </h5>
-      <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
+      <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);image-rendering:pixelated;">
 
       <script>
         // Generate google map
@@ -62,7 +65,7 @@
           };
           var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
           
-          for (let i = 0; i < location_positions.length; i++) {
+          for (let i = 0; i < location_names.length; i++) {
             var iconMarker = {
               url: location_icons[i], 
               labelOrigin: new google.maps.Point(20,-10),
@@ -77,15 +80,19 @@
             }
             
             var positionMarker = {
-              lat: Number(location_positions[i][0]),
-              lng: Number(location_positions[i][1])
+              lat: Number(location_latitude[i]),
+              lng: Number(location_longitude[i])
             }
-
-            console.log(positionMarker)
-            var marker = new google.maps.Marker({position: positionMarker, label: labelMarker, icon: iconMarker});
+            var marker = new google.maps.Marker({position: positionMarker, label: labelMarker, icon: iconMarker, animation:google.maps.Animation.DROP});
             marker.setMap(map);
+            google.maps.event.addListener(marker, 'click', function() {
+              // change icon, whos talking, maybe pass i to seperate handler function...
+              // consider the following code to be placeholder, along with conversation.js
+              icon = '<img src="' + location_icons[i] + '"class="img-fluid mx-auto" alt="icon" style="width:100%;image-rendering:pixelated">';
+              document.getElementById('icon').innerHTML = icon;
+              welcomeScene(location_messages[i])
+            });
           }
-          
         }
         </script>
 
@@ -99,8 +106,7 @@
 
   <div class="container-fluid">
       <div class="row g-2 form-group">
-          <div class="col-2 col-lg-1 mx-auto" style="image-rendering: pixelated">
-            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload='welcomeScene()'>
+          <div class="col-3 col-lg-1 mx-auto" id ="icon" style="image-rendering: pixelated">
           </div>
           <div class="col" id="dialogue">
           </div>
