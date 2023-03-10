@@ -5,11 +5,12 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from ..models import Location
 
-
+# Set some user passwords for testing purposes
 pytest.USER_PASSWORD = '12345'
 pytest.USER_WRONG_PASSWORD = 'wrong_password'
 
 
+# Define a fixture to create a user for testing purposes
 @pytest.fixture
 def user() -> User:
     u = User.objects.create_user('jamespilcher',
@@ -21,26 +22,32 @@ def user() -> User:
     return u
 
 
+# Test case for when user is authenticated
 @pytest.mark.django_db
 def test_home_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
     url = reverse('app:home')
     response = client.get(url, follow=True)
+    # Make sure 200 OK and no redirects
     assert response.status_code == 200
     assert len(response.redirect_chain) == 0
 
 
+# Test case for when user is not authenticated
 def test_home_view_unauthenticated(client):
     url = reverse('app:home')
     response = client.get(url, follow=True)
+    # Make sure the user is redirected to the login page
     next = reverse('accounts:login') + '?' + urlencode({'next': url})
     TestCase().assertRedirects(response, next)
 
 
+# Test case when user logged in and there are locations in DB
 @pytest.mark.django_db
 def test_home_view_with_location(client, user):
+    # Login the user
     client.login(username=user.username, password=pytest.USER_PASSWORD)
-
+    # Create some location objects and save them to the database
     buildings = [
         Location.objects.create(name="Building 1",
                                 latitude="50.0",
@@ -63,7 +70,7 @@ def test_home_view_with_location(client, user):
     for building in buildings:
         building.save()
 
-    # test home view
+    # Make sure 200 OK is returned and no redirects
     url = reverse('app:home')
     response = client.get(url, follow=True)
     assert response.status_code == 200
@@ -75,11 +82,12 @@ def test_home_view_with_location(client, user):
     assert 'GOOGLE_API_KEY' in response.context
 
 
+# Test case when user logged in and there are no locations in DB
 @pytest.mark.django_db
 def test_home_view_no_locations_or_questions(client, user):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
 
-    # Clear all locations and questions from the database
+    # Clear all locations from the database
     Location.objects.all().delete()
 
     # Make a GET request to the home view
