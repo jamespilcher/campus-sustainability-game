@@ -19,7 +19,7 @@
     <script>  
       location_positions.push( ['{{ location.latitude }}','{{ location.longitude }}'] )
       location_names.push('{{ location.name }}')
-      location_icons.push('{{ location.icon }}')
+      location_icons.push('{{ location.icon.url }}')
       location_messages.push('{{ location.location_message }}')
     </script>
 {% endfor %}
@@ -64,7 +64,7 @@
           
           for (let i = 0; i < location_positions.length; i++) {
             var iconMarker = {
-              url:"{% static 'app\example32.png' %}", 
+              url: location_icons[i], 
               labelOrigin: new google.maps.Point(20,-10),
               scaledSize: new google.maps.Size(40, 40)
             }
