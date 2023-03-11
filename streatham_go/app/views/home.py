@@ -1,6 +1,5 @@
 # import datetime
 # import random
-import json
 from django.conf import settings
 from django.shortcuts import render
 from app.models import Location
