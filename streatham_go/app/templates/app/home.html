@@ -23,7 +23,7 @@
     </div>
     <div class="card-body">
       <h5 class="card-title"> </h5>
-      <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);image-rendering:pixelated;">
+      <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
 
       <script>
         // Generate google map
@@ -55,8 +55,12 @@
             maxZoom: 20,
             mapId: "27c6b9a1bc6d90d5"
           };
-
           var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+          // If click on map, clear dialogue screens!
+          map.addListener("click", () => {
+            emptyScene();
+          });
           for (let i = 0; i < locations.length; i++) {
             building = locations[i].fields
             console.log(building.icon)
@@ -81,18 +85,28 @@
             marker.setMap(map);
             google.maps.event.addListener(marker, 'click', function() {
               // unfortunately, this is the only way to reference the correct building
-              // Would much rather pass the building object to the clickHandler, but it gets
+              // would rather pass the building object to the clickHandler, but it gets
               // overwritten by the loop
-              clickHandler(i)
+              clickHandler(i, map)
             });
           };
         };
 
-        // expand clickHandler
-        function clickHandler(i) {
-          icon = '<img src=/media/' + locations[i].fields.icon + ' alt="' +'"class="img-fluid mx-auto" alt="icon" style="width:100%;image-rendering:pixelated">';
-          document.getElementById('icon').innerHTML = icon;
-          welcomeScene(locations[i].fields.message)
+        // todo: make handler functional. Check if user is close enough etc...
+        // probably still call welcome scene.
+        function clickHandler(i, map) {
+          building = locations[i].fields
+
+          buildingPos = {
+              lat: Number(building.latitude),
+              lng: Number(building.longitude)
+            }
+          map.panTo(buildingPos);
+          // set icon of who is talking
+          buildingSetter(building)
+          updateIcon(building.icon)
+          welcomeScene()
+          // set dialogue
         }
         </script>
 
@@ -100,9 +114,8 @@
 
       <script
         src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=myMap"
-      >console.log("ASDASDASADA")</script>
+      ></script>
       </div>
-
 
   <div class="container-fluid">
       <div class="row g-2 form-group">
