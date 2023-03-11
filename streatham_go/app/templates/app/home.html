@@ -15,18 +15,7 @@
   var location_names = []
   var location_icons = []
   var location_messages = []
-</script>
-{% for location in locations %}
-    <script>  
-      // this is a horrible implementation! Want to generate it as a list of JS object on the backend instead...
-      location_latitude.push('{{ location.latitude }}')
-      location_longitude.push('{{ location.longitude }}')
-      location_names.push('{{ location.name }}')
-      location_icons.push('{{ location.icon.url }}')
-      location_messages.push('{{ location.location_message }}')
-    </script>
-{% endfor %}
-<script src=" {% static 'app\conversation.js' %} "></script>
+</script><script src=" {% static 'app\conversation.js' %} "></script>
 
 <div class="card container rounded-0" style = "height:100vh;font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
@@ -38,6 +27,9 @@
 
       <script>
         // Generate google map
+        var locations = '{{ locations|escapejs }}'
+        locations = JSON.parse(locations)
+
         function myMap() {
           boundsNorth = 50.740400
           boundsSouth = 50.730000
@@ -63,16 +55,18 @@
             maxZoom: 20,
             mapId: "27c6b9a1bc6d90d5"
           };
+
           var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-          
-          for (let i = 0; i < location_names.length; i++) {
+          for (let i = 0; i < locations.length; i++) {
+            building = locations[i].fields
+            console.log(building.icon)
             var iconMarker = {
-              url: location_icons[i], 
+              url: "/media/" + (building.icon),
               labelOrigin: new google.maps.Point(20,-10),
               scaledSize: new google.maps.Size(40, 40)
             }
             var labelMarker = {
-              text: location_names[i],
+              text: (building.name),
               color: "white",
               fontSize: "16px",
               fontFamily: "Courier New",
@@ -80,19 +74,25 @@
             }
             
             var positionMarker = {
-              lat: Number(location_latitude[i]),
-              lng: Number(location_longitude[i])
+              lat: Number(building.latitude),
+              lng: Number(building.longitude)
             }
             var marker = new google.maps.Marker({position: positionMarker, label: labelMarker, icon: iconMarker, animation:google.maps.Animation.DROP});
             marker.setMap(map);
             google.maps.event.addListener(marker, 'click', function() {
-              // change icon, whos talking, maybe pass i to seperate handler function...
-              // consider the following code to be placeholder, along with conversation.js
-              icon = '<img src="' + location_icons[i] + '"class="img-fluid mx-auto" alt="icon" style="width:100%;image-rendering:pixelated">';
-              document.getElementById('icon').innerHTML = icon;
-              welcomeScene(location_messages[i])
+              // unfortunately, this is the only way to reference the correct building
+              // Would much rather pass the building object to the clickHandler, but it gets
+              // overwritten by the loop
+              clickHandler(i)
             });
-          }
+          };
+        };
+
+        // expand clickHandler
+        function clickHandler(i) {
+          icon = '<img src=/media/' + locations[i].fields.icon + ' alt="' +'"class="img-fluid mx-auto" alt="icon" style="width:100%;image-rendering:pixelated">';
+          document.getElementById('icon').innerHTML = icon;
+          welcomeScene(locations[i].fields.message)
         }
         </script>
 
@@ -100,7 +100,7 @@
 
       <script
         src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=myMap"
-      ></script>
+      >console.log("ASDASDASADA")</script>
       </div>
 
 

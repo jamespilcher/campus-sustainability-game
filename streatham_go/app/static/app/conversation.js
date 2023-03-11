@@ -62,7 +62,7 @@ function incorrectAnswerScene(){
 
 
 function unsuccessfulLocationCheckScene(){
-  say("I can't seem to find you...")
+  say("Sorry, I can't seem to see that you are here...")
   responses = "<button type='button' class='btn btn-primary' onclick='welcomeScene()'>Okay</button>" +
   updateButtons(responses)
 }

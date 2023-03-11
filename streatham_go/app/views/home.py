@@ -1,11 +1,12 @@
 # import datetime
 # import random
+import json
 from django.conf import settings
 from django.shortcuts import render
 from app.models import Location
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from django.core import serializers
 
 # def _generate_building_question():
 #     # Seed random number generator with date
@@ -28,7 +29,7 @@ def home(request):
                                  "Please add some locations in the "
                                  "admin panel."))
     else:
-        locations = Location.objects.all()
+        locations = serializers.serialize("json", Location.objects.all())
         context = {
             'locations': locations,
             'GOOGLE_API_KEY': settings.GOOGLE_API_KEY
