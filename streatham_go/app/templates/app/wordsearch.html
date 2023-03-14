@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+
+<link rel="stylesheet" href="{% static 'app/wordsearch.css' %}">
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script src=" {% static 'app\wordsearch.js' %} "></script>
+
+    <style>
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+      td {
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+  </body>
+</html>
+
+{% endblock %}
