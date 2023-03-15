@@ -42,9 +42,9 @@ function replyToClick(cellID) {
     if (gridState[cellIndex] !== "" || !gameRunning || currentPlayer === PLAYER_O) {
         return;
     }
-    gridState[cellIndex] = PLAYER_X;
 
     // Get the cell element and update it with player's symbol and colour
+    gridState[cellIndex] = PLAYER_X;
     setCell(cellID, PLAYER_X, PLAYER_X_COLOUR);
 
     let winner = checkForGameOver();
@@ -75,7 +75,6 @@ function computerMove() {
 
     // Loop through all spaces and see if moving there would be a winning move
     for (let i = 0; i < gridState.length; i++) {
-        console.log("Checking if computer can win at " + (i + 1) + "...");
         if (gridState[i] === "") {
             gridState[i] = PLAYER_O;
 
@@ -93,13 +92,10 @@ function computerMove() {
     if (!moved) {
         // If no winning move was found, loop through all spaces and see if moving there would block the player from winning
         for (let i = 0; i < gridState.length; i++) {
-            console.log("Checking if computer can block player at " + (i + 1) + "...");
             if (gridState[i] === "") {
                 gridState[i] = PLAYER_X;
-
                 // Check if this move would block the player from winning
                 if (checkForGameOver() === PLAYER_X) {
-                    console.log("Computer blocked player");
                     gridState[i] = PLAYER_O;
                     setCell(`cell${i + 1}`, PLAYER_O, PLAYER_O_COLOUR);
                     moved = true;
@@ -113,7 +109,6 @@ function computerMove() {
 
     // If no winning or blocking move was found, move randomly
     if (!moved) {
-        console.log("Computer moved randomly");
         let possibleMoves = [];
         // Get indexes of al empty cells
         for (var i = 0; i < gridState.length; i++) {
@@ -128,21 +123,22 @@ function computerMove() {
 
         // Pick a random empty cell
         let randomIndex = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
-        gridState[randomIndex] = PLAYER_O;
-
 
         // Get the cell element and update it with computer's symbol and colour
+        gridState[randomIndex] = PLAYER_O;
         setCell(`cell${randomIndex + 1}`, PLAYER_O, PLAYER_O_COLOUR);
 
     }
+
+    // Check if the game is over after the computer's move
     checkForGameOver();
     let winner = checkForGameOver();
     switch (winner) {
-        case (PLAYER_X):
-        case (PLAYER_O):
+        case (PLAYER_X): // Player won
+        case (PLAYER_O): // Computer won
             handleGameOver(winner);
             break;
-        case "D":
+        case "D": // Draw
             handleGameOver();
     }
     switchPlayer();
