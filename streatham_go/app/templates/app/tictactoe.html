@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'app/tictactoe.css' %}">
+<div id="container">
+    <h1>Tic-Tac-Toe</h1>
+    <h2>Player 1 (You): X</h2>
+    <h2>Computer: O</h2>
+    <h2 id="playerTurn">Turn: X</h2>
+    <h2 id="score">Score: 0-0</h2>
+    <h2 id="winner">X has won!</h2>
+    <div id="grid">
+        <div class="row">
+            <div class="cell" id="cell1" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell2" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell3" onClick="replyToClick(this.id)"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell4" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell5" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell6" onClick="replyToClick(this.id)"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell7" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell8" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell9" onClick="replyToClick(this.id)"></div>
+        </div>
+    </div>
+    <button id="restart" onClick="restartGame()">Restart</button>
+</div>
+<script src="{% static 'app/tictactoe.js' %}"></script>
+{% endblock %}
