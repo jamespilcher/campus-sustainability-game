@@ -26,6 +26,8 @@ def activate(request, username):
                 email_verification_token.check_token(user, token)):
             user.is_active = True
             user.save()
+
+            # Create a leaderboard entry for the user now they're verified
             leaderboard = Leaderboard.objects.create(user=user)
             leaderboard.save()
 
