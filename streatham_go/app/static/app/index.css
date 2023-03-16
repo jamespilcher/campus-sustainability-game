@@ -30,24 +30,22 @@ p {
 }
 
 a.btn {
-    background-color: #958A6E;
-    border-color: #958A6E;
-    width: 250px;
-    border-radius: 25px;
-    color: white;
-    padding: 10px 20px;
+    width: 20rem;
     text-align: center;
-    display: inline-block;
-    font-size: 20px;
-    margin: 10px 100px;
-    cursor: pointer;
-    top: 50%;
+    font-size: 1.5rem;
+    background-color: #958A6E;
+    color: black;
+    border: 1px solid #958A6E;
+    border-radius: 20px;
+    padding: 1rem 0;
+    margin: 5px;
 }
 
 a.btn:hover {
     background-color: #958A6E;
-    color: white;
     border-color: #212529;
+    transition: transform 150ms;
+    transform: scale(1.05);
 }
 
 @media all and (max-width: 500px) {

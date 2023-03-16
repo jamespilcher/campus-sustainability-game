@@ -1,0 +1,166 @@
+body{
+    background-color: #bba284;
+}
+
+* {
+   box-sizing: border-box;
+   font-family: luminari, fantasy;
+}
+
+h1,h2{
+    text-align: center;
+}
+
+h1{
+   font-size: 3.3rem;
+   margin-bottom: 1rem;
+}
+
+#game-container{
+    display: none;
+}
+
+#home-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+#end-container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+ }
+
+.btn{
+    width: 20rem;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #958A6E;
+    color: black;
+    border: 1px solid #958A6E;
+    border-radius: 5px;
+    padding: 1rem 0;
+    margin: 5px;   
+}
+
+.btn:hover{
+    background-color: #958A6E;
+    border: 1px solid black;
+    transition: transform 150ms;
+    transform: scale(1.05);
+}
+
+.btn[disabled]:hover{
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;    
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center{
+    /* text-align: center; */
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-content{
+    justify-content: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.hidden{
+    display: none;
+}
+
+.Score, .num{
+    display: inline-block;
+    font-size: 2.2rem;
+    margin-top: 10px;
+    margin-bottom: 1rem;
+}
+
+.Score{
+   margin-right: 10px;
+}
+
+#hud{
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-prefix {
+    font-size: 1.5rem;
+    text-align: center;
+}
+ 
+#progressBar{
+    display: inline-block;
+    width: 23rem;
+    height: 2rem;
+    border: 0.2rem solid black;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+#progressBarFull{
+    height: 100%;
+    width: 0%;
+    background-color: #958A6E;
+    transition: width 0.5s ease-in-out;
+}
+
+.question{
+    font-size: 20pt;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+.choice-container{
+    display: flex;
+    margin-bottom: 0.5rem;
+    border-radius: 20px;
+    background-color: #9f9577;
+    font-size:1.2rem;
+}
+
+.choice-container:hover{
+    background-color: #958A6E;
+    cursor: pointer;
+}
+
+.correct {
+    background-color: linear-gradient(32deg, rgba(11,223,36));
+}
+
+.incorrect {
+    background-color: linear-gradient(32deg, rgba(255,0,0));
+}
+
+.choice-prefix{
+    padding: 2rem 1rem;
+}
+.choice-text{
+    padding: 2rem;
+}
