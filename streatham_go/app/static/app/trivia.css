@@ -29,7 +29,7 @@ h1{
     align-items: center;
     justify-content: center;
     max-width: 80rem;
-    margin: 0 auto;
+    margin: 20 auto;
     padding: 2rem;
 }
 
@@ -118,6 +118,10 @@ h1{
    margin-right: 10px;
 }
 
+.final-score-win, .final-score-lose{
+    font-display: 2.2rem;
+}
+
 #hud{
     display: flex;
     justify-content: space-between;
@@ -171,3 +175,55 @@ h1{
 .choice-text{
     padding: 2rem;
 }
+
+@media all and (max-width: 768px) {
+    .home-container{
+        margin-top: 5rem;
+    }
+
+    h1{
+        font-size: 2.5rem;
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+
+    .btn{
+        padding-left: 20px;
+        width: 15rem;
+        font-size: 1.2rem;
+        padding: 0.5rem 0;
+    }
+
+    .game-container.question {
+        font-size: 1.5rem;
+    }
+
+    #progressBar {
+        width: 15rem;
+    }
+
+    .choice-container {
+        min-width: 300px;
+        font-size: 12pt;
+    }
+
+    #final-score-win {
+        font-size: 2rem;
+    }
+
+    #final-score-lose {
+        font-size: 2rem;
+    }
+
+    .end-win-container.h1 {
+        font-size: 1.8rem;
+    }
+
+    a.btn {
+        font-size: 1.2rem;
+        padding: 0.5rem 0;
+    }
+
+}   
