@@ -36,7 +36,11 @@ const choices = Array.from(document.querySelectorAll(".choice-text"));
 const num = document.getElementById("score");
 const home = document.getElementById("home-container");
 const game = document.getElementById("game-container");
-const end = document.getElementById("end-container");
+const endWin = document.getElementById("end-win-container");
+const endLose = document.getElementById("end-lose-container");
+const finalScoreWin = document.getElementById("final-score-win");
+const finalScoreLose = document.getElementById("final-score-lose");
+
 const MAX_QUESTIONS = 3;
 
 let currentQuestion = {};
@@ -117,11 +121,13 @@ function toGamePage(btnId) {
       console.log(home.style.display);
       console.log(game.style.display);
       game.style.display = "block";
-      end.style.display = "none";
+      endWin.style.display = "none";
+      endLose.style.display = "none";
     } else {
       home.style.display = "block";
       game.style.display = "none";
-      end.style.display = "none";
+      endWin.style.display = "none";
+      endLose.style.display = "none";
     }
 }
 
@@ -144,50 +150,56 @@ function replyToClick(btnId) {
     setTimeout(() => {
         btn.classList.remove(classToApply);
         getNewQuestion();
-        }, 100);
+        }, 200);
 
     toEndPage();
 }
 
+function checkScore() {
+    if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
+        console.log("Current Score: " + score);
+        console.log("Current Question: " + questionCounter);
+
+        home.style.display = "none";
+        game.style.display = "none";
+        endWin.style.display = "block";
+        endLose.style.display = "none";
+        finalScoreWin.innerText = score;
+    } else{
+        console.log("Current Score: " + score);
+        home.style.display = "none";
+        game.style.display = "none";
+        endWin.style.display = "none";
+        endLose.style.display = "block";
+        finalScoreLose.innerText = score;
+    }
+}
+
 function toEndPage(){
     console.log("GAME: " + game.style.display);
-    console.log("END: " + end.style.display);
+    console.log("ENDWIN: " + endWin.style.display);
+    console.log("ENDLOSE: " + endLose.style.display);
     console.log("COUNTER" + questionCounter);
     console.log("MAX" + MAX_QUESTIONS);
 
     if(questionCounter >= MAX_QUESTIONS) {
+
+        checkScore();
+        finalScoreWin.innerText = score;
         console.log("IN IF");
-        home.style.display = "none";
-        game.style.display = "none";
-        end.style.display = "block";
+
+        console.log("FINALSCORE: " + score);
         console.log("GAME: " + game.style.display);
-        console.log("END: " + end.style.display);
+        console.log("ENDWIN: " + endWin.style.display);
+        console.log("ENDLOSE: " + endLose.style.display);
     } else {
-        home.style.display = "none";
-        game.style.display = "block";
-        end.style.display = "none";
+        console.log("IN ELSE");
     }
 }
 
 function incrementScore(){
     score += 1;
     num.innerText = "Score: " + score;
-}
-
-function toHomePage(btnId) {
-    console.log(btnId);
-    
-    if (btnId === "endBtn") {
-      home.style.display = "block";
-      console.log(home.style.display);
-      console.log(game.style.display);
-      game.style.display = "none";
-      end.style.display = "none";
-    } else {
-      home.style.display = "none";
-      game.style.display = "none";
-      end.style.display = "block";
-    }
 }
 
 startGame();
