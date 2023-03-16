@@ -1,85 +1,52 @@
-// Define a function to load JSON file
-// function loadJSON(callback) {
-//     const xobj = new XMLHttpRequest();
-//     xobj.overrideMimeType("application/json");
-//     xobj.open("GET", "questions.json", true);
-//     xobj.onreadystatechange = function () {
-//       if (xobj.readyState == 4 && xobj.status == "200") {
-//         callback(xobj.responseText);
-//       }
-//     };
-//     xobj.send(null);
-//   }
-  
-//   // Call the loadJSON function to load the file
-//   loadJSON(function (response) {
-//     // Parse JSON string into object
-//     const questions = JSON.parse(response);
-//     // Randomly select a question index
-//     const randomIndex = Math.floor(Math.random() * questions.length);
-//     // Get the random question object
-//     const randomQuestion = questions[randomIndex];
-//     // Extract the question and choices
-//     const question = randomQuestion.question;
-//     const choices = randomQuestion.choices;
-  
-//     // Fill the question and choices in the HTML
-//     document.querySelector(".question").textContent = question;
-//     document.querySelector('.choice-text[data-number="1"]').textContent = choices[0];
-//     document.querySelector('.choice-text[data-number="2"]').textContent = choices[1];
-//     document.querySelector('.choice-text[data-number="3"]').textContent = choices[2];
-//     document.querySelector('.choice-text[data-number="4"]').textContent = choices[3];
-// });
-
-const question = document.querySelector('.question');
-const choices = Array.from(document.querySelectorAll(".choice-text"));
+const MAX_QUESTIONS = 3;
 const num = document.getElementById("score");
+const question = document.querySelector('.question');
 const home = document.getElementById("home-container");
 const game = document.getElementById("game-container");
 const endWin = document.getElementById("end-win-container");
 const endLose = document.getElementById("end-lose-container");
 const finalScoreWin = document.getElementById("final-score-win");
 const finalScoreLose = document.getElementById("final-score-lose");
+const choices = Array.from(document.querySelectorAll(".choice-text"));
 
-const MAX_QUESTIONS = 3;
-
-let currentQuestion = {};
 let acceptingAnswers = true;
+let currentQuestion = {};
 let score = 0;
 let availableQuestions = [];
+let questionCounter = 0;
 
 let questions = [
     {
         "question": "Which of the following is a renewable source of energy?",
-        "choice1": "Natural Gas",
-        "choice2": "Coal",
-        "choice3": "Wind", 
-        "choice4": "Petroleum",
-        "answer": "3"
+        "a": "Natural Gas",
+        "b": "Coal",
+        "c": "Wind", 
+        "d": "Petroleum",
+        "answer": "c"
     },
     {
         "question": "Which of the following is a greenhouse gas?",
-        "choice1": "Nitrogen",
-        "choice2": "Oxygen",
-        "choice3": "Carbon Dioxide", 
-        "choice4": "Helium",
-        "answer": "3"
+        "a": "Nitrogen",
+        "b": "Oxygen",
+        "c": "Carbon Dioxide", 
+        "d": "Helium",
+        "answer": "c"
     },
     {
         "question": "What is the largest source of greenhouse gas emissions in the United States?",
-        "choice1": "Transportation",
-        "choice2": "Agriculture",
-        "choice3": "Industrial Processes", 
-        "choice4": "Electricity Generation",
-        "answer": "1"
+        "a": "Transportation",
+        "b": "Agriculture",
+        "c": "Industrial Processes", 
+        "d": "Electricity Generation",
+        "answer": "a"
     },
     {
         "question": "What is the process by which plants use sunlight, carbon dioxide, and water to produce oxygen and glucose?",
-        "choice1":"Photosynthesis",
-        "choice2":"Respiration",
-        "choice3": "Decomposition", 
-        "choice4": "Combustion",
-        "answer": "1"
+        "a":"Photosynthesis",
+        "b":"Respiration",
+        "c": "Decomposition", 
+        "d": "Combustion",
+        "answer": "a"
     }
 ];
 
@@ -105,8 +72,9 @@ const getNewQuestion = () => {
     document.querySelector(".question").textContent = currentQuestion.question;
 
     choices.forEach((choice) => {
-      const number = choice.dataset["number"];
-      choice.textContent = currentQuestion["choice" + number];
+      const number = choice.dataset["letter"];
+      console.log(number);
+      choice.textContent = currentQuestion[number];
     });
 
     availableQuestions.splice(randomIndex, 1);
