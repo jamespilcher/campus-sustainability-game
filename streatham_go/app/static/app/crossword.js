@@ -31,6 +31,7 @@ function sortWords(words) {
     wordsToKeep.reverse();
     // Remove any words longer than the grid size
     wordsToKeep = wordsToKeep.filter(word => word.length <= gridSize);
+    console.log(wordsToKeep);
     return wordsToKeep
 }
 
@@ -43,7 +44,6 @@ function placeFirstWord() {
     let wordLength = word.length;
     let middleOfGrid = Math.floor(gridSize / 2);
     let startX = middleOfGrid - Math.floor(wordLength / 2);
-    console.log('FIRST WORD: ' + word);
 
     for (let j = 0; j < wordLength; j++) {
         grid.rows[middleOfGrid].cells[startX + j].innerHTML = word[j];
@@ -58,26 +58,26 @@ function placeFirstWord() {
 }
 
 function placeOtherWords() {
-    let word = usableWords[1];
-    let intersections = findIntersections(word);
-    placeWord(word, intersections[0]);
+    for (let i = 1; i < usableWords.length; i++) {
+        let word = usableWords[i];
+        let intersections = findIntersections(word);
+        console.log(intersections);
+        let validPlacement = false;
+        for (let j = 0; j < intersections.length; j++) {
+            if (isValidPlacement(word, intersections[j])) {
+                placeWord(word, intersections[j]);
+                validPlacement = true;
+                break;
+            }
+        }
+        if (!validPlacement) {
+            console.log("Could not place word: " + word);
+        }
+    }
 }
 
-function validPlacement(word, intersection) {
-    // Check if the word can be placed there
-    // A word can be placed if:
-    // 1. The word intersects with a placed word on a shared letter
-    // 2. The word is not adjacent to another word
-    // 3. The word does not overlap with another word
-    // 4. The word does not go off the grid
-
-    // Check if the word is adjacent to another word
-    // If it is, return false
-
-}
-
-
-function placeWord(word, intersection) {
+function isValidPlacement(word, intersection) {
+    // console.log(intersection);
     let wordLength = word.length;
     let intersectionLetter = intersection.letter;
     let intersectionX = intersection.x;
@@ -88,36 +88,87 @@ function placeWord(word, intersection) {
     let startY = 0;
     let orientation = '';
 
-    console.log('WORD: ' + word);
-    console.log('INTERSECTION: ' + intersectionLetter);
-    console.log('INTERSECTION X: ' + intersectionX);
-    console.log('INTERSECTION Y: ' + intersectionY);
-    console.log('INTERSECTION ORIENTATION: ' + intersectionOrientation);
-
-
     if (intersectionOrientation === 'across') {
+        startX = intersectionX;
+        startY = intersectionY - word.indexOf(intersectionLetter);
+        orientation = 'down';
+        let endY = startY + wordLength - 1;
+        for (let i = startY; i <= endY; i++) {
+            console.log(i, startX - 1, startX + 1);
+            // Check that the cells above and below the word are empty
+            if (i === intersectionY) {
+                continue;
+            }
+            // Check that the cell is empty
+            if (grid.rows[startX].cells[i].innerHTML !== "") {
+                console.log("104 Invalid placement for word: " + word);
+                return false;
+            }
+            if (grid.rows[startX - 1].cells[i].innerHTML !== "" || grid.rows[startX + 1].cells[i].innerHTML !== "") {
+                console.log("108 Invalid placement for word: " + word);
+                return false;
+            }
+        }
 
     } else {
         startX = intersectionX - word.indexOf(intersectionLetter);
         startY = intersectionY;
         orientation = 'across';
+        let endX = startX + wordLength - 1;
+        for (let i = startX; i <= endX; i++) {
+            // Check that the cells to the left and right of the word are empty
+            if (i === intersectionX) {
+                continue;
+            }
+            if (grid.rows[i].cells[startY].innerHTML !== "") {
+                console.log("124 Invalid placement for word: " + word);
+                return false;
+            }
+            if (grid.rows[i].cells[startY - 1].innerHTML !== "" || grid.rows[i].cells[startY + 1].innerHTML !== "") {
+                console.log("128 Invalid placement for word: " + word);
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+function placeWord(word, intersection) {
+    let wordLength = word.length;
+    let intersectionLetter = intersection.letter;
+    let intersectionX = intersection.x;
+    let intersectionY = intersection.y;
+    let orientationToPlace = intersection.orientation === 'across' ? 'down' : 'across';
+
+    let startX = 0;
+    let startY = 0;
+
+    if (orientationToPlace === 'across') {
+        startX = intersectionX;
+        startY = intersectionY - word.indexOf(intersectionLetter);
+        for (let j = 0; j < wordLength; j++) {
+            grid.rows[startX].cells[startY + j].innerHTML = word[j];
+        }
+
+    } else {
+        startX = intersectionX - word.indexOf(intersectionLetter);
+        startY = intersectionY;
+        for (let j = 0; j < wordLength; j++) {
+            grid.rows[startX + j].cells[startY].innerHTML = word[j];
+        }
     }
 
-    for (let j = 0; j < wordLength; j++) {
-        grid.rows[startX + j].cells[startY].innerHTML = word[j];
-    }
     // Store in placedWords the word and the coordinates of the first and last letter
     placedWords.push({
         word: word,
         start: { x: startX, y: startY },
         end: { x: startX + wordLength - 1, y: startY },
-        orientation: orientation
+        orientation: orientationToPlace
     });
 }
 
 function findIntersections(word) {
     let intersections = [];
-    console.log(word)
     for (let i = 0; i < placedWords.length; i++) {
         let placedWord = placedWords[i];
         let placedWordLength = placedWord.word.length;
@@ -142,13 +193,16 @@ createGrid();
 usableWords = sortWords(words);
 placeFirstWord();
 placeOtherWords();
+formatGrid();
 
-// Make any cell that deosn't have a letter a transparent background
-for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-        if (grid.rows[i].cells[j].innerHTML === "") {
-            grid.rows[i].cells[j].style.backgroundColor = "transparent";
-            grid.rows[i].cells[j].style.border = "none";
+function formatGrid() {
+    // Make any cell that deosn't have a letter a transparent background
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            if (grid.rows[i].cells[j].innerHTML === "") {
+                grid.rows[i].cells[j].style.backgroundColor = "transparent";
+                grid.rows[i].cells[j].style.border = "none";
+            }
         }
     }
 }
