@@ -119,14 +119,6 @@ function checkIfPlaceable(word, intersection) {
                 if (startY + j === intersectionY) { continue; }
                 return false;
             }
-            // if (startX > 0 && grid.rows[startY + j].cells[startX - 1].innerHTML !== '') {
-            //     if (startY + j === intersectionY) { continue; }
-            //     return false;
-            // }
-            // if (startX + word.length < grid.cols && grid.rows[startY + j].cells[startX + word.length].innerHTML !== '') {
-            //     if (startY + j === intersectionY) { continue; }
-            //     return false;
-            // }
         }
         // Check that for the first the cell above, and the last letter the cell below, are empty
         if ((startY > 0 && grid.rows[startY - 1].cells[startX].innerHTML !== '') || (startY + wordLength < gridSize && grid.rows[startY + wordLength].cells[startX].innerHTML !== '')) {
@@ -227,13 +219,6 @@ function formatGrid() {
     // Make any cell that deosn't have a letter a transparent background
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
-            // Set the inner text of the top row and left column to the the index
-            // if (i === 0) {
-            //     grid.rows[i].cells[j].innerHTML = j;
-            // }
-            // if (j === 0) {
-            //     grid.rows[i].cells[j].innerHTML = i;
-            // }
             if (grid.rows[i].cells[j].innerHTML === "") {
                 // grid.rows[i].cells[j].style.backgroundColor = "transparent";
                 grid.rows[i].cells[j].style.border = "none";
