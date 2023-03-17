@@ -1,5 +1,5 @@
 #crossword-container {
-    margin-top: 100px;
+    margin-top: 10px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -18,7 +18,37 @@ td {
     border: 1px solid #000;
     text-align: center;
     vertical-align: middle;
-    background-color: #fff;
     font-family: Arial, sans-serif;
     font-size: 18px;
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Box shadow should be bigger */
+    /* border-radius: 5px; */
+    backdrop-filter: blur(2px);
+}
+
+#crossword-clues {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#crossword-clues-across,
+#crossword-clues-down {
+    margin: 0 20px;
+    color: #fff;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-size: 16px;
+    margin-bottom: 5px;
 }

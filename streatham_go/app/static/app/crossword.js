@@ -1,7 +1,26 @@
 const grid = document.getElementById("crossword-grid");
-const gridSize = 13;
-const wordsToPlace = 5;
-const words = ['recycling', 'sustainable', 'renewable', 'ecosystem', 'conservation', 'organic', 'pollution', 'vegan', 'vegetarian', 'reusable', 'compost', 'ecofriendly', 'solar'];
+let acrossDiv = document.getElementById("crossword-clues-across");
+let downDiv = document.getElementById("crossword-clues-down");
+const gridSize = 12;
+const wordsToPlace = 6;
+const wordsDict = {
+    'recycling': "Reusing waste materials to create new products",
+    'sustainable': "Eco-friendly practices for long-term resource use",
+    'renewable': "Energy source that can be replenished naturally",
+    'ecosystem': "Community of living organisms and their environment",
+    'conservation': "Protection and preservation of natural resources",
+    'organic': "Pertaining to farming without synthetic chemicals",
+    'pollution': "Contamination of air, water, or soil by harmful substances",
+    'vegan': "Person who abstains from animal products in diet",
+    'vegetarian': "Person who excludes meat from their diet",
+    'reusable': "Able to be used multiple times, reducing waste",
+    'compost': "Organic matter decomposed for use as fertilizer",
+    'solar': "Relating to energy derived from the sun's rays",
+    'carpooling': "Shared vehicle rides to decrease fuel use and emissions",
+    'deforestation': "Clearing of forests for agriculture or development",
+    'afforestation': "Planting trees to create new forests or woodlands"
+};
+
 let usableWords = [];
 let placedWords = [];
 // Dictionary storing each orientation and how many times it has been used
@@ -220,25 +239,46 @@ function formatGrid() {
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             if (grid.rows[i].cells[j].innerHTML === "") {
-                // grid.rows[i].cells[j].style.backgroundColor = "transparent";
+                grid.rows[i].cells[j].style.backgroundColor = "transparent";
+                // Make the background colour a transparent blur
+                // grid.rows[i].cells[j].style.backgroundColor = "#fff";
                 grid.rows[i].cells[j].style.border = "none";
+                grid.rows[i].cells[j].style.borderRadius = "0px"
             }
         }
     }
 }
 
 createGrid();
-generateGrid(5);
+generateGrid();
 
-function generateGrid(maxAttempts = 5) {
-    usableWords = sortWords(words);
+function generateGrid() {
+    usableWords = sortWords(Object.keys(wordsDict));
     placeFirstWord();
     placeOtherWords(true);
-    if (placedWords.length !== wordsToPlace && maxAttempts > 0) {
+    if (placedWords.length !== wordsToPlace) {
         clearGrid();
-        generateGrid(maxAttempts - 1);
+        generateGrid();
+        return;
     }
     formatGrid();
+    displayHints();
+}
+
+function displayHints() {
+    // For each placed word, get the associated hint from wordsDict and display it in either the across or down div, depending on the orientation the word was placed on the grid
+    for (let i = 0; i < placedWords.length; i++) {
+        let word = placedWords[i].word;
+        let orientation = placedWords[i].orientation;
+        let hint = wordsDict[word];
+        let hintDiv = document.createElement("div");
+        hintDiv.innerHTML = i + 1 + ": " + hint;
+        if (orientation === 'across') {
+            acrossDiv.appendChild(hintDiv);
+        } else {
+            downDiv.appendChild(hintDiv);
+        }
+    }
 }
 
 function clearGrid() {
