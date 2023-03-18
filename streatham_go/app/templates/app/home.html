@@ -9,37 +9,22 @@
     {% endfor %}
 {% else %}
 
-<script>
-  var building_message = '{{ building_message }}';
-  var question = '{{ question }}'
-  var a = '{{ a }}'
-  var b = '{{ b }}'
-  var c = '{{ c }}'
-  var d = '{{ d }}'
-</script>
-
 <script src=" {% static 'app\conversation.js' %} "></script>
 
-
-<div class="card container rounded-0" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
+<div class="card container rounded-0 h-100" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
-      <b>Today's Quest-Giver: {{ building_name }}</b>
+      <b>Today's Quest-Giver:</b>
     </div>
     <div class="card-body">
-      <h5 class="card-title">  </h5>
+      <h5 class="card-title"> </h5>
       <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
 
-      {{ building_lat|json_script:'lat' }}
-      {{ building_lon|json_script:'lon' }}
-      {{ building_name|json_script:'name' }}
-
       <script>
-        // Generate google map centred on building
-        function myMap() {
-          lat = JSON.parse(document.getElementById('lat').textContent);
-          lon = JSON.parse(document.getElementById('lon').textContent);
-          name = JSON.parse(document.getElementById('name').textContent);
+        // Generate google map
+        var locations = '{{ locations|escapejs }}'
+        locations = JSON.parse(locations)
 
+        function myMap() {
           boundsNorth = 50.740400
           boundsSouth = 50.730000
           boundsEast = -3.524000
@@ -47,7 +32,8 @@
 
 
           var mapProp = {
-            center: new google.maps.LatLng(lat,lon),
+            // ToDo: Centre it near the player if in range
+            center: new google.maps.LatLng(50.735400,-3.532700),
             restriction: {
               latLngBounds: {
                 north: boundsNorth,
@@ -64,33 +50,66 @@
             mapId: "27c6b9a1bc6d90d5"
           };
           var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-          var iconMarker = {
-            url:"{% static 'app\example32.png' %}", 
-            labelOrigin: new google.maps.Point(20,-10),
-            scaledSize: new google.maps.Size(40, 40)
-          }
-          var labelMarker = {
-            text: name,
-            color: "white",
-            fontSize: "16px",
-            fontFamily: "Courier New",
-            className: "maplabel"
-          }
-          var marker = new google.maps.Marker({position:map.center, label: labelMarker, icon: iconMarker});
-          marker.setMap(map);
+
+          // If click on map, clear dialogue screens!
+          map.addListener("click", () => {
+            emptyScene();
+          });
+          for (let i = 0; i < locations.length; i++) {
+            building = locations[i].fields
+            var iconMarker = {
+              url: "/media/" + (building.icon),
+              labelOrigin: new google.maps.Point(20,-10),
+              scaledSize: new google.maps.Size(40, 40)
+            }
+            var labelMarker = {
+              text: (building.name),
+              color: "white",
+              fontSize: "16px",
+              fontFamily: "Courier New",
+              className: "maplabel"
+            }
+            
+            var positionMarker = {
+              lat: Number(building.latitude),
+              lng: Number(building.longitude)
+            }
+            var marker = new google.maps.Marker({position: positionMarker, label: labelMarker, icon: iconMarker, animation:google.maps.Animation.DROP});
+            marker.setMap(map);
+            google.maps.event.addListener(marker, 'click', function() {
+              // unfortunately, this is the only way to reference the correct building
+              // would rather pass the building object to the clickHandler, but it gets
+              // overwritten by the loop
+              clickHandler(i, map)
+            });
+          };
+        };
+        function clickHandler(i, map) {
+          building = locations[i].fields
+
+          buildingPos = {
+              lat: Number(building.latitude),
+              lng: Number(building.longitude)
+            }
+          map.panTo(buildingPos);
+          // set icon of who is talking
+          buildingSetter(building)
+          updateIcon(building.icon)
+          welcomeScene()
+          // set dialogue
         }
         </script>
+
+
 
       <script
         src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=myMap"
       ></script>
       </div>
 
-
   <div class="container-fluid">
       <div class="row g-2 form-group">
-          <div class="col-2 col-lg-1 mx-auto" style="image-rendering: pixelated">
-            <img src="{% static 'app\example32.png' %}" class="img-fluid mx-auto" alt="icon" style="width: 100%" onload='welcomeScene()'>
+          <div class="col-3 col-lg-1 mx-auto" id ="icon" style="image-rendering: pixelated">
           </div>
           <div class="col" id="dialogue">
           </div>
