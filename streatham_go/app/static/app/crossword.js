@@ -32,6 +32,7 @@ const wordsDict = {
 
 let usableWords = [];
 let placedWords = [];
+let currentOrientation;
 
 // Create a 2d array of size gridSize x gridSize to store the value of each cell
 const gridValues = new Array(gridSize);
@@ -445,25 +446,29 @@ function addCellEventLisenters() {
           e.target.innerText = e.target.innerText.toLowerCase();
 
           // Find the placed word associated with the current cell
-          const placedWord = placedWords.find((word) => {
+
+          // Find all the words associated with the current cell
+          const placedWordsForCell = placedWords.filter((word) => {
             if (word.orientation === 'across') {
               return (
                 e.target.parentNode.rowIndex === word.start.y &&
-                                e.target.cellIndex >= word.start.x &&
-                                e.target.cellIndex < word.start.x + word.word.length
+                e.target.cellIndex >= word.start.x &&
+                e.target.cellIndex < word.start.x + word.word.length
               );
             } else {
               return (
                 e.target.cellIndex === word.start.x &&
-                                e.target.parentNode.rowIndex >= word.start.y &&
-                                e.target.parentNode.rowIndex < word.start.y + word.word.length
+                e.target.parentNode.rowIndex >= word.start.y &&
+                e.target.parentNode.rowIndex < word.start.y + word.word.length
               );
             }
           });
 
+
           // Move focus to the next cell in the word
-          if (placedWord) {
-            const orientation = placedWord.orientation;
+          if (placedWordsForCell.length===1) {
+            console.log(e.target.parentNode.rowIndex, e.target.cellIndex);
+            const orientation = placedWordsForCell[0].orientation;
             if (orientation === 'across') {
               if (e.target.cellIndex + 1 < gridSize) {
                 grid.rows[e.target.parentNode.rowIndex].cells[e.target.cellIndex + 1].focus();
@@ -474,8 +479,57 @@ function addCellEventLisenters() {
               }
             }
           }
+          else{
+            if (placedWordsForCell.length===2){
+              console.log('Two words for cell');
+              let currentCellY = e.target.parentNode.rowIndex;
+              let currentCellX = e.target.cellIndex;
+              let leftEmpty=false;
+              let upEmpty=false;
+              // Check if cell to left is empty
+              if (currentCellX - 1 >= 0 && grid.rows[currentCellY].cells[currentCellX-1].innerText === '') {
+                leftEmpty=true;
+              }
+              // Check if cell above is empty
+              if (currentCellY - 1 >= 0 && grid.rows[currentCellY-1].cells[currentCellX].innerText === '') {
+                upEmpty=true;
+              }
+              // If left is not empty and up is empty, check if right exists
+              if (!leftEmpty && upEmpty){
+                if (currentCellX + 1 < gridSize) {
+                  grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                }
+              } 
+              else if (leftEmpty && !upEmpty){
+                if (currentCellY + 1 < gridSize) {
+                  grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                }
+              }
+              else if (!leftEmpty && !upEmpty){
+                let rightEmpty=false;
+                let downEmpty=false;
+                // Check if cell to right is empty
+                if (currentCellX + 1 < gridSize && grid.rows[currentCellY].cells[currentCellX+1].innerText === '') {
+                  rightEmpty=true;
+                }
+                // Check if cell below is empty
+                if (currentCellY + 1 < gridSize && grid.rows[currentCellY+1].cells[currentCellX].innerText === '') {
+                  downEmpty=true;
+                }
+                // If right is not empty and down is empty, check if left exists
+                if (!rightEmpty && downEmpty){
+                  grid.rows[currentCellY+1].cells[currentCellX].focus();
+                }
+                else if (rightEmpty && !downEmpty){
+                  grid.rows[currentCellY].cells[currentCellX+1].focus();
+                }
+                else if (!rightEmpty && !downEmpty){
+                  //
+                }
+            }
+          }
         }
-
+        }
         // Update hint numbers
         addHintNumbers();
       });
