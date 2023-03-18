@@ -26,16 +26,27 @@ td {
     backdrop-filter: blur(2px);
 }
 
-#crossword-clues {
+#crossword-hints {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-#crossword-clues-across,
-#crossword-clues-down {
+#crossword-hints {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#crossword-hints-across,
+#crossword-hints-down {
     margin: 0 20px;
     color: #fff;
+}
+
+#crossword-hints-across>div,
+#crossword-hints-down>div {
+    margin-bottom: 10px;
 }
 
 h3 {
