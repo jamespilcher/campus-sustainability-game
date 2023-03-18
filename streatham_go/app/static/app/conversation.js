@@ -5,6 +5,29 @@ buildingLongitude = ""
 buildingMessage = ""
 buildingIcon = ""
 
+
+userLatitude = null;
+userLongitude = null;
+
+// to be improved and moved to different file.
+function watchLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(updateLocation);
+  } else {
+    console.log("Geolocation is not supported by this browser.");
+  }
+}
+
+function updateLocation(position) {
+  userLatitude = position.coords.latitude;
+  userLongitude = position.coords.longitude;
+  console.log(userLatitude, userLongitude);
+}
+
+// Call watchLocation() to start watching the user's location
+watchLocation();
+
+
 function buildingSetter(building){
   buildingName = building.name
   buildingLatitude = Number(building.latitude)
@@ -33,6 +56,11 @@ function emptyScene(){
   say("")
   updateButtons("")
   updateIcon("")
+}
+
+function verifyingLocationScene(){
+  say("Verifying your location...")
+  updateButtons("")
 }
 
 function welcomeScene(){
@@ -64,38 +92,25 @@ function unsuccessfulLocationCheckScene(){
 }
 
 
-function redirect(){
+function redirectScene(){
+  // ToDo Games page
+  // buildingName to be passed to games page
   say("redirecting...")
   updateButtons("")
   updateIcon("")
 }
 
-// location checking
-
-function error(err){
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-    unsuccessfulLocationCheckScene()
-  }
-function success(pos){
-  if (isValidLocation(pos.coords.latitude, pos.coords.longitude)){
+function getLocation(){
+  if (isValidLocation(userLatitude, userLongitude)){
     readyScene();
   }
-  else {
+  else{
     unsuccessfulLocationCheckScene();
-  };
-
-}
-function getLocation(){
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  }
 }
 
-// checks if within 50m of building (more or less).
 function isValidLocation(userLatitude, userLongitude){
   userDist = Math.sqrt((userLatitude - buildingLatitude)**2 + (userLongitude - buildingLongitude)**2)
+  console.log(userDist)
   return userDist <= 0.0008;
 }

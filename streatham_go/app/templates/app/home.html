@@ -9,15 +9,9 @@
     {% endfor %}
 {% else %}
 
-<script>  
-  var location_latitude =[]
-  var location_longitude =[]
-  var location_names = []
-  var location_icons = []
-  var location_messages = []
-</script><script src=" {% static 'app\conversation.js' %} "></script>
+<script src=" {% static 'app\conversation.js' %} "></script>
 
-<div class="card container rounded-0" style = "height:100vh;font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
+<div class="card container rounded-0 h-100" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
     <div class="card-header" >
       <b>Today's Quest-Giver:</b>
     </div>
@@ -63,7 +57,6 @@
           });
           for (let i = 0; i < locations.length; i++) {
             building = locations[i].fields
-            console.log(building.icon)
             var iconMarker = {
               url: "/media/" + (building.icon),
               labelOrigin: new google.maps.Point(20,-10),
@@ -91,9 +84,6 @@
             });
           };
         };
-
-        // todo: make handler functional. Check if user is close enough etc...
-        // probably still call welcome scene.
         function clickHandler(i, map) {
           building = locations[i].fields
 
