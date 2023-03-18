@@ -27,14 +27,6 @@ p {
     color: #fff;
 }
 
-h1,
-p,
-.currentUserRow,
-th,
-td {
-    font-family: Luminari, fanatsy;
-}
-
 th:nth-child(1),
 td:nth-child(1) {
     width: 10%;
