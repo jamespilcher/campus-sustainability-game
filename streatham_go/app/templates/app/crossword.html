@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'app/crossword.css' %}">
+
+<div id="crossword-container">
+    <table id="crossword-grid"></table>
+</div>
+<div id="crossword-buttons">
+    <button id="crossword-check" onClick="checkGrid()">Check</button>
+    <button id="crossword-solve" onClick="solveGrid()">Solve</button>
+    <button id="crossword-reset" onClick="clearGrid()">Clear</button>
+</div>
+<div id="crossword-score">
+    <h3>Score: <span id="crossword-score-value">0</span></h3>
+</div>
+<div id="crossword-hints">
+    <div id="crossword-hints">
+        <div id="crossword-hints-across" class="d-flex flex-column overflow-auto">
+            <h3>Across:</h3>
+        </div>
+        <div id="crossword-hints-down" class="d-flex flex-column overflow-auto">
+            <h3>Down:</h3>
+        </div>
+    </div>
+</div>
+<script src="{% static 'app/crossword.js' %}"></script>
+{% endblock %}
