@@ -20,11 +20,15 @@ class Location(models.Model):
 
 
 class Leaderboard(models.Model):
+    # One to one relationship with the User model
+    # When a user is deleted, their leaderboard entry is deleted
+    # User has a level, xp value, and quiz_count
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
     quiz_count = models.IntegerField(default=0)
 
+    # Gets the rank of the user within the leaderboard
     @classmethod
     def get_current_user_rank(self, user, user_data, current_user_data):
         return user_data.index(
@@ -35,10 +39,12 @@ class Leaderboard(models.Model):
                 'quiz_count': current_user_data.quiz_count
             }) + 1
 
+    # Gets the leaderboard data for the current user
     @classmethod
     def get_current_user_data(self, user, leaderboard_data):
         return leaderboard_data.filter(user=user).first()
 
+    # Gets the leaderboard data for all users
     @classmethod
     def get_user_data(self, leaderboard_data):
         user_data = []

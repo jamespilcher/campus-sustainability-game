@@ -12,6 +12,7 @@ from ..models import Leaderboard
 pytest.USER_PASSWORD = '12345'
 
 
+# Create a user for use in tests
 @pytest.fixture
 @pytest.mark.django_db
 def user() -> User:
@@ -26,6 +27,7 @@ def user() -> User:
 
 
 @pytest.mark.django_db
+# Test for viewing the leaderboard page when logged in as a valid user.
 def test_leaderboard_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
     Leaderboard.objects.create(user=user, level=1, quiz_count=0)
@@ -37,6 +39,7 @@ def test_leaderboard_view_authenticated(user, client):
     assert len(response.redirect_chain) == 0
 
 
+# Test for viewing the leaderboard page when not logged in.
 def test_leaderboard_view_unauthenticated(client):
     url = reverse('app:leaderboard')
     response = client.get(url, follow=True)
@@ -45,11 +48,13 @@ def test_leaderboard_view_unauthenticated(client):
     TestCase().assertRedirects(response, next)
 
 
+# Test for viewing the leaderboard with users in it
+# Tests that users are added and then sorted correctly
 @pytest.mark.django_db
 def test_leaderboard_view_with_users(client, user):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
 
-    # create three users with different levels
+    # create three users with different levels, and save them to the db
     user_1 = User.objects.create_user(
         'user1',
         'user1@example.com',
@@ -107,6 +112,8 @@ def test_leaderboard_view_with_users(client, user):
     assert response.context['user_data'] == expected_user_data
 
 
+# Test to make sure a user is added to the leaderboard only after
+# they have activated their account
 @pytest.mark.django_db
 def test_leaderboard_view_user_added_to_leaderboard_after_activation(
         user, client):
@@ -120,10 +127,8 @@ def test_leaderboard_view_user_added_to_leaderboard_after_activation(
                                'email': 'testUser@exeter.ac.uk'
                            }, follow=True)
 
-    # Check that the user is not in the leaderboard
-
-    leaderboard_data = Leaderboard.objects.all()
     # Check the leaderboard is empty; user shouldn't be added as not active
+    leaderboard_data = Leaderboard.objects.all()
     assert leaderboard_data.count() == 0
 
     # Activate the user's account

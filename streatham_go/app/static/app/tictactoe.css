@@ -1,0 +1,76 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid {
+    background-color: #fcfcfc;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    margin: auto;
+}
+
+.row {
+    /* the width and height of the row */
+    width: 300px;
+    height: 100px;
+    /* a border around the row */
+    /* Center the text horizontally and vertically */
+    text-align: center;
+    /* the cursor when hovering over the row */
+    cursor: pointer;
+    display: flex;
+    margin: 0;
+}
+
+.cell {
+    /* the width and height of the cell */
+    width: 100px;
+    height: 100%;
+    /* a border around the cell */
+    border: 1px solid #333333;
+    vertical-align: middle;
+    font-size: 100px;
+    /* Center the text horizontally and vertically */
+    text-align: center;
+    line-height: 98px;
+    /* the cursor when hovering over the cell */
+    cursor: pointer;
+}
+
+.cell:hover {
+    background-color: #dcdcdc;
+}
+
+#winner {
+    display: none;
+}
+
+#restart {
+    display: none;
+    background-color: #4d94f6;
+    color: white;
+    border: 1px solid #f1f1f1;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 20px;
+    width: 150px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

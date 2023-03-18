@@ -5,7 +5,10 @@ from ..models import Leaderboard
 
 @login_required
 def leaderboard(request):
+    # Get the leaderboard data sorted by level then xp,
     leaderboard_data = Leaderboard.objects.order_by('-level', '-xp')
+
+    # Get the user data from the leaderboard data
     user_data = Leaderboard.get_user_data(leaderboard_data)
     user_data = sorted(user_data,
                        key=lambda x: (x['level'], x['xp']), reverse=True)
