@@ -10,4 +10,5 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('', views.index, name='index'),
     path('tictactoe/', views.tictactoe, name='tictactoe'),
+    path('crossword/', views.crossword, name='crossword'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
