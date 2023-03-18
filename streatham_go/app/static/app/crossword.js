@@ -1,6 +1,6 @@
 const grid = document.getElementById("crossword-grid");
-let acrossDiv = document.getElementById("crossword-clues-across");
-let downDiv = document.getElementById("crossword-clues-down");
+let acrossDiv = document.getElementById("crossword-hints-across");
+let downDiv = document.getElementById("crossword-hints-down");
 const gridSize = 12;
 const wordsToPlace = 6;
 const wordsDict = {
@@ -18,7 +18,9 @@ const wordsDict = {
     'solar': "Relating to energy derived from the sun's rays",
     'carpooling': "Shared vehicle rides to decrease fuel use and emissions",
     'deforestation': "Clearing of forests for agriculture or development",
-    'afforestation': "Planting trees to create new forests or woodlands"
+    'afforestation': "Planting trees to create new forests or woodlands",
+    'biofuel': "Renewable energy derived from organic materials, like plants",
+    'endangered': "Species at risk of extinction due to habitat loss or other factors",
 };
 
 let usableWords = [];
@@ -43,6 +45,8 @@ function createGrid() {
 function sortWords(words) {
     // Remove any words longer than the grid size
     let sortedWords = words.filter(word => word.length <= gridSize);
+
+    sortedWords = sortedWords.map(word => word.toLowerCase());
 
     let wordsToKeep = [];
     for (let i = 0; i < wordsToPlace; i++) {
@@ -272,7 +276,7 @@ function displayHints() {
         let orientation = placedWords[i].orientation;
         let hint = wordsDict[word];
         let hintDiv = document.createElement("div");
-        hintDiv.innerHTML = i + 1 + ": " + hint;
+        hintDiv.innerHTML = i + 1 + ": " + hint + " (" + word.length + ")";
         if (orientation === 'across') {
             acrossDiv.appendChild(hintDiv);
         } else {
