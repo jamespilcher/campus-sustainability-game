@@ -6,11 +6,6 @@ body{
     height: 100vh; 
     width: 100%;
   }
-
-h1,p{
-    font-family: Luminari, fantasy;
-}
-
 h1{
     font-size: 40px;
     text-align: center;

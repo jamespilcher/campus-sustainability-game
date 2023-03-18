@@ -1,7 +1,5 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
-
-<center>
 <body>
     <script>
         window.onload = choosePic;
@@ -59,7 +57,7 @@
             </div>
             <div class="col">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}" style="width: {{ current_user_data.xp }}%;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}">
                         {{current_user_data.xp}}
                     </div>
                 </div>
@@ -135,7 +133,5 @@
 
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
-
-</center>
-
+</body>
 {% endblock %}

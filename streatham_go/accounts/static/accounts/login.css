@@ -6,10 +6,6 @@ body{
     height: 100vh; 
     width: 100%;
   }
-  
-  h1,p{
-    font-family: Luminari, fantasy;
-  }
 
   .form-signin {
     max-width: 440px;
@@ -43,7 +39,6 @@ body{
   }
   
   button.btn{
-    font-family: Luminari, fantasy;
     background-color:#958A6E; 
     border-color:#958A6E; 
     color:white;

@@ -6,12 +6,6 @@ img {
     border-radius: 50%;
 }
 
-h1,
-.modal-title,
-.modal-body {
-    font-family: Luminari, fantasy;
-}
-
 h1 {
     margin-top: 10px;
     font-size: 45px;
