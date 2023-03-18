@@ -7,11 +7,6 @@ body{
   width: 100%;
 }
 
-h1,p{
-  font-family: Luminari, fantasy;
-}
-
-
 .form-register {
   max-width: 440px;
   margin: auto;
@@ -23,7 +18,6 @@ h1,p{
 }
 
 .btn{
-  font-family: Luminari, fantasy;
   background-color: #958A6E; 
   border-color: #958A6E;
 }
