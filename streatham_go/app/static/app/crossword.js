@@ -819,7 +819,6 @@ function calculateScore(userSolved = true) {
 function generateGrid() {
   // Sort the words based on their lengths
   usableWords = sortWords(Object.keys(wordsDict));
-  usableWords = ['sustainable', 'vegetarian', 'reusable', 'organic', 'biofuel', 'vegan'];
 
   // Place the first word in the grid
   placeFirstWord();
