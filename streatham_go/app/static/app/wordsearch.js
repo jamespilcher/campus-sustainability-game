@@ -1,197 +1,140 @@
-function createWordSearch(words) {
-  const grid = new Array(11).fill(null).map(() => new Array(11).fill(null)); // Create 11x11 grid
-  const wordCount = words.length;
-  let foundCount = 0;
+// Function to create the wordsearch grid table
+function createTable(rows, cols) {
+  const table = document.createElement('table');
+  for (let i = 0; i < rows; i++) {
+    const row = document.createElement('tr');
+    for (let j = 0; j < cols; j++) {
+      const cell = document.createElement('td');
+      row.appendChild(cell);
+    }
+    table.appendChild(row);
+  }
+  return table;
+}
 
-  // Place words in grid
-  for (let wordIndex = 0; wordIndex < wordCount; wordIndex++) {
-    const word = words[wordIndex];
-    let wordDirection, wordRow, wordCol, overlap;
-    let attempts = 0;
+// Function to fill the empty cells with random letters, checks each cell first to see if they are empty
+function fillEmptyCells(table) {
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const rows = table.rows;
+  const emptyCells = [];
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].cells;
+    for (let j = 0; j < cells.length; j++) {
+      // Adds all empty cells to array
+      if (cells[j].textContent === '') {
+        emptyCells.push(cells[j]);
+      }
+    }
+  }
+  // Adds random letters to each empty cell
+  for (let i = 0; i < emptyCells.length; i++) {
+    const randomLetter = letters.charAt(Math.floor(Math.random() * letters.length));
+    emptyCells[i].textContent = randomLetter;
+  }
+}
 
-    // Attempts to place words in grid
+// Function to insert words into the table
+function insertWords(words, table) {
+  const numRows = table.rows.length;
+  const numCols = table.rows[0].cells.length;
+  const usedCells = new Set(); // Keeps track of occupied cells
+  for (const word of words) {
+    let x, y, dx, dy;
     do {
-      wordDirection = ['right', 'down'][Math.floor(Math.random() * 2)];
-      wordRow = Math.floor(Math.random() * 11);
-      wordCol = Math.floor(Math.random() * 11);
-      overlap = false;
-
-      for (let i = 0; i < word.length; i++) {
-        const row = (wordDirection === 'down') ? wordRow + i : wordRow;
-        const col = (wordDirection === 'right') ? wordCol + i : wordCol;
-
-        // Check if the current cell is already occupied by another letter
-        if (grid[row][col] !== null && grid[row][col] !== word.charAt(i)) {
-          overlap = true;
+      // Random starting position and direction
+      x = Math.floor(Math.random() * numCols);
+      y = Math.floor(Math.random() * numRows);
+      const direction = Math.floor(Math.random() * 2); // 2 possible directions
+      dx = direction === 0 ? 1 : 0; // Horizontal direction
+      dy = direction === 1 ? 1 : 0; // Vertical direction
+      // Check if word fits in grid - if it doesn't a new starting position is generated
+      const wordLen = word.length;
+      const endX = x + dx * (wordLen - 1); // Calculates where the end cell of the word will be (x-coordinate)
+      const endY = y + dy * (wordLen - 1); // Calculates where the end cell of the word will be (y-coordinate)
+      // Checking if it fits in the table
+      if (endX < 0 || endX >= numCols || endY < 0 || endY >= numRows) {
+        continue; 
+      }
+      // Check if word overlaps with existing words
+      let overlaps = false;
+      for (let i = 0; i < wordLen; i++) {
+        const cell = table.rows[y + dy * i].cells[x + dx * i];
+        if (usedCells.has(cell)) {
+          overlaps = true;
           break;
         }
       }
-
-      attempts++;
-    } while (overlap && attempts < 100); // Try up to 100 times to find a valid position
-
-    // If we couldn't find a valid position for the word, skip it
-    if (overlap) continue;
-
-    // Place the word in the grid
-    for (let i = 0; i < word.length; i++) {
-      const row = (wordDirection === 'down') ? wordRow + i : wordRow;
-      const col = (wordDirection === 'right') ? wordCol + i : wordCol;
-      grid[row][col] = word.charAt(i);
-    }
-  }
-
-  // Fill remaining cells with random alphabet characters
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  for (let row = 0; row < 11; row++) {
-    for (let col = 0; col < 11; col++) {
-      if (grid[row][col] === null) {
-        const randomChar = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        grid[row][col] = randomChar;
+      if (overlaps) {
+        continue; // If the word overlaps it will try again
       }
-    }
-  }
-
-// Create HTML table and place letters in cells
-const table = document.createElement('table');
-for (let row = 0; row < 11; row++) {
-  const tr = document.createElement('tr');
-  for (let col = 0; col < 11; col++) {
-    const td = document.createElement('td');
-    td.textContent = grid[row][col];
-    tr.appendChild(td);
-    
-    // Add click event listener to each cell
-    td.addEventListener('click', () => {
-      // Check if the cell is the first or last letter of a word in the word list
-      const letter = td.textContent;
-      const wordIndices = words.reduce((indices, word, index) => {
-        if (word.startsWith(letter) || word.endsWith(letter)) {
-          indices.push(index);
-        }
-        return indices;
-      }, []);
-      
-      // If there are no matching words, do nothing
-      if (wordIndices.length === 0) {
-        return;
+      // If the word fits it will mark the cells as used
+      for (let i = 0; i < wordLen; i++) {
+        const cell = table.rows[y + dy * i].cells[x + dx * i];
+        usedCells.add(cell);
       }
-      
-      // Highlight matching words and increment counter
-      let count = 0;
-      wordIndices.forEach((wordIndex) => {
-        const word = words[wordIndex];
-        let highlighted = true;
-        for (let i = 0; i < word.length; i++) {
-          const rowOffset = (wordDirection === 'down') ? i : 0;
-          const colOffset = (wordDirection === 'right') ? i : 0;
-          const row = row + rowOffset;
-          const col = col + colOffset;
-          
-          // If the cell doesn't match the current letter of the word, unhighlight the word and exit loop
-          if (grid[row][col] !== word.charAt(i)) {
-            highlighted = false;
-            break;
+      // Inserts word into the table
+      for (let i = 0; i < wordLen; i++) {
+        const cell = table.rows[y + dy * i].cells[x + dx * i];
+        cell.textContent = word.charAt(i);
+      }
+      break; // Move onto next word
+    } while (true);
+  }
+}
+
+/*
+// Function to let users select a word in the table
+function selectWord(table, words) {
+  let startCell = null;
+  let endCell = null;
+  let wordCells = null;
+
+  let validEndSelection = true;
+  while (validEndSelection == true) { 
+    table.querySelectorAll('td').forEach(cell => {
+      cell.addEventListener('click', () => {
+        if (!startCell) {
+          startCell = cell;
+          startCell.style.backgroundColor = 'yellow';
+          console.log(`Start cell: row ${startCell.parentNode.rowIndex}, col ${startCell.cellIndex}`);
+        } else {
+          endCell = cell;
+          endCell.style.backgroundColor = 'yellow';
+          if (endCell.parentNode.rowIndex == startCell.parentNode.rowIndex) {
+            const startColIndex = startCell.cellIndex;
+            const endColIndex = endCell.cellIndex;
+            const row = startCell.parentNode;
+            const word = [];
+            for (let i = startColIndex; i <= endColIndex; i++) {
+              const cell = row.cells[i];
+              word.push(cell.textContent);
+            }
+            console.log(word.join(''));
           }
-        }
-        
-        if (highlighted) {
-          count++;
-          for (let i = 0; i < word.length; i++) {
-            const rowOffset = (wordDirection === 'down') ? i : 0;
-            const colOffset = (wordDirection === 'right') ? i : 0;
-            const row = row + rowOffset;
-            const col = col + colOffset;
-            const cell = table.rows[row].cells[col];
-            cell.classList.add('highlighted');
+          if (startCell.cellIndex == endCell.cellIndex) {
+            // Do nothing
+          } else {
+            validEndSelection = false;
           }
         }
       });
-      
-      const counter = document.getElementById('counter');
-      counter.textContent = parseInt(counter.textContent) + count;
     });
   }
-  table.appendChild(tr);
 }
+*/
 
-const container = document.createElement('div');
-container.appendChild(table);
+const table = createTable(11, 11);
+// List of words to place in grid (sustainable)
+const words = ['OOOOOP', 'PLLLLL', 'SOLAR', 'DIYYY', 'CARBON'];
 
-// Counter
-const counter = document.createElement('div');
-counter.id = 'counter';
-counter.textContent = 'Tap the first letter of any word you find!';
-container.appendChild(counter);
 
-// Counter styling
-counter.style.textAlign = 'center';
-counter.style.marginTop = '10px';
-counter.style.fontSize = '20px';
+// Styling
+table.style.margin = '0 auto';
+table.style.border = '1px solid black';
+table.style.marginTop = '25px';
 
-return container;
-}
+fillEmptyCells(table);
+insertWords(words, table);
+selectWord(table, words);
+document.body.appendChild(table);
 
-document.addEventListener('DOMContentLoaded', function() {
-  const words = ['GREEN', 'DIY', 'CLIMATE', 'CARBON', 'REUSE', 'ORGANIC'];
-  const wordsearch = createWordSearch(words);
-  document.body.appendChild(wordsearch);
-
-  let counter = 0;
-
-  // Add click event listener to all cells in the table
-  const cells = document.querySelectorAll('td');
-  cells.forEach(cell => {
-    cell.addEventListener('click', function() {
-      // Check if the cell clicked is the first or last letter of any word in the wordsearch
-      for (let i = 0; i < words.length; i++) {
-        const word = words[i];
-        if (cell.textContent === word.charAt(0)) {
-          const wordDirection = ['right', 'down'];
-          for (let j = 0; j < wordDirection.length; j++) {
-            const direction = wordDirection[j];
-            const row = cell.parentElement.rowIndex;
-            const col = cell.cellIndex;
-            let endRow, endCol;
-            if (direction === 'right') {
-              endRow = row;
-              endCol = col + word.length - 1;
-            } else {
-              endRow = row + word.length - 1;
-              endCol = col;
-            }
-            // Check if the end of the word is within the grid
-            if (endRow >= 0 && endRow <= 10 && endCol >= 0 && endCol <= 10) {
-              let found = true;
-              for (let k = 1; k < word.length; k++) {
-                const letter = word.charAt(k);
-                const r = (direction === 'down') ? row + k : row;
-                const c = (direction === 'right') ? col + k : col;
-                if (cell.parentElement.parentElement.rows[r].cells[c].textContent !== letter) {
-                  found = false;
-                  break;
-                }
-              }
-              if (found) {
-                // Highlight word and increment counter
-                for (let k = 0; k < word.length; k++) {
-                  const r = (direction === 'down') ? row + k : row;
-                  const c = (direction === 'right') ? col + k : col;
-                  cell.parentElement.parentElement.rows[r].cells[c].style.backgroundColor = '#ffff00';
-                }
-                counter++;
-                const counterDiv = document.getElementById('counter');
-                if (counter === 1) {
-                  counterDiv.textContent = `You have found 1 word!`;
-                } else {
-                  counterDiv.textContent = `You have found ${counter} words!`;
-                }
-                return;
-              }
-            }
-          }
-        }
-      }
-    });
-  });
-});
