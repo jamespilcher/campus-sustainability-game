@@ -52,18 +52,18 @@ def test_home_view_with_location(client, user):
         Location.objects.create(name="Building 1",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 1",
+                                message="Come to building 1",
                                 icon="null"),
 
         Location.objects.create(name="Building 2",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 2",
+                                message="Come to building 2",
                                 icon="null"),
         Location.objects.create(name="Building 3",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 3",
+                                message="Come to building 3",
                                 icon="null")
         ]
 
