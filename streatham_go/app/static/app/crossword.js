@@ -423,6 +423,9 @@ function addHintNumbers() {
 
 /**
  * Adds event listeners to the grid cells to handle user input.
+ * Each cell has two listeners: an input listener and a keydown listener.
+ * The input listener validates user input and moves them to the next cell.
+ * The keydown listener handles the backspace key, and moves them to the previous cell.
  */
 function addCellEventLisenters() {
   // Iterate through the grid cells
@@ -451,8 +454,6 @@ function addCellEventLisenters() {
         // Convert input to lowercase and move focus to the next cell
         if (e.target.innerText !== '') {
           e.target.innerText = e.target.innerText.toLowerCase();
-
-          // Find the placed word associated with the current cell
 
           // Find all the words associated with the current cell
           const placedWordsForCell = placedWords.filter((word) => {
@@ -519,7 +520,8 @@ function addCellEventLisenters() {
                 case 4:
                   // If cell to right exists and it's empty, focus it
                   if (currentCellX + 1 < gridSize &&
-                    grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                    grid.rows[currentCellY].cells[currentCellX + 1].innerText === '' &&
+                    grid.rows[currentCellY].cells[currentCellX + 1].contentEditable === 'true') {
                     grid.rows[currentCellY].cells[currentCellX + 1].focus();
                   }
                   // Else if down exists, focus it
@@ -602,21 +604,31 @@ function addCellEventLisenters() {
       // Add listener for backspace key
       grid.rows[i].cells[j].addEventListener('keydown', (e) => {
         let currentCell = grid.rows[i].cells[j];
+
+        // Check if the pressed key is 'Backspace'
         if (e.key === 'Backspace') {
+
+          // If the current cell is empty
           if (currentCell.innerText === '') {
-            if (currentCell.cellIndex - 1 >= 0) {
+
+            // If there is a previous cell in the same row and it is editable
+            if (currentCell.cellIndex - 1 >= 0 &&
+              grid.rows[i].cells[i - 1].contentEditable === 'true') {
+              // Focus the previous cell in the same row
               grid.rows[i].cells[j - 1].focus();
             } else {
-              if (currentCell.parentNode.rowIndex - 1 >= 0) {
+              // If there is a row above and the cell in the above row is editable
+              if (currentCell.parentNode.rowIndex - 1 >= 0 &&
+                grid.rows[i - 1].cells[j].contentEditable === 'true') {
+                // Focus the cell in the above row
                 grid.rows[i - 1].cells[j].focus();
               }
             }
           } else {
+            // If the current cell is not empty, clear its content
             currentCell.innerText = '';
           }
         }
-        // Update hint numbers
-        addHintNumbers();
       });
     }
   }
