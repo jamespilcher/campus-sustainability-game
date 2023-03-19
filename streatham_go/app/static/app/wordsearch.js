@@ -53,7 +53,7 @@ function insertWords(words, table) {
       const endY = y + dy * (wordLen - 1); // Calculates where the end cell of the word will be (y-coordinate)
       // Checking if it fits in the table
       if (endX < 0 || endX >= numCols || endY < 0 || endY >= numRows) {
-        continue; 
+        continue;
       }
       // Check if word overlaps with existing words
       let overlaps = false;
@@ -77,6 +77,13 @@ function insertWords(words, table) {
         const cell = table.rows[y + dy * i].cells[x + dx * i];
         cell.textContent = word.charAt(i);
       }
+      wordCoords.push({
+        word: word,
+        startX: x,
+        startY: y,
+        endX: endX,
+        endY: endY,
+      });
       break; // Move onto next word
     } while (true);
   }
@@ -127,6 +134,7 @@ const table = createTable(11, 11);
 // List of words to place in grid (sustainable)
 const words = ['OOOOOP', 'PLLLLL', 'SOLAR', 'DIYYY', 'CARBON'];
 
+let wordCoords = [];
 
 // Styling
 table.style.margin = '0 auto';
@@ -135,6 +143,6 @@ table.style.marginTop = '25px';
 
 fillEmptyCells(table);
 insertWords(words, table);
+console.log(wordCoords);
 //selectWord(table, words);
 document.body.appendChild(table);
-
