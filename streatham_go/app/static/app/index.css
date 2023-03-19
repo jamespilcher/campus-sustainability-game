@@ -17,8 +17,12 @@ a.btn {
     font-family: 'So Bad', sans-serif;
 }
 
+h1{
+    color: rgb(249, 238, 202);
+}
+
 h2.header {
-    color: white;
+    color: rgb(238, 204, 160);
     font-size: 36px;
     padding-top: 30px;
 }

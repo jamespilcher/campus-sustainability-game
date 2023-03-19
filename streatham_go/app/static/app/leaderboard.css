@@ -22,7 +22,11 @@ th {
     text-align: left;
 }
 
-h1,
+
+h1{
+    color: rgb(202, 249, 209);
+}
+
 p {
     color: #fff;
 }
