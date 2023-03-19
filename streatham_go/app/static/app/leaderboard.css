@@ -3,6 +3,7 @@ th,
 td {
     border: 1px solid black;
     background-color: white;
+    font-size: 22px;
 }
 
 table {
@@ -55,8 +56,13 @@ td:nth-child(4) {
     background-color: #decda4;
 }
 
+th {
+    color: #0b3206;
+    font-size: 22px;
+}
+
 .currentUserRow td {
-    color: #fff !important;
+    color: #ffffff !important;
 }
 
 @media only screen and (max-width: 767px) {
