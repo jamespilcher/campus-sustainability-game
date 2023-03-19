@@ -135,6 +135,6 @@ table.style.marginTop = '25px';
 
 fillEmptyCells(table);
 insertWords(words, table);
-selectWord(table, words);
+//selectWord(table, words);
 document.body.appendChild(table);
 
