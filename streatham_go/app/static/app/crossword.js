@@ -1,4 +1,3 @@
-
 // Get the grid, across and down divs, buttons div, and score div
 const grid = document.getElementById('crossword-grid');
 const acrossDiv = document.getElementById('crossword-hints-across');
@@ -135,8 +134,8 @@ function placeFirstWord() {
   // Store the word, its coordinates, and its orientation in the placedWords array
   placedWords.push({
     word: word,
-    start: {y: middleOfGrid, x: startX},
-    end: {y: middleOfGrid, x: startX + wordLength - 1},
+    start: { y: middleOfGrid, x: startX },
+    end: { y: middleOfGrid, x: startX + wordLength - 1 },
     orientation: 'across',
   });
 
@@ -231,7 +230,7 @@ function checkIfPlaceable(word, intersection) {
         return false;
       }
       if (startX - 1 >= 0 && gridValues[startY + j][startX - 1] !== '' ||
-                startX + 1 < gridSize && gridValues[startY + j][startX + 1] !== '') {
+        startX + 1 < gridSize && gridValues[startY + j][startX + 1] !== '') {
         if (startY + j === intersectionY) {
           continue;
         }
@@ -241,7 +240,7 @@ function checkIfPlaceable(word, intersection) {
 
     // Check for adjacent words
     if ((startY > 0 && gridValues[startY - 1][startX] !== '') ||
-            (startY + wordLength < gridSize && gridValues[startY + wordLength][startX] !== '')) {
+      (startY + wordLength < gridSize && gridValues[startY + wordLength][startX] !== '')) {
       return false;
     }
     return true;
@@ -257,7 +256,7 @@ function checkIfPlaceable(word, intersection) {
         return false;
       }
       if (startY - 1 >= 0 && gridValues[startY - 1][startX + j] !== '' ||
-                (startY + 1 < gridSize && gridValues[startY + 1][startX + j] !== '')) {
+        (startY + 1 < gridSize && gridValues[startY + 1][startX + j] !== '')) {
         if (startX + j === intersectionX) {
           continue;
         }
@@ -267,11 +266,11 @@ function checkIfPlaceable(word, intersection) {
 
     // Check for adjacent words
     if ((startX > 0 && grid.rows[startY].cells[startX - 1].innerText !== '') ||
-            (startX + wordLength < gridSize && grid.rows[startY].cells[startX + wordLength].innerText !== '')) {
+      (startX + wordLength < gridSize && grid.rows[startY].cells[startX + wordLength].innerText !== '')) {
       return false;
     }
     if ((startX > 0 && gridValues[startY][startX - 1] !== '') ||
-            (startX + wordLength < gridSize && gridValues[startY][startX + wordLength] !== '')) {
+      (startX + wordLength < gridSize && gridValues[startY][startX + wordLength] !== '')) {
       return false;
     }
     return true;
@@ -314,8 +313,8 @@ function placeWord(word, intersection) {
   // Store the word and its coordinates in placedWords array
   placedWords.push({
     word: word,
-    start: {y: startY, x: startX},
-    end: orientationToPlace === 'down' ? {y: startY + wordLength - 1, x: startX} : {y: startY, x: startX + wordLength - 1},
+    start: { y: startY, x: startX },
+    end: orientationToPlace === 'down' ? { y: startY + wordLength - 1, x: startX } : { y: startY, x: startX + wordLength - 1 },
     orientation: orientationToPlace,
   });
 
@@ -378,6 +377,13 @@ function formatGrid() {
   }
 }
 
+function removeHintNumbers() {
+  // If any cell has a number, remove it
+  const hintNumbers = document.querySelectorAll('.hint-number');
+  for (let i = 0; i < hintNumbers.length; i++) {
+    hintNumbers[i].remove();
+  }
+}
 /**
  * Adds hint numbers to the first letter of each word on the grid.
  */
@@ -409,6 +415,7 @@ function addHintNumbers() {
     } else {
       spanElement.innerText += ', ' + hintNumber;
     }
+    // Disable clicking on the hintElement
 
     hintNumber++;
   }
@@ -464,10 +471,8 @@ function addCellEventLisenters() {
             }
           });
 
-
           // Move focus to the next cell in the word
-          if (placedWordsForCell.length===1) {
-            console.log(e.target.parentNode.rowIndex, e.target.cellIndex);
+          if (placedWordsForCell.length === 1) {
             const orientation = placedWordsForCell[0].orientation;
             if (orientation === 'across') {
               if (e.target.cellIndex + 1 < gridSize) {
@@ -478,57 +483,137 @@ function addCellEventLisenters() {
                 grid.rows[e.target.parentNode.rowIndex + 1].cells[e.target.cellIndex].focus();
               }
             }
-          }
-          else{
-            if (placedWordsForCell.length===2){
-              console.log('Two words for cell');
+          } else {
+            if (placedWordsForCell.length === 2) {
+              removeHintNumbers();
               let currentCellY = e.target.parentNode.rowIndex;
               let currentCellX = e.target.cellIndex;
-              let leftEmpty=false;
-              let upEmpty=false;
+              // If empty, 0
+              // If cell doesn't exist, 1
+              // If full, 2
+              let leftEmpty = 2;
+              let upEmpty = 2;
               // Check if cell to left is empty
-              if (currentCellX - 1 >= 0 && grid.rows[currentCellY].cells[currentCellX-1].innerText === '') {
-                leftEmpty=true;
-              }
+              if (currentCellX - 1 >= 0 &&
+                grid.rows[currentCellY].cells[currentCellX - 1].innerText === '') {
+                if (grid.rows[currentCellY].cells[currentCellX - 1].contentEditable === 'true') {
+                  leftEmpty = 0;
+                } else {
+                  leftEmpty = 1;
+                }
+              };
               // Check if cell above is empty
-              if (currentCellY - 1 >= 0 && grid.rows[currentCellY-1].cells[currentCellX].innerText === '') {
-                upEmpty=true;
-              }
-              // If left is not empty and up is empty, check if right exists
-              if (!leftEmpty && upEmpty){
-                if (currentCellX + 1 < gridSize) {
-                  grid.rows[currentCellY].cells[currentCellX + 1].focus();
-                }
-              } 
-              else if (leftEmpty && !upEmpty){
-                if (currentCellY + 1 < gridSize) {
-                  grid.rows[currentCellY + 1].cells[currentCellX].focus();
+              if (currentCellY - 1 >= 0 &&
+                grid.rows[currentCellY - 1].cells[currentCellX].innerText === '') {
+                if (grid.rows[currentCellY - 1].cells[currentCellX].contentEditable === 'true') {
+                  upEmpty = 0;
+                } else {
+                  upEmpty = 1;
                 }
               }
-              else if (!leftEmpty && !upEmpty){
-                let rightEmpty=false;
-                let downEmpty=false;
-                // Check if cell to right is empty
-                if (currentCellX + 1 < gridSize && grid.rows[currentCellY].cells[currentCellX+1].innerText === '') {
-                  rightEmpty=true;
-                }
-                // Check if cell below is empty
-                if (currentCellY + 1 < gridSize && grid.rows[currentCellY+1].cells[currentCellX].innerText === '') {
-                  downEmpty=true;
-                }
-                // If right is not empty and down is empty, check if left exists
-                if (!rightEmpty && downEmpty){
-                  grid.rows[currentCellY+1].cells[currentCellX].focus();
-                }
-                else if (rightEmpty && !downEmpty){
-                  grid.rows[currentCellY].cells[currentCellX+1].focus();
-                }
-                else if (!rightEmpty && !downEmpty){
-                  //
-                }
+
+              let sum = leftEmpty + upEmpty;
+
+              switch (sum) {
+                case 0:
+                case 4:
+                  // If cell to right exists and it's empty, focus it
+                  if (currentCellX + 1 < gridSize &&
+                    grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                    grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                  }
+                  // Else if down exists, focus it
+                  else if (currentCellY + 1 < gridSize) {
+                    grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                  }
+                  break;
+                case 1:
+                  if (leftEmpty === 0) {
+                    // Go down
+                    if (currentCellY + 1 < gridSize) {
+                      grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                    }
+                  } else {
+                    // Go right
+                    if (currentCellX + 1 < gridSize) {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    }
+                  }
+                  break;
+                case 2:
+                  if (leftEmpty === 1 && upEmpty === 1) {
+                    // If empty, go right
+                    if (currentCellX + 1 < gridSize &&
+                      grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    } else {
+                      // If empty, go down
+                      if (currentCellY + 1 < gridSize &&
+                        grid.rows[currentCellY + 1].cells[currentCellX].innerText === '') {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    }
+                  } else {
+                    if (leftEmpty === 0) {
+                      // Go down
+                      if (currentCellY + 1 < gridSize) {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    } else {
+                      // Go right
+                      if (currentCellX + 1 < gridSize) {
+                        grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                      }
+                    }
+                  }
+                  break;
+                case 3:
+                  if (leftEmpty === 1) {
+                    // If empty, do down
+                    if (currentCellY + 1 < gridSize &&
+                      grid.rows[currentCellY + 1].cells[currentCellX].innerText === '') {
+                      grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                    } else {
+                      // Go right
+                      if (currentCellX + 1 < gridSize) {
+                        grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                      }
+                    }
+                  } else if (upEmpty === 1) {
+                    // If empty, go right
+                    if (currentCellX + 1 < gridSize &&
+                      grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    } else {
+                      // Go down
+                      if (currentCellY + 1 < gridSize) {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    }
+                  }
+                  break;
+              }
             }
           }
         }
+        // Update hint numbers
+        addHintNumbers();
+      });
+      // Add listener for backspace key
+      grid.rows[i].cells[j].addEventListener('keydown', (e) => {
+        let currentCell = grid.rows[i].cells[j];
+        if (e.key === 'Backspace') {
+          if (currentCell.innerText === '') {
+            if (currentCell.cellIndex - 1 >= 0) {
+              grid.rows[i].cells[j - 1].focus();
+            } else {
+              if (currentCell.parentNode.rowIndex - 1 >= 0) {
+                grid.rows[i - 1].cells[j].focus();
+              }
+            }
+          } else {
+            currentCell.innerText = '';
+          }
         }
         // Update hint numbers
         addHintNumbers();
@@ -734,6 +819,7 @@ function calculateScore(userSolved = true) {
 function generateGrid() {
   // Sort the words based on their lengths
   usableWords = sortWords(Object.keys(wordsDict));
+  usableWords = ['sustainable', 'vegetarian', 'reusable', 'organic', 'biofuel', 'vegan'];
 
   // Place the first word in the grid
   placeFirstWord();
