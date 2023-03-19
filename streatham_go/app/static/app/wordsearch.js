@@ -89,48 +89,100 @@ function insertWords(words, table) {
   }
 }
 
-/*
-// Function to let users select a word in the table
-function selectWord(table, words) {
-  let startCell = null;
-  let endCell = null;
-  let wordCells = null;
 
-  let validEndSelection = true;
-  while (validEndSelection == true) { 
-    table.querySelectorAll('td').forEach(cell => {
-      cell.addEventListener('click', () => {
-        if (!startCell) {
-          startCell = cell;
-          startCell.style.backgroundColor = 'yellow';
-          console.log(`Start cell: row ${startCell.parentNode.rowIndex}, col ${startCell.cellIndex}`);
+// Function to let users select a word in the table
+// function selectWord(table, words) {
+//   let startCell = null;
+//   let endCell = null;
+//   let wordCells = null;
+
+// let validEndSelection = true;
+// while (validEndSelection == true) { 
+//   table.querySelectorAll('td').forEach(cell => {
+//     cell.addEventListener('click', () => {
+//       if (!startCell) {
+//         startCell = cell;
+//         startCell.style.backgroundColor = 'yellow';
+//         console.log(`Start cell: row ${startCell.parentNode.rowIndex}, col ${startCell.cellIndex}`);
+//       } else {
+//         endCell = cell;
+//         endCell.style.backgroundColor = 'yellow';
+//         if (endCell.parentNode.rowIndex == startCell.parentNode.rowIndex) {
+//           const startColIndex = startCell.cellIndex;
+//           const endColIndex = endCell.cellIndex;
+//           const row = startCell.parentNode;
+//           const word = [];
+//           for (let i = startColIndex; i <= endColIndex; i++) {
+//             const cell = row.cells[i];
+//             word.push(cell.textContent);
+//           }
+//           console.log(word.join(''));
+//         }
+//         if (startCell.cellIndex == endCell.cellIndex) {
+//           // Do nothing
+//         } else {
+//           validEndSelection = false;
+//         }
+//       }
+//     });
+//   });
+//   }
+// }
+
+function addClickListeners() {
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      table.rows[i].cells[j].addEventListener('click', function() {
+        if (clickedCells.length === 0) {
+          clickedCells.push({
+            row: i,
+            col: j,
+          });
+          table.rows[i].cells[j].style.backgroundColor = '#fff';
         } else {
-          endCell = cell;
-          endCell.style.backgroundColor = 'yellow';
-          if (endCell.parentNode.rowIndex == startCell.parentNode.rowIndex) {
-            const startColIndex = startCell.cellIndex;
-            const endColIndex = endCell.cellIndex;
-            const row = startCell.parentNode;
-            const word = [];
-            for (let i = startColIndex; i <= endColIndex; i++) {
-              const cell = row.cells[i];
-              word.push(cell.textContent);
+          clickedCells.push({
+            row: i,
+            col: j,
+          });
+          const startCell = clickedCells[0];
+          const endCell = clickedCells[1];
+          for (let i = 0; i < wordCoords.length; i++) {
+            const word = wordCoords[i];
+            if (word.startX === startCell.col && word.startY === startCell.row && word.endX === endCell.col && word.endY === endCell.row) {
+              // If word is horizontal, loop through the cells and change the background color
+              if (word.startY === word.endY) {
+                for (let j = word.startX; j <= word.endX; j++) {
+                  table.rows[word.startY].cells[j].style.backgroundColor = '#0f0';
+                  table.rows[word.startY].cells[j].style.pointerEvents = 'none';
+
+                }
+              }
+              // If word is vertical, loop through the cells and change the background color
+              else if (word.startX === word.endX) {
+                for (let j = word.startY; j <= word.endY; j++) {
+                  table.rows[j].cells[word.startX].style.backgroundColor = '#0f0';
+                  table.rows[j].cells[word.startX].style.pointerEvents = 'none';
+
+                }
+              }
+              wordCoords.splice(i, 1); // remove word from wordCoords
+              i = wordCoords.length;
+            } else {
+              table.rows[startCell.row].cells[startCell.col].style.backgroundColor = 'transparent';
             }
-            console.log(word.join(''));
-          }
-          if (startCell.cellIndex == endCell.cellIndex) {
-            // Do nothing
-          } else {
-            validEndSelection = false;
+            clickedCells = [];
           }
         }
       });
-    });
+    }
   }
 }
-*/
 
-const table = createTable(11, 11);
+let clickedCells = [];
+
+const numRows = 11;
+const numCols = 11;
+const table = createTable(numRows, numCols);
 // List of words to place in grid (sustainable)
 const words = ['OOOOOP', 'PLLLLL', 'SOLAR', 'DIYYY', 'CARBON'];
 
@@ -146,3 +198,4 @@ insertWords(words, table);
 console.log(wordCoords);
 //selectWord(table, words);
 document.body.appendChild(table);
+addClickListeners();
