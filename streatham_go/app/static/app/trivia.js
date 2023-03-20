@@ -163,7 +163,7 @@ function replyToClick(btnId) {
 }
 
 function checkScore() {
-    
+
     // If the user scores 2 or over after answering 3 questions, the win page will be displayed
     // If the user scores under 2 after answering 3 questions, the lose page will be displayed
     if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
