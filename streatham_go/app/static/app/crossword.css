@@ -21,6 +21,7 @@ td {
     font-family: Arial, sans-serif;
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.7);
+    position: relative;
 }
 
 .hint-number {
@@ -52,11 +53,16 @@ td {
     background-color: #eee;
 }
 
-#crossword-score {
-    display: none;
+#crossword-score,
+#crossword-outcome {
     justify-content: center;
     margin-bottom: 20px;
     color: #fff;
+}
+
+#crossword-score-value,
+#crossword-outcome-message {
+    display: none;
 }
 
 #crossword-hints {
