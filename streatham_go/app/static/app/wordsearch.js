@@ -10,6 +10,7 @@ const table = createTable(numRows, numCols);
 // Function to create the wordsearch grid table
 function createTable(rows, cols) {
   const table = document.createElement('table');
+  table.setAttribute('id', 'wordsearchgrid');
   for (let i = 0; i < rows; i++) {
     const row = document.createElement('tr');
     for (let j = 0; j < cols; j++) {
@@ -20,6 +21,7 @@ function createTable(rows, cols) {
   }
   return table;
 }
+
 
 // Function to fill the empty cells with random letters, checks each cell first to see if they are empty
 function fillEmptyCells(table) {
@@ -109,7 +111,7 @@ let clickedCells = [];
 function addClickListeners(words) {
   let wordsFound = 0;
   var score = 0;
-  scoreDisplayBox(score);
+  //scoreDisplayBox(score);
   displayWordList(words);
   console.log("WORD LIST: " + words);
   //console.log('Score: ' + score);
@@ -160,7 +162,7 @@ function addClickListeners(words) {
               console.log('WORD FOUND: ' + word.word);
               score++;
               console.log('Score: ' + score); // Displays word to console once it has been found (testing purposes)
-              scoreDisplayBox(score);
+              //scoreDisplayBox(score);
               checkWin(score);
               // loop that goes through words and removes word.word from it
               for (let i = 0; i < words.length; i++) {
@@ -202,12 +204,14 @@ function displayWordList(words) {
   }
 
   const wordList = document.createElement('div');
+
   wordList.style.margin = '0 auto';
   wordList.style.marginTop = '10px';
   wordList.style.width = 'fit-content';
 
   for (let i = 0; i < words.length; i++) {
     const word = document.createElement('div');
+    word.setAttribute = ('id', 'wordsToFind');
     word.textContent = words[i];
     word.style.display = 'inline-block';
     word.style.marginRight = '10px';
@@ -218,6 +222,7 @@ function displayWordList(words) {
   }
   document.body.appendChild(wordList);
   previousWordList = wordList;
+  wordList.setAttribute = ('id', 'visualWordList');
   return wordList;
 }
 
@@ -257,7 +262,7 @@ const wordbank = [
   "water",
   "renew",
   "energy",
-  "low-waste",
+  "waste",
   "biodiesel",
   "reclaimed",
   "rainwater",
@@ -289,7 +294,7 @@ const wordbank = [
   "waste",
   "environment",
   "friendly",
-  "conservation",
+  "conserve",
   "renewable",
   "resources",
   "clean",
@@ -366,34 +371,55 @@ function scoreDisplayBox(score) {
   document.body.appendChild(scoreDisplay);
 }
 
+function displayTimer(){
+  var timeLeft = 60;
+  document.getElementById("timer").innerHTML = ("TIME LEFT: " + timeLeft);
+  document.getElementById("timer").style.margin = '0 auto';
+  document.getElementById("timer").style.marginTop = '10px';
+  document.getElementById("timer").style.width = 'fit-content';
+  document.getElementById("timer").style.fontSize = '20px';
+  document.getElementById("timer").style.fontWeight = 'bold';
+  document.getElementById("timer").style.color = 'black';
+  var timer = setInterval(function() {
+    timeLeft--;
+    document.getElementById("timer").innerHTML = ("TIME LEFT: " + timeLeft);
+    // Timer styling
+    if (timeLeft == 0) {
+      clearInterval(timer);
+      win = false;
+      console.log('Run out of time');
+      document.getElementById("wordsearchgrid").style.display = "none";
+      document.getElementById("timer").style.display = "none";
+      // document.getElementById('visualWordList').style.display = "none";
+      // document.getElementById("wordsToFind").style.display = "none";
 
-// Timer prototype
-// let timeLeft = 60;
-// const timer = document.createElement('div');
-// timer.style.margin = '0 auto';
-// timer.style.marginTop = '25px';
-// timer.style.width = 'fit-content';
-// timer.style.fontSize = '20px';
-// timer.style.fontWeight = 'bold';
-// timer.style.color = 'black';
-// document.body.appendChild(timer);
-// const timerInterval = setInterval(() => {
-//   if (timeLeft > 0) {
-//     timer.textContent = `Time left: ${timeLeft}`;
-//     timeLeft--;
-//   } else {
-//     timer.textContent = 'Time is up!';
-//     clearInterval(timerInterval);
-//   }
-// }, 1000);
+    }
+  }, 1000);
+}
 
+displayTimer();
+
+  // if (scoreDisplay) {
+  //   document.body.removeChild(scoreDisplay);
+  // }
+
+  // const scoreToDisplay = score;
+  // scoreDisplay = document.createElement('div');
+  // scoreDisplay.textContent = ('Score: ' + scoreToDisplay);
+  // scoreDisplay.style.margin = '0 auto';
+  // scoreDisplay.style.marginTop = '10px';
+  // scoreDisplay.style.width = 'fit-content';
+  // scoreDisplay.style.fontSize = '20px';
+  // scoreDisplay.style.fontWeight = 'bold';
+  // scoreDisplay.style.color = 'black';
+  // document.body.appendChild(scoreDisplay);
+// }
 
 function runGame(table, words, wordCoords) {
     fillEmptyCells(table);
     insertWords(words, table);
     console.log(wordCoords);
     //selectWord(table, words);
-    //displayWordList(words);
     document.body.appendChild(table);
     addClickListeners(words);
 }
