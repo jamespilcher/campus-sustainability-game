@@ -15,12 +15,13 @@ let score = 0;
 let availableQuestions = [];
 let questionCounter = 0;
 
+// An array that contains the questions, answers, and correct answer
 let questions = [
     {
         "question": "Which of the following is a renewable source of energy?",
-        "a": "Natural Gas",
+        "a": "Natural gas",
         "b": "Coal",
-        "c": "Wind", 
+        "c": "Wind",
         "d": "Petroleum",
         "answer": "c"
     },
@@ -28,7 +29,7 @@ let questions = [
         "question": "Which of the following is a greenhouse gas?",
         "a": "Nitrogen",
         "b": "Oxygen",
-        "c": "Carbon Dioxide", 
+        "c": "Carbon dioxide",
         "d": "Helium",
         "answer": "c"
     },
@@ -36,18 +37,50 @@ let questions = [
         "question": "What is the largest source of greenhouse gas emissions in the United States?",
         "a": "Transportation",
         "b": "Agriculture",
-        "c": "Industrial Processes", 
-        "d": "Electricity Generation",
-        "answer": "a"
+        "c": "Industrial processes",
+        "d": "Electricity generation",
+        "answer": "d"
     },
     {
         "question": "What is the process by which plants use sunlight, carbon dioxide, and water to produce oxygen and glucose?",
-        "a":"Photosynthesis",
-        "b":"Respiration",
-        "c": "Decomposition", 
+        "a": "Photosynthesis",
+        "b": "Respiration",
+        "c": "Decomposition",
         "d": "Combustion",
         "answer": "a"
-    }
+    },
+    {
+        "question": "What is the term used to describe the loss of soil productivity due to erosion, chemical contamination, and other factors?",
+        "a": "Deforestation",
+        "b": "Desertification",
+        "c": "Land degradation",
+        "d": "Soil depletion",
+        "answer": "c"
+    },
+    {
+        "question": "What is the primary cause of ocean acidification?",
+        "a": "Pollution",
+        "b": "Overfishing",
+        "c": "Climate change",
+        "d": "Oil spills",
+        "answer": "c"
+    },
+    {
+        "question": "What is the name for the process by which warm air is trapped close to the earth's surface, causing pollution to accumulate?",
+        "a": "Thermal inversion",
+        "b": "Carbon cycle",
+        "c": "Ozone depletion",
+        "d": "Acid rain",
+        "answer": "a"
+    },
+    {
+        "question": "Which of the following is an example of a non-point source of pollution?",
+        "a": "A factory smokestack",
+        "b": "A sewage treatment plant",
+        "c": "An oil spill",
+        "d": "Runoff from agricultural fields",
+        "answer": "d"
+      }
 ];
 
 const startGame = () => {
@@ -57,7 +90,11 @@ const startGame = () => {
     getNewQuestion();
 };
 
+
 const getNewQuestion = () => {
+    
+    // If there are no more questions or the question counter is greater than the max questions, 
+    // then set the most recent score to the score
     if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
         localStorage.setItem("mostRecentScore", score);
     }
@@ -68,9 +105,11 @@ const getNewQuestion = () => {
 
     const randomIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[randomIndex];
+    // Changes the question placeholder text to the current question
     question.innerText = currentQuestion.question;
     document.querySelector(".question").textContent = currentQuestion.question;
 
+    // Changes the choice placeholder text to the current choices
     choices.forEach((choice) => {
       const number = choice.dataset["letter"];
       console.log(number);
@@ -124,6 +163,9 @@ function replyToClick(btnId) {
 }
 
 function checkScore() {
+    
+    // If the user scores 2 or over after answering 3 questions, the win page will be displayed
+    // If the user scores under 2 after answering 3 questions, the lose page will be displayed
     if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
         console.log("Current Score: " + score);
         console.log("Current Question: " + questionCounter);

@@ -1,7 +1,6 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/trivia.css' %}">
 
-
 <div id="home-container">
     <div id="home" class="flex-column flex-center">
         <h1>Trivia Quest</h1>
@@ -11,6 +10,15 @@
         </a>
     </div>
 </div>
+
+<script>
+    var question = '{{ question }}'
+    var a = '{{ a }}'
+    var b = '{{ b }}'
+    var c = '{{ c }}'
+    var d = '{{ d }}'
+    question = JSON.parse(question);
+</script>
 
 <div id="game-container">
     <div id="game" class="flex-column flex-center">
@@ -32,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <h1 class="question">
+        <h1 class="question" id="question">
             Answer this question
         </h1>
         <div class="flex-center">
