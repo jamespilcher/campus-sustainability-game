@@ -3,6 +3,7 @@ th,
 td {
     border: 1px solid black;
     background-color: white;
+    font-size: 22px;
 }
 
 table {
@@ -22,17 +23,13 @@ th {
     text-align: left;
 }
 
-h1,
-p {
-    color: #fff;
+
+h1{
+    color: rgb(202, 249, 209);
 }
 
-h1,
-p,
-.currentUserRow,
-th,
-td {
-    font-family: Luminari, fanatsy;
+p {
+    color: #fff;
 }
 
 th:nth-child(1),
@@ -59,8 +56,13 @@ td:nth-child(4) {
     background-color: #decda4;
 }
 
+th {
+    color: #0b3206;
+    font-size: 22px;
+}
+
 .currentUserRow td {
-    color: #fff !important;
+    color: #ffffff !important;
 }
 
 @media only screen and (max-width: 767px) {

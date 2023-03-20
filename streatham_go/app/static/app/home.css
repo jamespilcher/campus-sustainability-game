@@ -17,3 +17,27 @@
   background-color: #930000;
   padding: 3px;
 }
+
+h1 {
+  color: #ffebcf;
+}
+
+#talking{
+  color: white;
+  font-size: 20px;
+}
+
+.fixed-bottom-offset {
+  position: fixed;
+  bottom: 10vh;
+  left: 0;
+  right: 0;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 2vh;
+    width: 75%;
+    left: 50%;
+    margin-left: -37.5%;
+  }

@@ -6,7 +6,9 @@
     opacity: 0;
   }
 }
-
+h1{
+  color: rgb(255, 193, 193);
+}
 .blink {
   text-decoration: blink;
   animation-name: blinker;

@@ -10,12 +10,10 @@
 {% else %}
 
 <script src=" {% static 'app\conversation.js' %} "></script>
-
-<div class="card container rounded-0 h-100" style = "font-family: Courier New; font-weight: bold; background-color: rgb(255, 240, 220);">
-    <div class="card-header" >
-      <b>Today's Quest-Giver:</b>
-    </div>
-    <div class="card-body">
+<body>
+  <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >  Find your QuestMaster
+  </h1></div>
+  <br>
       <h5 class="card-title"> </h5>
       <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
 
@@ -32,8 +30,8 @@
 
 
           var mapProp = {
-            // ToDo: Centre it near the player if in range
-            center: new google.maps.LatLng(50.735400,-3.532700),
+            // center it on forum
+            center: new google.maps.LatLng(50.735344013066786,-3.533710030939591),
             restriction: {
               latLngBounds: {
                 north: boundsNorth,
@@ -107,25 +105,24 @@
       ></script>
       </div>
 
-  <div class="container-fluid">
-      <div class="row g-2 form-group">
-          <div class="col-3 col-lg-1 mx-auto" id ="icon" style="image-rendering: pixelated">
-          </div>
-          <div class="col" id="dialogue">
-          </div>
-      </div>
-      <div style="text-align: center;">
-        <br>
-        <div id="buttons" class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
-
+  <div id="talking">
+    <div class="container-fluid">
+        <div class="row g-2 form-group">
+            <div class="col-3 col-lg-1 mx-auto" id ="icon" style="image-rendering: pixelated">
+            </div>
+            <div class="col" id="dialogue">
+            </div>
         </div>
-      </div>
+    </div>
+  </div>
+  <div class="bottom" style="text-align: center; ">
+    <div id="buttons" class="btn-group mr-2 rounded-0" role="group" aria-label="First group">
+    </div>
   </div>
   <br>
-  <div class="card-footer text-muted">
-    Time Remaining: 12h 29m 47s
-  </div>
-  </div>
+
+</body>
+
 {% endif %}
 
 {% endblock %}

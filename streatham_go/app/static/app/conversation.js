@@ -63,11 +63,17 @@ function verifyingLocationScene(){
   updateButtons("")
 }
 
+function openInMaps(){
+  windows.location.href = "https://www.google.com";
+}
+
 function welcomeScene(){
     say(buildingMessage)
+    googleMaps = "https://maps.google.com/?q=" + buildingLatitude + "," + buildingLongitude
+
     responses = "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
     "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
-    "<button type='button' class='btn btn-warning' onclick='say(\"Open in Maps\")'>Open in Maps</button>"
+    "<a class='btn btn-warning' href=" + googleMaps + " target='_blank'>Open in Maps</a>"
     updateIcon(buildingIcon)
     updateButtons(responses)
 }

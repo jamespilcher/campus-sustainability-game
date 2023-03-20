@@ -1,8 +1,7 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
-
-<center>
 <body>
+<center>
     <script>
         window.onload = choosePic;
 
@@ -25,15 +24,16 @@
             document.getElementById("profile-pic").src = newPP[randomNum];
         }
     </script>
-
-    <img class="mb-4" id="profile-pic" alt="" width="120" height="120" />
+    <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >   {{current_user.username}}
+    </h1></div>
+    <img class="" id="profile-pic" alt="" width="120" height="120" />
 
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>
-                {{current_user.username}}
+
                 </h1>
+                <br>
             </div>
         </div>
         <div class="row">
@@ -54,7 +54,7 @@
     {% if current_user_data.level %}
     <div class="container mt-3">
         <div class="row">
-            <div class="col-1">
+            <div class="col-1 text">
                 {{current_user_data.level}}
             </div>
             <div class="col">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-1 text">
                 {{ current_user_data.level|add:1 }}
             </div>
         </div>
@@ -74,7 +74,7 @@
     <div class="container-fluid mt-3">
         <div class="row gy-3">
             <div class="col-12 col-sm-6">
-                <div class="card">
+                <div class="card rounded-0 colour">
                     <div class="card-header">
                         Badges
                     </div>
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6">
-                <div class="card">
+                <div class="card rounded-0 colour">
                     <div class="card-header">
                         Friends
                     </div>
@@ -109,7 +109,7 @@
     </div>
 
     {% if current_user == user %}
-    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary mt-3 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Account Details
       </button>
 
@@ -135,7 +135,6 @@
 
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
-
 </center>
-
+</body>
 {% endblock %}
