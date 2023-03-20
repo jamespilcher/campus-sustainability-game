@@ -24,14 +24,14 @@
             document.getElementById("profile-pic").src = newPP[randomNum];
         }
     </script>
-
+    <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >   {{current_user.username}}
+    </h1></div>
     <img class="" id="profile-pic" alt="" width="120" height="120" />
 
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >   {{current_user.username}}
-                </h1></div>
+
                 </h1>
                 <br>
             </div>
@@ -74,7 +74,7 @@
     <div class="container-fluid mt-3">
         <div class="row gy-3">
             <div class="col-12 col-sm-6">
-                <div class="card">
+                <div class="card rounded-0 colour">
                     <div class="card-header">
                         Badges
                     </div>
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6">
-                <div class="card">
+                <div class="card rounded-0 colour">
                     <div class="card-header">
                         Friends
                     </div>
@@ -109,7 +109,7 @@
     </div>
 
     {% if current_user == user %}
-    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary mt-3 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Account Details
       </button>
 
