@@ -1,4 +1,3 @@
-
 // Get the grid, across and down divs, buttons div, and score div
 const grid = document.getElementById('crossword-grid');
 const acrossDiv = document.getElementById('crossword-hints-across');
@@ -32,6 +31,7 @@ const wordsDict = {
 
 let usableWords = [];
 let placedWords = [];
+let currentOrientation;
 
 // Create a 2d array of size gridSize x gridSize to store the value of each cell
 const gridValues = new Array(gridSize);
@@ -134,8 +134,8 @@ function placeFirstWord() {
   // Store the word, its coordinates, and its orientation in the placedWords array
   placedWords.push({
     word: word,
-    start: {y: middleOfGrid, x: startX},
-    end: {y: middleOfGrid, x: startX + wordLength - 1},
+    start: { y: middleOfGrid, x: startX },
+    end: { y: middleOfGrid, x: startX + wordLength - 1 },
     orientation: 'across',
   });
 
@@ -230,7 +230,7 @@ function checkIfPlaceable(word, intersection) {
         return false;
       }
       if (startX - 1 >= 0 && gridValues[startY + j][startX - 1] !== '' ||
-                startX + 1 < gridSize && gridValues[startY + j][startX + 1] !== '') {
+        startX + 1 < gridSize && gridValues[startY + j][startX + 1] !== '') {
         if (startY + j === intersectionY) {
           continue;
         }
@@ -240,7 +240,7 @@ function checkIfPlaceable(word, intersection) {
 
     // Check for adjacent words
     if ((startY > 0 && gridValues[startY - 1][startX] !== '') ||
-            (startY + wordLength < gridSize && gridValues[startY + wordLength][startX] !== '')) {
+      (startY + wordLength < gridSize && gridValues[startY + wordLength][startX] !== '')) {
       return false;
     }
     return true;
@@ -256,7 +256,7 @@ function checkIfPlaceable(word, intersection) {
         return false;
       }
       if (startY - 1 >= 0 && gridValues[startY - 1][startX + j] !== '' ||
-                (startY + 1 < gridSize && gridValues[startY + 1][startX + j] !== '')) {
+        (startY + 1 < gridSize && gridValues[startY + 1][startX + j] !== '')) {
         if (startX + j === intersectionX) {
           continue;
         }
@@ -266,11 +266,11 @@ function checkIfPlaceable(word, intersection) {
 
     // Check for adjacent words
     if ((startX > 0 && grid.rows[startY].cells[startX - 1].innerText !== '') ||
-            (startX + wordLength < gridSize && grid.rows[startY].cells[startX + wordLength].innerText !== '')) {
+      (startX + wordLength < gridSize && grid.rows[startY].cells[startX + wordLength].innerText !== '')) {
       return false;
     }
     if ((startX > 0 && gridValues[startY][startX - 1] !== '') ||
-            (startX + wordLength < gridSize && gridValues[startY][startX + wordLength] !== '')) {
+      (startX + wordLength < gridSize && gridValues[startY][startX + wordLength] !== '')) {
       return false;
     }
     return true;
@@ -313,8 +313,8 @@ function placeWord(word, intersection) {
   // Store the word and its coordinates in placedWords array
   placedWords.push({
     word: word,
-    start: {y: startY, x: startX},
-    end: orientationToPlace === 'down' ? {y: startY + wordLength - 1, x: startX} : {y: startY, x: startX + wordLength - 1},
+    start: { y: startY, x: startX },
+    end: orientationToPlace === 'down' ? { y: startY + wordLength - 1, x: startX } : { y: startY, x: startX + wordLength - 1 },
     orientation: orientationToPlace,
   });
 
@@ -377,6 +377,13 @@ function formatGrid() {
   }
 }
 
+function removeHintNumbers() {
+  // If any cell has a number, remove it
+  const hintNumbers = document.querySelectorAll('.hint-number');
+  for (let i = 0; i < hintNumbers.length; i++) {
+    hintNumbers[i].remove();
+  }
+}
 /**
  * Adds hint numbers to the first letter of each word on the grid.
  */
@@ -408,6 +415,7 @@ function addHintNumbers() {
     } else {
       spanElement.innerText += ', ' + hintNumber;
     }
+    // Disable clicking on the hintElement
 
     hintNumber++;
   }
@@ -415,6 +423,9 @@ function addHintNumbers() {
 
 /**
  * Adds event listeners to the grid cells to handle user input.
+ * Each cell has two listeners: an input listener and a keydown listener.
+ * The input listener validates user input and moves them to the next cell.
+ * The keydown listener handles the backspace key, and moves them to the previous cell.
  */
 function addCellEventLisenters() {
   // Iterate through the grid cells
@@ -444,26 +455,26 @@ function addCellEventLisenters() {
         if (e.target.innerText !== '') {
           e.target.innerText = e.target.innerText.toLowerCase();
 
-          // Find the placed word associated with the current cell
-          const placedWord = placedWords.find((word) => {
+          // Find all the words associated with the current cell
+          const placedWordsForCell = placedWords.filter((word) => {
             if (word.orientation === 'across') {
               return (
                 e.target.parentNode.rowIndex === word.start.y &&
-                                e.target.cellIndex >= word.start.x &&
-                                e.target.cellIndex < word.start.x + word.word.length
+                e.target.cellIndex >= word.start.x &&
+                e.target.cellIndex < word.start.x + word.word.length
               );
             } else {
               return (
                 e.target.cellIndex === word.start.x &&
-                                e.target.parentNode.rowIndex >= word.start.y &&
-                                e.target.parentNode.rowIndex < word.start.y + word.word.length
+                e.target.parentNode.rowIndex >= word.start.y &&
+                e.target.parentNode.rowIndex < word.start.y + word.word.length
               );
             }
           });
 
           // Move focus to the next cell in the word
-          if (placedWord) {
-            const orientation = placedWord.orientation;
+          if (placedWordsForCell.length === 1) {
+            const orientation = placedWordsForCell[0].orientation;
             if (orientation === 'across') {
               if (e.target.cellIndex + 1 < gridSize) {
                 grid.rows[e.target.parentNode.rowIndex].cells[e.target.cellIndex + 1].focus();
@@ -473,11 +484,151 @@ function addCellEventLisenters() {
                 grid.rows[e.target.parentNode.rowIndex + 1].cells[e.target.cellIndex].focus();
               }
             }
+          } else {
+            if (placedWordsForCell.length === 2) {
+              removeHintNumbers();
+              let currentCellY = e.target.parentNode.rowIndex;
+              let currentCellX = e.target.cellIndex;
+              // If empty, 0
+              // If cell doesn't exist, 1
+              // If full, 2
+              let leftEmpty = 2;
+              let upEmpty = 2;
+              // Check if cell to left is empty
+              if (currentCellX - 1 >= 0 &&
+                grid.rows[currentCellY].cells[currentCellX - 1].innerText === '') {
+                if (grid.rows[currentCellY].cells[currentCellX - 1].contentEditable === 'true') {
+                  leftEmpty = 0;
+                } else {
+                  leftEmpty = 1;
+                }
+              };
+              // Check if cell above is empty
+              if (currentCellY - 1 >= 0 &&
+                grid.rows[currentCellY - 1].cells[currentCellX].innerText === '') {
+                if (grid.rows[currentCellY - 1].cells[currentCellX].contentEditable === 'true') {
+                  upEmpty = 0;
+                } else {
+                  upEmpty = 1;
+                }
+              }
+
+              let sum = leftEmpty + upEmpty;
+
+              switch (sum) {
+                case 0:
+                case 4:
+                  // If cell to right exists and it's empty, focus it
+                  if (currentCellX + 1 < gridSize &&
+                    grid.rows[currentCellY].cells[currentCellX + 1].innerText === '' &&
+                    grid.rows[currentCellY].cells[currentCellX + 1].contentEditable === 'true') {
+                    grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                  }
+                  // Else if down exists, focus it
+                  else if (currentCellY + 1 < gridSize) {
+                    grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                  }
+                  break;
+                case 1:
+                  if (leftEmpty === 0) {
+                    // Go down
+                    if (currentCellY + 1 < gridSize) {
+                      grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                    }
+                  } else {
+                    // Go right
+                    if (currentCellX + 1 < gridSize) {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    }
+                  }
+                  break;
+                case 2:
+                  if (leftEmpty === 1 && upEmpty === 1) {
+                    // If empty, go right
+                    if (currentCellX + 1 < gridSize &&
+                      grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    } else {
+                      // If empty, go down
+                      if (currentCellY + 1 < gridSize &&
+                        grid.rows[currentCellY + 1].cells[currentCellX].innerText === '') {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    }
+                  } else {
+                    if (leftEmpty === 0) {
+                      // Go down
+                      if (currentCellY + 1 < gridSize) {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    } else {
+                      // Go right
+                      if (currentCellX + 1 < gridSize) {
+                        grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                      }
+                    }
+                  }
+                  break;
+                case 3:
+                  if (leftEmpty === 1) {
+                    // If empty, do down
+                    if (currentCellY + 1 < gridSize &&
+                      grid.rows[currentCellY + 1].cells[currentCellX].innerText === '') {
+                      grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                    } else {
+                      // Go right
+                      if (currentCellX + 1 < gridSize) {
+                        grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                      }
+                    }
+                  } else if (upEmpty === 1) {
+                    // If empty, go right
+                    if (currentCellX + 1 < gridSize &&
+                      grid.rows[currentCellY].cells[currentCellX + 1].innerText === '') {
+                      grid.rows[currentCellY].cells[currentCellX + 1].focus();
+                    } else {
+                      // Go down
+                      if (currentCellY + 1 < gridSize) {
+                        grid.rows[currentCellY + 1].cells[currentCellX].focus();
+                      }
+                    }
+                  }
+                  break;
+              }
+            }
           }
         }
-
         // Update hint numbers
         addHintNumbers();
+      });
+      // Add listener for backspace key
+      grid.rows[i].cells[j].addEventListener('keydown', (e) => {
+        let currentCell = grid.rows[i].cells[j];
+
+        // Check if the pressed key is 'Backspace'
+        if (e.key === 'Backspace') {
+
+          // If the current cell is empty
+          if (currentCell.innerText === '') {
+
+            // If there is a previous cell in the same row and it is editable
+            if (currentCell.cellIndex - 1 >= 0 &&
+              grid.rows[i].cells[i - 1].contentEditable === 'true') {
+              // Focus the previous cell in the same row
+              grid.rows[i].cells[j - 1].focus();
+            } else {
+              // If there is a row above and the cell in the above row is editable
+              if (currentCell.parentNode.rowIndex - 1 >= 0 &&
+                grid.rows[i - 1].cells[j].contentEditable === 'true') {
+                // Focus the cell in the above row
+                grid.rows[i - 1].cells[j].focus();
+              }
+            }
+          } else {
+            // If the current cell is not empty, clear its content
+            currentCell.innerText = '';
+          }
+        }
       });
     }
   }
@@ -577,6 +728,8 @@ function checkGrid() {
       if (gridValues[i][j] !== grid.rows[i].cells[j].innerText.slice(0, 1)) {
         // Set the background color of the cell to red
         grid.rows[i].cells[j].style.backgroundColor = 'red';
+        // Set the text value of the cell to the correct answer
+        grid.rows[i].cells[j].innerText = gridValues[i][j];
       } else {
         // Set the background color of the cell to light green
         grid.rows[i].cells[j].style.backgroundColor = '#90ee90';
@@ -619,6 +772,8 @@ function finaliseGrid() {
       grid.rows[i].cells[j].contentEditable = false;
     }
   }
+
+  addHintNumbers();
 
   // Hide the buttons div
   buttonsDiv.style.display = 'none';

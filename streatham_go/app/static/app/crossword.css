@@ -21,9 +21,6 @@ td {
     font-family: Arial, sans-serif;
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.7);
-    /* Box shadow should be bigger */
-    /* border-radius: 5px; */
-    backdrop-filter: blur(2px);
     position: relative;
 }
 
@@ -94,9 +91,4 @@ h3 {
 ul {
     list-style-type: none;
     padding: 0;
-}
-
-li {
-    font-size: 16px;
-    margin-bottom: 5px;
 }
