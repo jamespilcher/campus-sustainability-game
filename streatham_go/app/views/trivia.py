@@ -1,11 +1,5 @@
 from django.shortcuts import render
-from django.core import serializers
-from app.models import Question
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-import random
 
-# questionCounter = 0
 
 def trivia(request):
     return render(request, 'app/trivia.html')
