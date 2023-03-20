@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{% static 'app/tictactoe.css' %}">
 <div id="container">
     <h1>Tic-Tac-Toe</h1>
+    <h2>Best of three rounds wins!</h2>
     <h2>Player 1 (You): X</h2>
     <h2>Computer: O</h2>
     <h2 id="playerTurn">Turn: X</h2>
@@ -24,7 +25,7 @@
             <div class="cell" id="cell9" onClick="replyToClick(this.id)"></div>
         </div>
     </div>
-    <button id="restart" onClick="restartGame()">Restart</button>
+    <button id="restart" onClick="restartGame()">Next round!</button>
 </div>
 <script src="{% static 'app/tictactoe.js' %}"></script>
 {% endblock %}
