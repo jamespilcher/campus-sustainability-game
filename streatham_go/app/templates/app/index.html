@@ -46,9 +46,17 @@
                     <h2 class="header">
                         It Feeds On Ignorance.
                     </h2>
+                    <br>
                     {% if not user.is_authenticated %}
-                    <a href="{% url 'accounts:register' %}" class="btn btn-info" role="button">
-                        SIGN UP NOW!
+                    <a href="{% url 'accounts:login' %}" class="btn btn-info rounded-0" role="button">
+                      LOGIN
+                    </a>
+                    <a href="{% url 'accounts:register' %}" class="btn btn-info rounded-0" role="button">
+                        REGISTER
+                    </a>
+                    {% else %}
+                    <a href="{% url 'app:home' %}" class="btn btn-info rounded-0" role="button">
+                      PLAY NOW
                     </a>
                     {% endif %}
             </div>

@@ -25,8 +25,8 @@ p {
 }
 
 a.btn {
-    background-color: #958A6E;
-    border-color: #958A6E;
+    background-color: #867c63;
+    border-color: #362a1e;
     width: 250px;
     border-radius: 25px;
     color: white;
@@ -42,7 +42,7 @@ a.btn {
 a.btn:hover {
     background-color: #958A6E;
     color: white;
-    border-color: #212529;
+    border-color: #362a1e;
 }
 
 @media all and (max-width: 500px) {
