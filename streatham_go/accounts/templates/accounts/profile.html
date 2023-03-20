@@ -54,7 +54,7 @@
     {% if current_user_data.level %}
     <div class="container mt-3">
         <div class="row">
-            <div class="col-1">
+            <div class="col-1 text">
                 {{current_user_data.level}}
             </div>
             <div class="col">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-1 text">
                 {{ current_user_data.level|add:1 }}
             </div>
         </div>
