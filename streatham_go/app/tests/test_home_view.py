@@ -3,13 +3,14 @@ from django.urls import reverse
 from urllib.parse import urlencode
 from django.test import TestCase
 from django.contrib.auth.models import User
-from ..models import Location, Question
+from ..models import Location
 
-
+# Set some user passwords for testing purposes
 pytest.USER_PASSWORD = '12345'
 pytest.USER_WRONG_PASSWORD = 'wrong_password'
 
 
+# Define a fixture to create a user for testing purposes
 @pytest.fixture
 def user() -> User:
     u = User.objects.create_user('jamespilcher',
@@ -21,85 +22,73 @@ def user() -> User:
     return u
 
 
+# Test case for when user is authenticated
 @pytest.mark.django_db
 def test_home_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
     url = reverse('app:home')
     response = client.get(url, follow=True)
+    # Make sure 200 OK and no redirects
     assert response.status_code == 200
     assert len(response.redirect_chain) == 0
 
 
+# Test case for when user is not authenticated
 def test_home_view_unauthenticated(client):
     url = reverse('app:home')
     response = client.get(url, follow=True)
+    # Make sure the user is redirected to the login page
     next = reverse('accounts:login') + '?' + urlencode({'next': url})
     TestCase().assertRedirects(response, next)
 
 
+# Test case when user logged in and there are locations in DB
 @pytest.mark.django_db
 def test_home_view_with_location(client, user):
+    # Login the user
     client.login(username=user.username, password=pytest.USER_PASSWORD)
-
+    # Create some location objects and save them to the database
     buildings = [
         Location.objects.create(name="Building 1",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 1"),
+                                message="Come to building 1",
+                                icon="null"),
 
         Location.objects.create(name="Building 2",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 2"),
+                                message="Come to building 2",
+                                icon="null"),
         Location.objects.create(name="Building 3",
                                 latitude="50.0",
                                 longitude="50.0",
-                                location_message="Come to building 3")
+                                message="Come to building 3",
+                                icon="null")
         ]
 
     for building in buildings:
         building.save()
 
-    questions = [
-        Question.objects.create(question="Question 1", a="a", b="b",
-                                c="c", d="d", answer="a"),
-        Question.objects.create(question="Question 2", a="a", b="b",
-                                c="c", d="d", answer="a"),
-        Question.objects.create(question="Question 3", a="a", b="b",
-                                c="c", d="d", answer="a")
-        ]
-
-    for question in questions:
-        question.save()
-
-    # test home view
+    # Make sure 200 OK is returned and no redirects
     url = reverse('app:home')
     response = client.get(url, follow=True)
     assert response.status_code == 200
     assert len(response.redirect_chain) == 0
 
-    # check if leaderboard data is present in the context (not empty)
-    assert 'building_name' in response.context
-    assert 'building_lat' in response.context
-    assert 'building_lon' in response.context
-    assert 'building_message' in response.context
-
-    assert 'question' in response.context
-    assert 'a' in response.context
-    assert 'b' in response.context
-    assert 'c' in response.context
-    assert 'd' in response.context
+    # check if locations are present in the context (not empty)
+    assert 'locations' in response.context
 
     assert 'GOOGLE_API_KEY' in response.context
 
 
+# Test case when user logged in and there are no locations in DB
 @pytest.mark.django_db
 def test_home_view_no_locations_or_questions(client, user):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
 
-    # Clear all locations and questions from the database
+    # Clear all locations from the database
     Location.objects.all().delete()
-    Question.objects.all().delete()
 
     # Make a GET request to the home view
     url = reverse('app:home')
@@ -111,7 +100,4 @@ def test_home_view_no_locations_or_questions(client, user):
     # Check that the response contains an error message
     assert ("Found no locations in database. "
             "Please add some locations "
-            "in the admin panel.") in str(response.content)
-    assert ("Found no questions in database. "
-            "Please add some questions "
             "in the admin panel.") in str(response.content)
