@@ -1,3 +1,5 @@
+var win = false;
+
 // Global variable declarations
 var gameOver = false;
 const numRows = 11;
@@ -110,7 +112,8 @@ function addClickListeners(words) {
   scoreDisplayBox(score);
   displayWordList(words);
   console.log("WORD LIST: " + words);
-  console.log('Score: ' + score);
+  //console.log('Score: ' + score);
+  console.log('WIN CONDITION');
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
       table.rows[i].cells[j].addEventListener('click', function() {
@@ -158,6 +161,7 @@ function addClickListeners(words) {
               score++;
               console.log('Score: ' + score); // Displays word to console once it has been found (testing purposes)
               scoreDisplayBox(score);
+              checkWin(score);
               // loop that goes through words and removes word.word from it
               for (let i = 0; i < words.length; i++) {
                 if (words[i] === word.word) {
@@ -166,7 +170,6 @@ function addClickListeners(words) {
                 }
               }
               displayWordList(words);
-              console.log('HELLO')
               wordCoords.splice(i, 1); // remove word from wordCoords
               i = wordCoords.length;
             } else {
@@ -177,6 +180,15 @@ function addClickListeners(words) {
         }
       });
     }
+  }
+}
+
+function checkWin(score) {
+  if (score >= 6) {
+    //alert('You won!');
+    win = true;
+    console.log('Win Condition Reached');
+    return win;
   }
 }
 
