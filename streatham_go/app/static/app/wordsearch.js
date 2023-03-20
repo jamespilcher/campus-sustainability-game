@@ -210,11 +210,101 @@ function displayWordList(words) {
 }
 
 
-// Random word selection prototype
+//Random word selection prototype
 
-// const wordbank = ['REUSE', 'RECYCLE', 'COMPOST', 'ENERGY', 'ECOLOGY', 'SOLAR', 'WIND', 'BIOFUEL', 'CARPOOL', 'CONSERVE', 'CONSUME', 'DROUGHT', 'ECOSYSTEM', 'FOSSILFUEL', 'GARDENING', 'GREENBELT', 'GREENHOUSE', 'HABITAT', 'INSULATION', 'LANDFILL', 'NATURAL', 'ORGANIC', 'POLLUTION', 'PRECIPITATION', 'RENEWABLE', 'RESOURCES', 'SUSTAIN', 'WATER', 'WATERSHED', 'BIODIVERSITY', 'CLIMATE', 'COAL', 'CONSERVATION', 'DEFOREST', 'DEGRADATION', 'DEPLETION', 'ELECTRIC', 'ENVIRONMENT', 'ETHICAL', 'FERTILIZER', 'GREEN', 'HARVEST', 'HEAT', 'HYDROPOWER', 'LANDSCAPE', 'NATURERESERVE', 'OCEAN', 'REDUCE', 'ETHICAL', 'REFOREST', 'REGULATE', 'SOIL', 'TRANSPORT', 'UPCYCLE', 'VEGANISM', 'WASTE', 'WILDLIFE', 'CARBON', 'ECOFRIENDLY', 'EFFICIENCY', 'EQUITY', 'FOODMILES', 'FRUGAL', 'GEOTHERMAL', 'GREENSPACE', 'HABITABLE', 'INSECTARY', 'LOWCARBON', 'METHANE', 'NATURE', 'OZONE', 'PERMACULTURE', 'PLANTING', 'RAINWATER', 'REFUSE', 'RESOURCEFUL', 'SHADETREE', 'SUSTAINABLE'];
+const wordbank = [
+  "organic",
+  "recycled",
+  "compost",
+  "carbon",
+  "solar",
+  "wind",
+  "green",
+  "ethanol",
+  "hybrid",
+  "sustain",
+  "reduce",
+  "reuse",
+  "refill",
+  "bike",
+  "plant",
+  "forest",
+  "ocean",
+  "clean",
+  "pure",
+  "regrow",
+  "eco-friendly",
+  "biodegradable",
+  "locally",
+  "grown",
+  "upcycle",
+  "native",
+  "species",
+  "air",
+  "soil",
+  "water",
+  "renew",
+  "energy",
+  "low-waste",
+  "biodiesel",
+  "reclaimed",
+  "rainwater",
+  "permacult",
+  "greenbelt",
+  "conserv",
+  "wildlife",
+  "habitat",
+  "pollution",
+  "trash",
+  "landfill",
+  "carbon",
+  "footprint",
+  "emissions",
+  "efficient",
+  "lighting",
+  "toxic",
+  "free",
+  "pesticides",
+  "composting",
+  "sustainable",
+  "development",
+  "climate",
+  "neutral",
+  "windmill",
+  "solar",
+  "panel",
+  "reduce",
+  "waste",
+  "environment",
+  "friendly",
+  "conservation",
+  "renewable",
+  "resources",
+  "clean",
+  "energy",
+  "efficient",
+  "appliances",
+  "bike",
+  "path",
+  "public",
+  "transport",
+  "recycling",
+  "bins",
+  "ecosystem",
+  "natural",
+  "harmony",
+  "eco",
+  "system",
+  "global",
+  "warming",
+  "carbon",
+  "offset",
+  "protect",
+  "biodiversity"
+  ];
 
-// // Function to select 6 random words from words array
+//Function to select 6 random words from words array
+
 // function selectRandomWords(words) {
 //   let randomWords = [];
 //   for (let i = 0; i < 6; i++) {
@@ -225,7 +315,24 @@ function displayWordList(words) {
 //   return randomWords;
 // }
 
-// const words = selectRandomWords(wordbank); 
+function selectRandomWords(words) {
+  let randomWords = [];
+  for (let i = 0; i < 6; i++) {
+    let randomIndex = Math.floor(Math.random() * words.length);
+    let selectedWord = words[randomIndex].toUpperCase();
+    if (selectedWord.length <= 9) {
+      randomWords.push(selectedWord);
+      words.splice(randomIndex, 1);
+    } else {
+      i--;
+      words.splice(randomIndex, 1);
+    }
+  }
+  return randomWords;
+}
+
+
+const words = selectRandomWords(wordbank); 
 
 let wordCoords = [];
 let scoreDisplay = null;
@@ -286,7 +393,7 @@ table.style.marginTop = '10px';
 
 // List of words to place in grid (sustainable)
 
-const words = ['REUSE', 'RECYCLE', 'COMPOST', 'ENERGY', 'ECOLOGY', 'SOLAR']
+//const words = ['REUSE', 'RECYCLE', 'COMPOST', 'ENERGY', 'ECOLOGY', 'SOLAR']
 
 // Game run function
 runGame(table, words, wordCoords);
