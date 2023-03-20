@@ -53,16 +53,11 @@ td {
     background-color: #eee;
 }
 
-#crossword-score,
-#crossword-outcome {
+#crossword-score {
+    display: none;
     justify-content: center;
     margin-bottom: 20px;
     color: #fff;
-}
-
-#crossword-score-value,
-#crossword-outcome-message {
-    display: none;
 }
 
 #crossword-hints {

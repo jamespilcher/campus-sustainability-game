@@ -828,6 +828,8 @@ function calculateScore(userSolved = true) {
   // Display the score in the score div
   scoreDiv.innerText = 'Score: ' + correctWords + '/' + placedWords.length;
   scoreDiv.style.display = 'flex';
+  // Make text bigger
+  scoreDiv.style.fontSize = '24px';
 
 
   if (correctWords === placedWords.length) {
