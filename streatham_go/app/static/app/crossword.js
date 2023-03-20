@@ -728,6 +728,8 @@ function checkGrid() {
       if (gridValues[i][j] !== grid.rows[i].cells[j].innerText.slice(0, 1)) {
         // Set the background color of the cell to red
         grid.rows[i].cells[j].style.backgroundColor = 'red';
+        // Set the text value of the cell to the correct answer
+        grid.rows[i].cells[j].innerText = gridValues[i][j];
       } else {
         // Set the background color of the cell to light green
         grid.rows[i].cells[j].style.backgroundColor = '#90ee90';
@@ -770,6 +772,8 @@ function finaliseGrid() {
       grid.rows[i].cells[j].contentEditable = false;
     }
   }
+
+  addHintNumbers();
 
   // Hide the buttons div
   buttonsDiv.style.display = 'none';
