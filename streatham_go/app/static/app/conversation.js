@@ -73,7 +73,7 @@ function welcomeScene(){
 
     responses = "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
     "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
-    "<a class='btn btn-warning' href=" + googleMaps + " target='_blank'>Google</a>"
+    "<a class='btn btn-warning' href=" + googleMaps + " target='_blank'>Open in Maps</a>"
     updateIcon(buildingIcon)
     updateButtons(responses)
 }
