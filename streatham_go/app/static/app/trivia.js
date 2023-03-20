@@ -81,7 +81,55 @@ let questions = [
         "c": "An oil spill",
         "d": "Runoff from agricultural fields",
         "answer": "d"
-      }
+    },
+    {
+        "question": "What is the term for the gradual increase in the Earth's average surface temperature?",
+        "a": "Climate change",
+        "b": "Global warming",
+        "c": "Greenhouse effect",
+        "d": "Weather",
+        "answer": "a"
+    }, 
+    {
+        "question": "What is the name for the process by which carbon is removed from the atmosphere and stored in natural sinks like trees and soil?",
+        "a": "Carbon sequestration",
+        "b": "Carbon offsetting",
+        "c": "Carbon capture and storage",
+        "d": "Carbon trading",
+        "answer": "a"
+    },
+    {
+        "question": "Which of the following is a major cause of deforestation?",
+        "a": "Overgrazing",
+        "b": "Urbanisation",
+        "c": "Wildfires",
+        "d": "Timber harvesting",
+        "answer": "d"
+    },
+    {
+        "question": "Which of the following is a common greenhouse gas produced by livestock?",
+        "a": "Methane",
+        "b": "Carbon dioxide",
+        "c": "Nitrous oxides",
+        "d": "Ozone",
+        "answer": "a"
+    },
+    {
+        "question": "Which of the following is a common source of plastic pollution in the ocean?",
+        "a": "Fishing nets",
+        "b": "Plastic bottles",
+        "c": "Straws",
+        "d": "Plastic bags",
+        "answer": "a"
+    },
+    {
+        "question": "What is the name for the process by which water evaporates from plants and enters the atmosphere?",
+        "a": "Precipitation",
+        "b": "Transpiration",
+        "c": "Condensation",
+        "d": "Runoff",
+        "answer": "b"
+    },
 ];
 
 const startGame = () => {
@@ -125,17 +173,17 @@ function toGamePage(btnId) {
     console.log(btnId);
     
     if (btnId === "homeBtn") {
-      home.style.display = "none";
-      console.log(home.style.display);
-      console.log(game.style.display);
-      game.style.display = "block";
-      endWin.style.display = "none";
-      endLose.style.display = "none";
+        home.style.display = "none";
+        console.log(home.style.display);
+        console.log(game.style.display);
+        game.style.display = "block";
+        endWin.style.display = "none";
+        endLose.style.display = "none";
     } else {
-      home.style.display = "block";
-      game.style.display = "none";
-      endWin.style.display = "none";
-      endLose.style.display = "none";
+        home.style.display = "block";
+        game.style.display = "none";
+        endWin.style.display = "none";
+        endLose.style.display = "none";
     }
 }
 

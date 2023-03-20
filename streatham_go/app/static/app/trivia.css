@@ -1,14 +1,15 @@
 body{
-    background-color: #bba284;
+    background-color: #6d604e;
 }
 
 * {
    box-sizing: border-box;
-   font-family: luminari, fantasy;
+   font-family: 'So Bad', sans-serif;
 }
 
 h1,h2{
     text-align: center;
+    color: #ffebcf;
 }
 
 h1{
@@ -63,17 +64,18 @@ h1{
     width: 20rem;
     text-align: center;
     font-size: 1.5rem;
-    background-color: #958A6E;
-    color: black;
-    border: 1px solid #958A6E;
-    border-radius: 5px;
+    background-color: #867c63;
+    color: white;
+    border: 1px solid #362a1e;
     padding: 1rem 0;
-    margin: 5px;   
+    margin: 5px;
+    border-radius: 0px;  
 }
 
 .btn:hover{
-    background-color: #958A6E;
-    border: 1px solid black;
+    background-color: #867c63;
+    border: 1px solid #362a1e;
+    color: white;
     transition: transform 150ms;
     transform: scale(1.05);
 }
@@ -130,21 +132,22 @@ h1{
 .hud-prefix {
     font-size: 1.5rem;
     text-align: center;
+    color: #ffebcf;
 }
  
 #progressBar{
     display: inline-block;
     width: 23rem;
     height: 2rem;
-    border: 0.2rem solid black;
-    border-radius: 50px;
+    border: 0.2rem solid #362a1e;
+    border-radius: 5px;
     overflow: hidden;
 }
 
 #progressBarFull{
     height: 100%;
     width: 0%;
-    background-color: #958A6E;
+    background-color: #867c63;
     transition: width 0.5s ease-in-out;
 }
 
@@ -158,14 +161,15 @@ h1{
     display: flex;
     min-width: 600px;
     margin-bottom: 0.5rem;
-    border-radius: 20px;
-    background-color: #9f9577;
-    font-size:1.2rem;
+    color: white;
+    background-color: #867c63;
+    font-size:1.3rem;
 }
 
 .choice-container:hover{
-    border: 1px solid black;
+    border: 1px solid #362a1e;
     transition: transform 150ms;
+    color: white;
     transform: scale(1.05);
 }
 
