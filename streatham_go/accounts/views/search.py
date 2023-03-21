@@ -19,7 +19,7 @@ def search(request):
         # if the search parameter exists, filter the users
         users = User.objects.filter(username__icontains=url_parameter)
     else:
-        # if the search parameter does not exist, set the 
+        # if the search parameter does not exist, set the
         # users to an empty list
         users = []
 
