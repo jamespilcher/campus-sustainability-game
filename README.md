@@ -30,13 +30,11 @@ making sure that you are running the terminal as admin.
 ```
 Set-ExecutionPolicy RemoteSigned
 ```
-
 Then you may run this line.
 
 ```
 .venv\Scripts\activate
 ```
-
 After running the scripts, you may return to the original setting
 by entering the following command:
 
@@ -57,7 +55,7 @@ touch streatham_go/streatham_go/.env
 ```
 
 open new file and add the following settings.
-**NOTE** If using DEBUG=True, EMAIL\_\* settings not needed
+**NOTE** If using DEBUG=True, EMAIL_* settings not needed
 
 - `DEBUG=[True|False]`
 - `SECRET_KEY=[a secret key (can be anything)]`
@@ -89,6 +87,7 @@ python3 manage.py loaddata buildings.json
 cd streatham_go
 pytest
 ```
+
 
 ### 8. Start Dev Server
 
