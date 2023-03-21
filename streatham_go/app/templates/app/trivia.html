@@ -1,0 +1,121 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'app/trivia.css' %}">
+<link href="https://fonts.cdnfonts.com/css/so-bad" rel="stylesheet">
+
+<div id="home-container">
+    <div id="home" class="flex-column flex-center">
+        <h1>Trivia Quest</h1>
+        <h2>Are you ready?</h2>
+        <a class="btn" id="homeBtn" onClick="toGamePage(this.id)">
+            Start
+        </a>
+    </div>
+</div>
+
+<!-- <script>
+    var question = '{{ question }}'
+    var a = '{{ a }}'
+    var b = '{{ b }}'
+    var c = '{{ c }}'
+    var d = '{{ d }}'
+    question = JSON.parse(question);
+</script> -->
+
+<div id="game-container">
+    <div id="game" class="flex-column flex-center">
+        <div class="hud">
+            <div class="hud-item">
+                <h1 class="title">
+                    Trivia Quest
+                </h1>
+            </div>
+            <div class="hud-item">
+                <h2 id="score">Score: 0</h2>
+            </div>
+            <div class="hud-item">
+                <p id="progressText" class="hud-prefix">
+                    Question
+                </p>
+                <div id="progressBar">
+                    <div id="progressBarFull"></div>
+                </div>
+            </div>
+        </div>
+        <h1 class="question" id="question">
+            Answer this question
+        </h1>
+        <div class="flex-center">
+            <div class="choice-container" id="btna" onClick="replyToClick(this.id)">
+                <p class="choice-prefix">
+                    A.
+                </p>
+                <p class="choice-text" data-letter="a">
+                    Choice A
+                </p>
+            </div>
+            <div class="choice-container" id="btnb" onClick="replyToClick(this.id)">
+                <p class="choice-prefix">
+                    B.
+                </p>
+                <p class="choice-text" data-letter="b">
+                    Choice B
+                </p>
+            </div>
+            <div class="choice-container" id="btnc" onClick="replyToClick(this.id)">
+                <p class="choice-prefix">
+                    C.
+                </p>
+                <p class="choice-text" data-letter="c">
+                    Choice C
+                </p>
+            </div>
+            <div class="choice-container" id="btnd" onClick="replyToClick(this.id)">
+                <p class="choice-prefix">
+                    D.
+                </p>
+                <p class="choice-text" data-letter="d">
+                    Choice D
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="end-win-container">
+    <div class="flex-column flex-center">
+        <h1>
+            Your Final Score is:
+        </h1>
+        <h2 id="final-score-win">
+            0
+        </h2>
+        <h1>
+            Well Done! You have completed this quest!
+            I shall have another quest for you tomorrow!
+        </h1>
+        <a class="btn" id="endBtn" href="{% url 'app:home' %}">
+            Back To Home Page
+        </a>
+    </div>
+</div>
+
+<div id="end-lose-container">
+    <div class="flex-column flex-center">
+        <h1>
+            Your Final Score is:
+        </h1>
+        <h2 id="final-score-lose">
+            0
+        </h2>
+        <h1>
+            Unlucky traveller, you have failed this quest!
+            Please come by again tomorrow to have another go!
+        </h1>
+        <a class="btn" id="endBtn" href="{% url 'app:home' %}">
+            Back To Home Page
+        </a>
+    </div>
+</div>
+
+<script src="{% static 'app/trivia.js' %}"></script>
+{% endblock %}

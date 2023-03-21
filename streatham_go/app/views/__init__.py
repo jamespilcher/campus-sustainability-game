@@ -2,5 +2,6 @@
 from .home import *
 from .index import *
 from .leaderboard import *
+from .trivia import *
 from .play import *
 from .conversation import *
