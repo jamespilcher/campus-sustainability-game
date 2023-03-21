@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'app/crossword.css' %}">
 
 <div id="crossword-container">
@@ -23,4 +23,3 @@
     </div>
 </div>
 <script src="{% static 'app/crossword.js' %}"></script>
-{% endblock %}

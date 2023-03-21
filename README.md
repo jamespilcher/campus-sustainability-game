@@ -72,10 +72,11 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-### 6. Populate Database
+### 6. Populate Database (IN ORDER)
 
 ```
 cd streatham_go
+python3 manage.py loaddata games.json
 python3 manage.py loaddata questions.json
 python3 manage.py loaddata buildings.json
 ```
