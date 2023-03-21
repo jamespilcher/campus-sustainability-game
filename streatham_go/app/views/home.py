@@ -1,63 +1,41 @@
-import datetime
-import random
 from django.conf import settings
-from django.shortcuts import render
-from app.models import Location, Question
+from django.shortcuts import render, redirect
+from app.models import Location
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
-
-def _generate_building_question():
-    # Seed random number generator with date
-    a = datetime.datetime.now() + datetime.timedelta(days=1)
-    b = a.strftime("%Y%m%d" + settings.SECRET_KEY)  # add django seed
-    random.seed(b)
-
-    # Select todays random question
-    pks = Question.objects.values_list('pk', flat=True)
-    random_pk = random.choice(pks)
-    random_question = Question.objects.get(pk=random_pk)
-    return random_question
-
-
-def _generate_building_location():
-
-    # Seed random number generator with date
-    a = datetime.datetime.now() + datetime.timedelta(days=2)
-    b = a.strftime("%Y%m%d" + settings.SECRET_KEY)  # add django seed
-    random.seed(b)
-    # Select todays random location
-    pks = Location.objects.values_list('pk', flat=True)
-    random_pk = random.choice(pks)
-    random_location = Location.objects.get(pk=random_pk)
-    return random_location
+from django.core import serializers
+from ..tokens import generate_game_jwt
 
 
 @login_required
 def home(request):
+    # initalize the context variable
     context = {}
+
+    # check if the method is post
+    if request.method == 'POST':
+        # get the building name from the form
+        buildingName = request.POST.get('building')
+        # generate the game token
+        token = generate_game_jwt(request.user, buildingName)
+
+        # redirect to the play page with the token
+        return redirect('app:play', token=token)
+
+    # check if there are any locations in the database
     if Location.objects.count() == 0:
+        # if there are no locations, set the error message
         messages.error(request, ("Found no locations in database. "
                                  "Please add some locations in the "
                                  "admin panel."))
-    if Question.objects.count() == 0:
-        messages.error(request, ("Found no questions in database. "
-                                 "Please add some questions in the "
-                                 "admin panel."))
-    if not Location.objects.count() == 0 and not Question.objects.count() == 0:
-        daily_location = _generate_building_location()
-        daily_question = _generate_building_question()
+    else:
+        # if there are locations, get the locations from the database
+        locations = serializers.serialize("json", Location.objects.all())
+        # set the context variable
         context = {
-            'building_name': daily_location.name,
-            'building_lat': daily_location.latitude,
-            'building_lon': daily_location.longitude,
-            'building_message': daily_location.location_message,
-
-            'question': daily_question.question,
-            'a': daily_question.a,
-            'b': daily_question.b,
-            'c': daily_question.c,
-            'd': daily_question.d,
+            'locations': locations,
             'GOOGLE_API_KEY': settings.GOOGLE_API_KEY
         }
+
+    # render the home page
     return render(request, 'app/home.html', context)

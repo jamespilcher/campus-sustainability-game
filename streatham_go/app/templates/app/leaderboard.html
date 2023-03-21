@@ -1,11 +1,8 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/leaderboard.css' %}">
+<body>
+<div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >Leaderboard</h1></div>
 <br>
-<div class="container my-5">
-    <h1 class="display-4">Leaderboard</h1>
-    <p class="lead mb-4">Here you can see the top 10 users on the site, and your own position.</p>
-    <p class="lead mb-4">You can also see your own progress on the <a href="{% url 'accounts:profile' user %}">profile page</a>.</p>
-</div>
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
@@ -14,27 +11,34 @@
                 <th>Username</th>
                 <th>Level</th>
                 <th>XP</th>
-                <th>Quiz Count</th>
+                <th>Pol %</th>
             </tr>
         </thead>
         <tbody>
+            <!-- Loops through the top 10 users in the leaderboard -->
             {% for u in user_data|slice:":10" %}
-                {% if u.username == current_user_data.user.username %}
-                    <tr class="currentUserRow">
+            <!-- If row is for logged in user, apply currentUserRow class -->
+            {% if u.username == current_user_data.user.username %}
+            <tr class="currentUserRow">
                 {% else %}
-                    <tr>
-                {% endif %}
+                <tr>
+                    {% endif %}
                     <td>{{ forloop.counter }}</td>
-                    <td><a href="{% url 'accounts:profile' u.username %}">{{ u.username }}</a></td>
+                    <td><a href="{% url 'accounts:profile' u.username %}">
+                        {{u.username }}
+                    </a></td>
                     <td>{{ u.level }}</td>
                     <td>{{ u.xp }}</td>
                     <td>{{ u.quiz_count }}</td>
                 </tr>
                 {% endfor %}
+                <!-- If user is not in top 10, include an extra row with their details-->
                 {% if current_user_rank > 10 %}
                 <tr class="currentUserRow">
                     <td>{{ current_user_rank }}</td>
-                    <td><a href="{% url 'accounts:profile' current_user_data.user.username %}">{{ current_user_data.user.username }}</a></td>
+                    <td><a href="{% url 'accounts:profile' current_user_data.user.username %}">
+                        {{ current_user_data.user.username }}
+                    </a></td>
                     <td>{{ current_user_data.level }}</td>
                     <td>{{ current_user_data.xp }}</td>
                     <td>{{ current_user_data.quiz_count }}</td>
@@ -43,4 +47,5 @@
         </tbody>
     </table>
 </div>
+</body>
 {% endblock %}

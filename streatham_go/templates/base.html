@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
+    <link href="https://fonts.cdnfonts.com/css/so-bad" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/merchant-copy-doublesize" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/mairon" rel="stylesheet">
+        <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> {% load django_bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %} {% bootstrap_messages %}
-        <title>Streatham Go</title>
+        <title>StreathamQuest</title>
         <style>
             body {
                 height: 100%;
-                background-color: #bba284;
+                background-color: #6d604e;
+                font-family: 'So Wide', sans-serif;
+                color: black;
+            }
+
+            h1 {
+                padding-top: 20px;
+                font-family: 'So Bad', sans-serif;
+            }
+
+            
+            h2 {
+                font-family: 'Mairon', sans-serif;
+                font-family: 'So Bad', sans-serif;                               
             }
             
             .navbar {
@@ -22,13 +37,12 @@
             }
             
             ul.nav li a {
-                font-family: Luminari, fantasy;
                 color: #fff;
                 padding: 15px;
             }
             
             ul li a.nav-link:not(.home):hover {
-                background-color: #999;
+                background-color: #958A6E;
                 color: #fff;
                 transition: 0.5s;
             }
@@ -39,7 +53,7 @@
             }
             
             .border-right {
-                border-right: 1px solid #bbb;
+                border-right: 1px solid #110d08;
             }
             
             .container-fluid {
@@ -52,7 +66,6 @@
             }
             
             a.navbar-brand {
-                font-family: Luminari, fantasy;
                 font-size: 25px;
                 color: #fff;
             }
@@ -60,9 +73,9 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #333;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #40382d;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Streatham Go!</a>
+                <a class="navbar-brand" href="/">SQ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
