@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'app/tictactoe.css' %}">
 <div id="container">
     <h1>Tic-Tac-Toe</h1>
@@ -27,4 +27,3 @@
     <button id="restart" onClick="restartGame()">Restart</button>
 </div>
 <script src="{% static 'app/tictactoe.js' %}"></script>
-{% endblock %}

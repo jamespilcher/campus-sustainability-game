@@ -1,0 +1,18 @@
+[
+    {
+        "model": "app.game",
+        "pk": 1,
+        "fields": {
+            "name": "TicTacToe",
+            "file": "tictactoe.html"
+        }
+    },
+    {
+        "model": "app.game",
+        "pk": 2,
+        "fields": {
+            "name": "Crossword",
+            "file": "crossword.html"
+        }
+    }
+]
