@@ -17,6 +17,18 @@ class Word(models.Model):
     hint = models.CharField(max_length=200)
     fact = models.CharField(max_length=200)
 
+    # Gets the word data for all words
+    @classmethod
+    def get_words(self, word_data):
+        words = []
+        for word in word_data:
+            words.append({
+                'word': word.word,
+                'definition': word.definition,
+                'hint': word.hint,
+                'fact': word.fact
+            })
+        return words
 
 class Location(models.Model):
     name = models.CharField(max_length=50)
