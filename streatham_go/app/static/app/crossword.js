@@ -4,6 +4,7 @@ const acrossDiv = document.getElementById('crossword-hints-across');
 const downDiv = document.getElementById('crossword-hints-down');
 const buttonsDiv = document.getElementById('crossword-buttons');
 const scoreDiv = document.getElementById('crossword-score');
+const outcomeDiv = document.getElementById('crossword-outcome');
 
 /* Set size of grid, number of words to place in the grid,
 and the words to place */
@@ -32,6 +33,7 @@ const wordsDict = {
 let usableWords = [];
 let placedWords = [];
 let currentOrientation;
+let userWon = false;
 
 // Create a 2d array of size gridSize x gridSize to store the value of each cell
 const gridValues = new Array(gridSize);
@@ -716,7 +718,8 @@ function checkGrid() {
   if (!confirmCheck) {
     return;
   }
-
+  // Finalize the grid and calculate the score
+  calculateScore(true);
   // Check the grid for correctness and highlight cells
   for (let i = 0; i < gridSize; i++) {
     for (let j = 0; j < gridSize; j++) {
@@ -737,9 +740,8 @@ function checkGrid() {
     }
   }
 
-  // Finalize the grid and calculate the score
+  // Finalize the
   finaliseGrid();
-  calculateScore(true);
 }
 
 /**
@@ -826,6 +828,14 @@ function calculateScore(userSolved = true) {
   // Display the score in the score div
   scoreDiv.innerText = 'Score: ' + correctWords + '/' + placedWords.length;
   scoreDiv.style.display = 'flex';
+  // Make text bigger
+  scoreDiv.style.fontSize = '24px';
+
+
+  if (correctWords === placedWords.length) {
+    userWon = true;
+  }
+
 }
 
 
