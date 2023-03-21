@@ -378,6 +378,9 @@ function displayTimer(){
   document.getElementById("timer").style.fontWeight = 'bold';
   document.getElementById("timer").style.color = 'black';
   var timer = setInterval(function() {
+    if(win) {
+      clearInterval(timer);
+    }
     timeLeft--;
     document.getElementById("timer").innerHTML = ("TIME LEFT: " + timeLeft);
     // Timer styling
@@ -389,8 +392,7 @@ function displayTimer(){
       document.getElementById("timer").style.display = "none";
       // document.getElementById('visualWordList').style.display = "none";
       // document.getElementById("wordsToFind").style.display = "none";
-
-    }
+  }
   }, 1000);
 }
 
