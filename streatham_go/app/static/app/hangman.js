@@ -17,34 +17,71 @@ let selectedWord = words[Math.floor(Math.random() * words.length)];
 const correctLetters = [];
 const wrongLetters = [];
 
-//Show hidden word
-function displayWord(){
+function displayWord() {
     wordE1.innerHTML = `
-    ${selectedWord
-    .split('')
-    .map(
-        letter =>`
-        <span class="letter">
-        ${correctLetters.includes(letter) ? letter : ''}
-        </span>
-        `
-    )
-    .join('')}
-    `;
-
+      ${selectedWord
+        .split('')
+        .map((letter, index) =>
+          `<span class="letter" data-index="${index}">${correctLetters.includes(letter) ? letter : `<input type="text" class="input-letter" maxlength="1" style="width: 20px; text-align: center;">`}</span>`
+        )
+        .join('')}
+      `;
+  
+    // Add event listener to each input box
+    const inputBoxes = document.querySelectorAll('.input-letter');
+    inputBoxes.forEach(inputBox => {
+      inputBox.addEventListener('input', handleInputBoxInput);
+    });
+  
     const innerWord = wordE1.innerText.replace(/\n/g, '');
-
-    if(innerWord === selectedWord){
-        // get the current value of the points element and convert it to a number
-        let currentPoints = parseInt(pointsElement.innerHTML);
-        // increment the current points by 10
-        let newPoints = currentPoints + 10;
-        // update the points element with the new value
-        pointsElement.innerHTML = newPoints;
-        finalMessage.innerText = 'Congratulations! You won!';
-        popup.style.display= 'flex';
+  
+    if (innerWord === selectedWord) {
+      let currentPoints = parseInt(pointsElement.innerHTML);
+      let newPoints = currentPoints + 10;
+      pointsElement.innerHTML = newPoints;
+      finalMessage.innerText = 'Congratulations! You won!';
+      popup.style.display = 'flex';
     }
-}
+  }
+  
+  function handleInputBoxInput(e) {
+    const inputLetter = e.target.value;
+    const index = parseInt(e.target.parentNode.getAttribute('data-index'));
+    if (inputLetter && inputLetter.length === 1) {
+      const selectedLetter = selectedWord[index];
+      const remainingSelectedLetters = selectedWord.slice(index + 1).concat(selectedWord.slice(0, index));
+      if (!correctLetters.includes(selectedLetter) && (selectedLetter.toUpperCase() === inputLetter.toUpperCase() || remainingSelectedLetters.some(letter => letter.toUpperCase() === inputLetter.toUpperCase()))) {
+        correctLetters.push(selectedLetter);
+        displayWord();
+      } else {
+        if (!wrongLetters.includes(inputLetter.toLowerCase()) && !correctLetters.includes(selectedLetter) && selectedLetter.toUpperCase() !== inputLetter.toUpperCase()) {
+          wrongLetters.push(inputLetter.toLowerCase());
+          updateWrongLetterE1();
+        }
+      }
+    }
+    e.target.value = '';
+  }
+  
+  
+  
+  function handleInputBoxKeyDown(e) {
+    if (e.key === 'Enter') {
+      const inputLetter = e.target.value.toUpperCase();
+      const index = parseInt(e.target.parentNode.getAttribute('data-index'));
+      if (inputLetter && inputLetter.length === 1) {
+        if (selectedWord[index] === inputLetter) {
+          correctLetters.push(inputLetter);
+          displayWord();
+        } else {
+          wrongLetters.push(inputLetter);
+          updateWrongLetterE1();
+        }
+      }
+      e.target.value = '';
+    }
+  }
+  
 
 // Update the wrong letters
 function updateWrongLetterE1(){
