@@ -15,9 +15,9 @@ let userWon = false;
 const figureParts = document.querySelectorAll(".person-part");
 
 // Array of words related to the environment and sustainability
-// const words = ['renewable', 'solar', 'wind', 'recycle', 'compost', 'sustainability', 'green', 'carbon', 'footprint', 'conservation', 'ecosystem', 'organic', 'biodiversity', 'climate', 'ozone', 'pollution', 'reduction', 'reuse', 'energy', 'efficient'];
-const words = ['sustainability']
-  // Randomly select a word from the words array
+const words = ['renewable', 'solar', 'wind', 'recycle', 'compost', 'sustainability', 'green', 'carbon', 'footprint', 'conservation', 'ecosystem', 'organic', 'biodiversity', 'climate', 'ozone', 'pollution', 'reduction', 'reuse', 'energy', 'efficient'];
+
+// Randomly select a word from the words array
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
 // Arrays to hold the correctly and incorrectly guessed letters
