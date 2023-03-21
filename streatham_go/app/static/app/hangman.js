@@ -1,22 +1,31 @@
+// Get the HTML elements using their IDs
 const wordE1 = document.getElementById('word');
 const incorrectGuesses = document.getElementById('incorrect-guesses');
 const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('message-container');
 const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
+
 // get the element with the class name "points"
 let pointsElement = document.querySelector(".points");
 
+// Flag to indicate if user won
+let userWon = false;
 
+// Get all the body parts of the figure as a NodeList
 const figureParts= document.querySelectorAll(".person-part");
 
-const words = ['application', 'programming', 'interface', 'wizard'];
+// Array of words related to the environment and sustainability
+const words = ['renewable', 'solar', 'wind', 'recycle', 'compost', 'sustainability', 'green', 'carbon', 'footprint', 'conservation', 'ecosystem', 'organic', 'biodiversity', 'climate', 'ozone', 'pollution', 'reduction', 'reuse', 'energy', 'efficient'];
 
+// Randomly select a word from the words array
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
+// Arrays to hold the correctly and incorrectly guessed letters
 const correctLetters = [];
 const wrongLetters = [];
 
+// Display the selected word with correctly guessed letters and input boxes for the remaining letters
 function displayWord() {
     wordE1.innerHTML = `
       ${selectedWord
@@ -35,25 +44,32 @@ function displayWord() {
   
     const innerWord = wordE1.innerText.replace(/\n/g, '');
   
+    // If all the letters have been correctly guessed
     if (innerWord === selectedWord) {
+      // Update points
       let currentPoints = parseInt(pointsElement.innerHTML);
       let newPoints = currentPoints + 10;
       pointsElement.innerHTML = newPoints;
+      // Set userWon flag to true and display final message
+      userWon = true;
       finalMessage.innerText = 'Congratulations! You won!';
       popup.style.display = 'flex';
     }
   }
   
+  // Handle user input in input boxes
   function handleInputBoxInput(e) {
     const inputLetter = e.target.value;
     const index = parseInt(e.target.parentNode.getAttribute('data-index'));
     if (inputLetter && inputLetter.length === 1) {
       const selectedLetter = selectedWord[index];
       const remainingSelectedLetters = selectedWord.slice(index + 1).concat(selectedWord.slice(0, index));
+      // If the input letter matches the selected letter, add it to correctLetters array
       if (!correctLetters.includes(selectedLetter) && (selectedLetter.toUpperCase() === inputLetter.toUpperCase() || remainingSelectedLetters.some(letter => letter.toUpperCase() === inputLetter.toUpperCase()))) {
         correctLetters.push(selectedLetter);
         displayWord();
       } else {
+        // If the input letter doesn't match the selected letter, add it to wrongLetters array
         if (!wrongLetters.includes(inputLetter.toLowerCase()) && !correctLetters.includes(selectedLetter) && selectedLetter.toUpperCase() !== inputLetter.toUpperCase()) {
           wrongLetters.push(inputLetter.toLowerCase());
           updateWrongLetterE1();
@@ -78,6 +94,7 @@ function displayWord() {
           updateWrongLetterE1();
         }
       }
+      // Clear input box after user input
       e.target.value = '';
     }
   }
