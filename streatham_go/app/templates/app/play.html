@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {%load static %}
+
+{% if error %}
+{{error}}
+{% else %}
+<h1>Playing at: {{game_name}}</h1>
+
+{{game_content|safe}}
+
+{% endif %}
+
+{% endblock %}
