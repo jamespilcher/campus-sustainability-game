@@ -44,7 +44,13 @@ class Leaderboard(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
-    quiz_count = models.IntegerField(default=0)
+    numGamesPlayed = models.IntegerField(default=0)
+    timesPlayedCrossword = models.IntegerField(default=0)
+    timesPlayedHangman = models.IntegerField(default=0)
+    timesPlayedTrivia = models.IntegerField(default=0)
+    timesPlayedTicTacToe = models.IntegerField(default=0)
+    timesPlayedWordSearch = models.IntegerField(default=0)
+    profilePictureIndex = models.IntegerField(default=0)
 
     # Gets the rank of the user within the leaderboard
     @classmethod
@@ -54,13 +60,19 @@ class Leaderboard(models.Model):
                 'username': user.username,
                 'level': current_user_data.level,
                 'xp': current_user_data.xp,
-                'quiz_count': current_user_data.quiz_count
+                'numGamesPlayed': current_user_data.numGamesPlayed
             }) + 1
 
     # Gets the leaderboard data for the current user
     @classmethod
     def get_current_user_data(self, user, leaderboard_data):
         return leaderboard_data.filter(user=user).first()
+    
+    # Gets the profile picture index of the user
+    @classmethod
+    def get_profile_picture_index(self, user):
+        return Leaderboard.objects.filter(
+            user=user).first().profilePictureIndex
 
     # Gets the leaderboard data for all users
     @classmethod
@@ -71,6 +83,7 @@ class Leaderboard(models.Model):
                 'username': user_leaderboard_data.user.username,
                 'level': user_leaderboard_data.level,
                 'xp': user_leaderboard_data.xp,
-                'quiz_count': user_leaderboard_data.quiz_count
+                'numGamesPlayed': user_leaderboard_data.numGamesPlayed
             })
         return user_data
+    
