@@ -1,8 +1,11 @@
 buildingName = "";
+buildingGame = "";
+buildingColour = "";
 buildingLatitude = "";
 buildingLongitude = "";
 buildingMessage = "";
 buildingIcon = "";
+keyScene();
 
 userLatitude = null;
 userLongitude = null;
@@ -26,6 +29,8 @@ watchLocation();
 
 function buildingSetter(building) {
     buildingName = building.name;
+    buildingGame = games[building.game-1];
+    buildingColour = getColorAtIndex(building.game-1);
     buildingLatitude = Number(building.latitude);
     buildingLongitude = Number(building.longitude);
     buildingMessage = building.message;
@@ -51,10 +56,10 @@ function updateButtons(responses) {
     document.getElementById("buttons").innerHTML = responses;
 }
 
-function emptyScene() {
-    say("");
+function keyScene() {
+    say(keyMessage);
     updateButtons("");
-    updateIcon("");
+    document.getElementById("icon").innerHTML = "<h1> Key: </h1>";
 }
 
 function verifyingLocationScene() {
@@ -67,7 +72,7 @@ function openInMaps() {
 }
 
 function welcomeScene() {
-    say(buildingMessage);
+    say(buildingMessage + "<span style='color:" + buildingColour + "'> (" + buildingGame + ")</span>");
     googleMaps =
         "https://maps.google.com/?q=" + buildingLatitude + "," + buildingLongitude;
 
@@ -84,7 +89,7 @@ function welcomeScene() {
 function okayThenScene() {
     say("Very well.");
     responses =
-        "<button type='button' class='btn btn-danger' onclick='emptyScene()'>Explore</button>";
+        "<button type='button' class='btn btn-danger' onclick='keyScene()'>Explore</button>";
     updateButtons(responses);
 }
 
@@ -106,7 +111,7 @@ function readyScene() {
 function unsuccessfulLocationCheckScene() {
     say("Sorry, I can't seem to verify that you are here...");
     responses =
-        "<button type='button' class='btn btn-danger' onclick='emptyScene()'>Explore</button>";
+        "<button type='button' class='btn btn-danger' onclick='keyScene()'>Explore</button>";
     updateButtons(responses);
 }
 
