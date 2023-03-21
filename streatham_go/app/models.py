@@ -11,6 +11,13 @@ class Question(models.Model):
     answer = models.CharField(max_length=1)
 
 
+class Word(models.Model):
+    word = models.CharField(max_length=11)
+    definition = models.CharField(max_length=200)
+    hint = models.CharField(max_length=200)
+    fact = models.CharField(max_length=200)
+
+
 class Location(models.Model):
     name = models.CharField(max_length=50)
     latitude = models.CharField(max_length=50)
