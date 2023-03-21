@@ -6,7 +6,9 @@ from app.models import Leaderboard
 from ..models import Friend
 
 
+# add the login required decorator
 @login_required
+# profile function
 def profile(request, username):
 
     # Get the user object associated with the user logged in
@@ -18,6 +20,7 @@ def profile(request, username):
     current_user_data = Leaderboard.get_current_user_data(
         user, leaderboard_data)
 
+    # Set the context variables
     context = {
         'current_user': user,
         'current_user_data': current_user_data,
@@ -25,4 +28,5 @@ def profile(request, username):
         'self': Friend.is_self(request.user, user),
         'friends': Friend.get_friends(user),
     }
+    # render the profile page
     return render(request, 'accounts/profile.html', context)
