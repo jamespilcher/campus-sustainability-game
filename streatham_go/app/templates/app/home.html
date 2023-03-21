@@ -29,7 +29,27 @@
         // Generate google map
         var locations = '{{ locations|escapejs }}'
         locations = JSON.parse(locations)
+        function interpolateColor(n) {
+          // Parse the start and end colors
+          const start = {
+            'r': 255,
+            'g': 0,
+            'b': 0
+          }
+          const end = {
+            'r': 0,
+            'g': 0,
+            'b': 255,
+          }
 
+          // Interpolate between the start and end colors for the given step
+          const r = ((start.r + end.r) / 2) / n;
+          const g = ((start.g + end.g) / 2) / n;
+          const b =  ((start.b + end.b) / 2) / n;
+          console.log(r,g,b);
+          // Return the interpolated color
+          return `rgb(${r}, ${g}, ${b})`;
+        }
         function myMap() {
           boundsNorth = 50.740400
           boundsSouth = 50.730000
@@ -70,12 +90,12 @@
               labelOrigin: new google.maps.Point(20,-10),
               scaledSize: new google.maps.Size(40, 40)
             }
+            console.log(building.game);
             var labelMarker = {
               text: (building.name),
-              color: "white",
-              fontSize: "16px",
+              color: interpolateColor(building.game),
               fontFamily: "Courier New",
-              className: "maplabel"
+              className: "maplabel",
             }
             
             var positionMarker = {
