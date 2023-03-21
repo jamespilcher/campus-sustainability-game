@@ -34,7 +34,7 @@ def home(request):
         # set the context variable
         context = {
             'locations': locations,
-            'GOOGLE_API_KEY': settings.GOOGLE_API_KEY
+            'GOOGLE_API_KEY': settings.GOOGLE_API_KEY,
         }
 
     # render the home page

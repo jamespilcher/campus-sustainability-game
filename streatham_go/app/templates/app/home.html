@@ -8,15 +8,23 @@
         <p>{{ message }}</p>
     {% endfor %}
 {% else %}
-
+  {% if debug %}
+  <script>
+    var debug = true
+  </script>
+  {% else %}
+  <script>
+  var debug = false
+  </script>
+  {% endif %}
 <script src=" {% url 'app:conversation' %} "></script>
+
 <body>
   <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >  Find your QuestMaster
   </h1></div>
   <br>
       <h5 class="card-title"> </h5>
       <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
-
       <script>
         // Generate google map
         var locations = '{{ locations|escapejs }}'

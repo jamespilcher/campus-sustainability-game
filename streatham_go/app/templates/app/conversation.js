@@ -19,7 +19,6 @@ function watchLocation() {
 function updateLocation(position) {
     userLatitude = position.coords.latitude;
     userLongitude = position.coords.longitude;
-    console.log(userLatitude, userLongitude);
 }
 
 // Call watchLocation() to start watching the user's location
@@ -120,10 +119,14 @@ function getLocation() {
 }
 
 function isValidLocation(userLatitude, userLongitude) {
-    userDist = Math.sqrt(
-        (userLatitude - buildingLatitude) ** 2 +
-        (userLongitude - buildingLongitude) ** 2
-    );
-    console.log(userDist);
+    if (debug) {
+        userDist = 0;
+    }
+    else{
+        userDist = Math.sqrt(
+            (userLatitude - buildingLatitude) ** 2 +
+            (userLongitude - buildingLongitude) ** 2
+        );
+    }
     return userDist <= 0.0008;
 }

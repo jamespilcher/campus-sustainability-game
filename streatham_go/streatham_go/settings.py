@@ -43,6 +43,9 @@ if not DEBUG:
 SECRET_KEY = env('SECRET_KEY')
 GOOGLE_API_KEY = env('GOOGLE_API_KEY')
 
+# List of IP addresses that allows {% debug %} to work
+INTERNAL_IPS = ('.localhost', '127.0.0.1', '[::1]')
+
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
