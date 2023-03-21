@@ -1,6 +1,5 @@
 // Get the HTML elements using their IDs
 const wordE1 = document.getElementById('word');
-const incorrectGuesses = document.getElementById('incorrect-guesses');
 const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('message-container');
 const notification = document.getElementById('notification-container');
@@ -13,12 +12,12 @@ let pointsElement = document.querySelector(".points");
 let userWon = false;
 
 // Get all the body parts of the figure as a NodeList
-const figureParts= document.querySelectorAll(".person-part");
+const figureParts = document.querySelectorAll(".person-part");
 
 // Array of words related to the environment and sustainability
-const words = ['renewable', 'solar', 'wind', 'recycle', 'compost', 'sustainability', 'green', 'carbon', 'footprint', 'conservation', 'ecosystem', 'organic', 'biodiversity', 'climate', 'ozone', 'pollution', 'reduction', 'reuse', 'energy', 'efficient'];
-
-// Randomly select a word from the words array
+// const words = ['renewable', 'solar', 'wind', 'recycle', 'compost', 'sustainability', 'green', 'carbon', 'footprint', 'conservation', 'ecosystem', 'organic', 'biodiversity', 'climate', 'ozone', 'pollution', 'reduction', 'reuse', 'energy', 'efficient'];
+const words = ['sustainability']
+  // Randomly select a word from the words array
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 
 // Arrays to hold the correctly and incorrectly guessed letters
@@ -27,7 +26,7 @@ const wrongLetters = [];
 
 // Display the selected word with correctly guessed letters and input boxes for the remaining letters
 function displayWord() {
-    wordE1.innerHTML = `
+  wordE1.innerHTML = `
       ${selectedWord
         .split('')
         .map((letter, index) =>
@@ -46,10 +45,6 @@ function displayWord() {
   
     // If all the letters have been correctly guessed
     if (innerWord === selectedWord) {
-      // Update points
-      let currentPoints = parseInt(pointsElement.innerHTML);
-      let newPoints = currentPoints + 10;
-      pointsElement.innerHTML = newPoints;
       // Set userWon flag to true and display final message
       userWon = true;
       finalMessage.innerText = 'Congratulations! You won!';
@@ -102,11 +97,6 @@ function displayWord() {
 
 // Update the wrong letters
 function updateWrongLetterE1(){
-    //Display wrong letters
-    incorrectGuesses.innerHTML = `
-    ${wrongLetters.length > 0 ? '<p>Wrong</p>' : ''}
-    ${wrongLetters.map(letter => `<span>${letter}</span>`)}
-    `;
 
     //Display parts
     figureParts.forEach((part,index) => {

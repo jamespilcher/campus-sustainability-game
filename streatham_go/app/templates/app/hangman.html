@@ -3,8 +3,6 @@
 
 <h1>Hangman</h1>
 <p>Guess some letters!</p>
-<h2>Points: </h2>
-<h2 class="points">0</h2>
 <div class="interface-container">
     <svg height="240" width="180" class="person-container">
         <!-- Head -->
@@ -23,13 +21,8 @@
         <line x1="60" y1="20" x2="60" y2="230" />
         <line x1="20" y1="230" x2="100" y2="230" />
     </svg>
-
-    <div class="incorrect-guesses-container">
-        <div id="incorrect-guesses"></div>
-    </div>
-    <div class="word" id="word"></div>
-    <div id="input">Click me to enter a letter</div>
 </div>
+<div class="word" id="word"></div>
 
 <!-- Container for final message -->
 <div class="message-container" id="message-container">
@@ -44,5 +37,5 @@
     <p>You have already entered this letter</p>
 </div>
 
-<script src="{% static 'app/hangman.js' %}"></script>  
+<script src="{% static 'app/hangman.js' %}"></script>
 {% endblock %}

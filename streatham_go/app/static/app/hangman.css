@@ -1,8 +1,12 @@
-h1{
+body {
+    color: #fff;
+}
+
+h1 {
     margin: 20px 0 0;
 }
 
-.interface-container{
+.interface-container {
     padding: 20px 30px;
     position: relative;
     margin: auto;
@@ -10,18 +14,18 @@ h1{
     width: 450px;
 }
 
-.person-container{
+.person-container {
     fill: transparent;
     stroke: #fff;
     stroke-width: 4px;
     stroke-linecap: round;
 }
 
-.person-part{
+.person-part {
     display: none;
 }
 
-.incorrect-guesses-container{
+.incorrect-guesses-container {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -30,39 +34,37 @@ h1{
     text-align: right;
 }
 
-.incorrect-guesses-container p{
+.incorrect-guesses-container p {
     margin: 0 0 5px;
 }
 
-.wincorrect-guesses-container span{
+.wincorrect-guesses-container span {
     font-size: 24px;
 }
 
-.word{
+.word {
     display: flex;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: center;
+    margin: 20px 0;
 }
 
-.input{
+.input {
     font: inherit;
 }
 
-.letter{
+.letter {
     border-bottom: 3px solid #2980b9;
     display: inline-flex;
     font-size: 30px;
     align-items: center;
     justify-content: center;
-    margin: 0 3px;
-    height: 50px;
-    width: 20px;
+    /* margin: 0 2px; */
+    /* height: 50px; */
+    /* width: 20px; */
 }
 
-.message-container{
-    background-color: rgba(0,0,0,0.3);
+.message-container {
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -73,15 +75,15 @@ h1{
     justify-content: center;
 }
 
-.popup{
+.popup {
     background-color: #2980b9;
     border-radius: 5px;
-    box-shadow: 0 15px 10px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
 }
 
-.popup button{
+.popup button {
     cursor: pointer;
     background-color: #fff;
     color: #2980b9;
@@ -91,16 +93,16 @@ h1{
     font-size: 16px;
 }
 
-.popup button:active{
+.popup button:active {
     transform: scale(0.98);
 }
 
-.popup button:focus{
+.popup button:focus {
     outline: 0;
 }
 
-.notification-container{
-    background-color: rgba(0,0,0,0.3);
+.notification-container {
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px 10px 0 0;
     padding: 15px 20px;
     position: absolute;
@@ -108,14 +110,14 @@ h1{
     transition: transform 0.3s ease-in-out;
 }
 
-.notification-container p{
+.notification-container p {
     margin: 0;
 }
 
-.notification-container.show{
+.notification-container.show {
     transform: translateY(-50px);
 }
 
-.points{
+.points {
     font-size: 20px;
 }
