@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+{% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/trivia.css' %}">
 <link href="https://fonts.cdnfonts.com/css/so-bad" rel="stylesheet">
 
@@ -11,15 +11,6 @@
         </a>
     </div>
 </div>
-
-<!-- <script>
-    var question = '{{ question }}'
-    var a = '{{ a }}'
-    var b = '{{ b }}'
-    var c = '{{ c }}'
-    var d = '{{ d }}'
-    question = JSON.parse(question);
-</script> -->
 
 <div id="game-container">
     <div id="game" class="flex-column flex-center">
