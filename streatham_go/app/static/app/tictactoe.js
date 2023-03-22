@@ -163,6 +163,12 @@ function switchStartingPlayer() {
 
 // Updates the player turn text
 function setPlayerTurn(player) {
+  if (player === "X") {
+    player = "You";
+  }
+  else{
+    player = "Pollutonia";
+  }
   playerTurn.innerHTML = "Turn: " + player;
 }
 
@@ -255,7 +261,7 @@ function handleGameOver(winner) {
       document.getElementById('score').innerHTML = "You won the game! Congratulations!";
       userWon = true;
     } else {
-      document.getElementById('score').innerHTML = "You lost the game! Better luck next time!";
+      document.getElementById('score').innerHTML = "You failed to win... Better luck next time!";
       userWon = false;
     }
     console.log(userWon);
