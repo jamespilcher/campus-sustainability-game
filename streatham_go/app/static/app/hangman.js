@@ -9,7 +9,7 @@ const finalMessage = document.getElementById('final-message');
 let pointsElement = document.querySelector(".points");
 
 // Flag to indicate if user won
-let userWon = false;
+let gameWon = false;
 
 // Get all the body parts of the figure as a NodeList
 const figureParts = document.querySelectorAll(".person-part");
@@ -46,7 +46,7 @@ function displayWord() {
     // If all the letters have been correctly guessed
     if (innerWord === selectedWord) {
       // Set userWon flag to true and display final message
-      userWon = true;
+      gameWon = true;
       finalMessage.innerText = 'Congratulations! You won!';
       popup.style.display = 'flex';
     }
