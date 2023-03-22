@@ -16,7 +16,6 @@ const wordsDict = {
 let usableWords = [];
 let placedWords = [];
 let currentOrientation;
-let userWon = false;
 
 // Create a 2d array of size gridSize x gridSize to store the value of each cell
 const gridValues = new Array(gridSize);
