@@ -10,6 +10,8 @@ app_name = 'app'
 urlpatterns = [
     # home page
     path('home/', views.home, name='home'),
+    # word search page
+    path('wordsearch/', views.wordsearch, name='wordsearch'),
     # leaderboard page
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     # ladning page
