@@ -1,5 +1,4 @@
 const playerTurn = document.getElementById('playerTurn');
-const gameState = document.getElementById('winner');
 const restart = document.getElementById('restart');
 
 let gameRunning = true;
@@ -29,9 +28,6 @@ const winningConditions = [
 
 // The initial grid state, with empty strings signifying empty cells
 let gridState = ["", "", "", "", "", "", "", "", ""];
-
-const winningMessage = () => `Player ${currentPlayer} has won!`;
-const drawMessage = () => `Game ended in a draw!`;
 
 // Called when a cell is clicked
 function replyToClick(cellID) {
@@ -186,7 +182,6 @@ function restartGame() {
   });
 
   // Hide the game state and restart button
-  gameState.style.display = "none";
   restart.style.display = "none";
 
   // If starting player is computer, call computerMove()
@@ -251,8 +246,6 @@ function handleGameOver(winner) {
   document.getElementById('score').innerHTML = "Score: " + xScore + " - " + oScore;
 
   // Show the game state and restart button
-  gameState.innerHTML = winner ? winningMessage() : drawMessage();
-  gameState.style.display = "block";
   if (gamesPlayed < 3) {
     restart.style.display = "block";
   } else {
