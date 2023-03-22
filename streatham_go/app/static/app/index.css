@@ -16,7 +16,6 @@ h1{
 h2 {
     color: #ffffff;
     font-size: 36px;
-    
 }
 
 p {
@@ -60,6 +59,7 @@ a.btn:hover {
         margin: auto 24px;
         font-size: 24px;
         padding-top: 10px;
+        font-size: 26px;
     }
     img {
         position: center;
@@ -69,6 +69,7 @@ a.btn:hover {
     }
     a.btn {
         margin-top: 20px;
-        margin-left: 24px;
+        margin-left: 50px;
+        margin-right: 50px;
     }
 }
