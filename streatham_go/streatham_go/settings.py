@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_static_fontawesome",
     "django_bootstrap5",
-    "django.contrib.sites",
     "schedule",
     "accounts",
     "jquery",
