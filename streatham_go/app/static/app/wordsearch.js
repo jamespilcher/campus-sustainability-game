@@ -1,5 +1,3 @@
-var userWon = false;
-
 // Global variable declarations
 var gameOver = false;
 const numRows = 11;
@@ -49,12 +47,12 @@ function fillEmptyCells(table) {
   }
 }
 
-// Function to insert words into the table
-function insertWords(words, table) {
+// Function to insert wordsList into the table
+function insertWords(wordsList, table) {
   const numRows = table.rows.length;
   const numCols = table.rows[0].cells.length;
   const usedCells = new Set(); // Keeps track of occupied cells
-  for (const word of words) {
+  for (const word of wordsList) {
     let x, y, dx, dy;
     do {
       // Random starting position and direction
@@ -71,7 +69,7 @@ function insertWords(words, table) {
       if (endX < 0 || endX >= numCols || endY < 0 || endY >= numRows) {
         continue;
       }
-      // Check if word overlaps with existing words
+      // Check if word overlaps with existing wordsList
       let overlaps = false;
       for (let i = 0; i < wordLen; i++) {
         const cell = table.rows[y + dy * i].cells[x + dx * i];
@@ -108,21 +106,21 @@ function insertWords(words, table) {
 
 let clickedCells = [];
 
-// Function allowing to click cells and also select words
+// Function allowing to click cells and also select wordsList
 // Works by letting you click first and last character of a word
 // If it matches the word then it will change the background color of the cells and increase the score
 
-function addClickListeners(words) {
+function addClickListeners(wordsList) {
   let wordsFound = 0;
   var score = 0;
   //scoreDisplayBox(score);
-  displayWordList(words);
+  displayWordList(wordsList);
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
       table.rows[i].cells[j].addEventListener('click', function() {
 
         // Max score is 6
-        // Corresponding to number of words in the word list
+        // Corresponding to number of wordsList in the word list
         if (score >= 6) {
           return;
         }
@@ -166,14 +164,14 @@ function addClickListeners(words) {
               score++;
               //scoreDisplayBox(score);
               checkWin(score);
-              // loop that goes through words and removes word.word from it
-              for (let i = 0; i < words.length; i++) {
-                if (words[i] === word.word) {
-                  words.splice(i, 1);
-                  i = words.length;
+              // loop that goes through wordsList and removes word.word from it
+              for (let i = 0; i < wordsList.length; i++) {
+                if (wordsList[i] === word.word) {
+                  wordsList.splice(i, 1);
+                  i = wordsList.length;
                 }
               }
-              displayWordList(words);
+              displayWordList(wordsList);
               wordCoords.splice(i, 1); // remove word from wordCoords
               i = wordCoords.length;
             } else {
@@ -207,7 +205,7 @@ function checkWin(score) {
 
 let previousWordList = null;
 
-function displayWordList(words) {
+function displayWordList(wordsList) {
   // Deletes previous word list
   if (previousWordList) {
     document.body.removeChild(previousWordList);
@@ -219,10 +217,10 @@ function displayWordList(words) {
   wordList.style.marginTop = "10px";
   wordList.style.width = "fit-content";
 
-  for (let i = 0; i < words.length; i++) {
+  for (let i = 0; i < wordsList.length; i++) {
     const word = document.createElement('div');
     word.setAttribute = ('id', 'wordsToFind');
-    word.textContent = words[i];
+    word.textContent = wordsList[i];
     word.style.display = "inline-block";
     word.style.marginRight = "10px";
     word.style.fontSize = "20px";
@@ -238,123 +236,45 @@ function displayWordList(words) {
 
 //Random word selection prototype
 
-const wordbank = [
-  "organic",
-  "recycled",
-  "compost",
-  "carbon",
-  "solar",
-  "wind",
-  "green",
-  "hybrid",
-  "sustain",
-  "reduce",
-  "reuse",
-  "refill",
-  "bike",
-  "plant",
-  "forest",
-  "ocean",
-  "clean",
-  "pure",
-  "regrow",
-  "biodegradable",
-  "locally",
-  "grown",
-  "upcycle",
-  "native",
-  "species",
-  "air",
-  "soil",
-  "water",
-  "renew",
-  "energy",
-  "waste",
-  "biodiesel",
-  "reclaimed",
-  "rainwater",
-  "permacult",
-  "greenbelt",
-  "conserve",
-  "wildlife",
-  "habitat",
-  "pollution",
-  "trash",
-  "landfill",
-  "carbon",
-  "footprint",
-  "emissions",
-  "efficient",
-  "lighting",
-  "toxic",
-  "free",
-  "pesticides",
-  "composting",
-  "sustainable",
-  "development",
-  "climate",
-  "neutral",
-  "windmill",
-  "solar",
-  "panel",
-  "reduce",
-  "waste",
-  "environment",
-  "friendly",
-  "conserve",
-  "renewable",
-  "resources",
-  "clean",
-  "energy",
-  "efficient",
-  "appliances",
-  "bike",
-  "path",
-  "public",
-  "transport",
-  "recycling",
-  "bins",
-  "ecosystem",
-  "natural",
-  "eco",
-  "system",
-  "global",
-  "warming",
-  "carbon",
-  "offset",
-  "protect",
-  "biodiversity",
-];
+wordbank = [];
 
-//Function to select 6 random words from words array
+generateWordbank ();
 
-// function selectRandomWords(words) {
+function generateWordbank () {
+  for (let i = 0; i < words.length; i++) {
+    wordbank.push(words[i].word);
+  }
+}
+
+//Function to select 6 random wordsList from wordsList array
+
+// function selectRandomWords(wordsList) {
 //   let randomWords = [];
 //   for (let i = 0; i < 6; i++) {
-//     let randomIndex = Math.floor(Math.random() * words.length);
-//     randomWords.push(words[randomIndex]);
-//     words.splice(randomIndex, 1);
+//     let randomIndex = Math.floor(Math.random() * wordsList.length);
+//     randomWords.push(wordsList[randomIndex]);
+//     wordsList.splice(randomIndex, 1);
 //   }
 //   return randomWords;
 // }
 
-function selectRandomWords(words) {
+function selectRandomWords(wordsList) {
   let randomWords = [];
   for (let i = 0; i < 6; i++) {
-    let randomIndex = Math.floor(Math.random() * words.length);
-    let selectedWord = words[randomIndex].toUpperCase();
+    let randomIndex = Math.floor(Math.random() * wordsList.length);
+    let selectedWord = wordsList[randomIndex].toUpperCase();
     if (selectedWord.length <= 9) {
       randomWords.push(selectedWord);
-      words.splice(randomIndex, 1);
+      wordsList.splice(randomIndex, 1);
     } else {
       i--;
-      words.splice(randomIndex, 1);
+      wordsList.splice(randomIndex, 1);
     }
   }
   return randomWords;
 }
 
-const words = selectRandomWords(wordbank);
+const wordsList = selectRandomWords(wordbank);
 
 let wordCoords = [];
 let scoreDisplay = null;
@@ -421,12 +341,12 @@ displayTimer();
 // document.body.appendChild(scoreDisplay);
 // }
 
-function runGame(table, words, wordCoords) {
+function runGame(table, wordsList, wordCoords) {
     fillEmptyCells(table);
-    insertWords(words, table);
-    //selectWord(table, words);
+    insertWords(wordsList, table);
+    //selectWord(table, wordsList);
     document.body.appendChild(table);
-    addClickListeners(words);
+    addClickListeners(wordsList);
 }
 
 // Styling
@@ -434,9 +354,9 @@ table.style.margin = "0 auto";
 table.style.border = "1px solid black";
 table.style.marginTop = "10px";
 
-// List of words to place in grid (sustainable)
+// List of wordsList to place in grid (sustainable)
 
-//const words = ['REUSE', 'RECYCLE', 'COMPOST', 'ENERGY', 'ECOLOGY', 'SOLAR']
+//const wordsList = ['REUSE', 'RECYCLE', 'COMPOST', 'ENERGY', 'ECOLOGY', 'SOLAR']
 
 // Game run function
-runGame(table, words, wordCoords);
+runGame(table, wordsList, wordCoords);
