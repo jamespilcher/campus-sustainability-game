@@ -8,20 +8,78 @@
         <p>{{ message }}</p>
     {% endfor %}
 {% else %}
+  {% if debug %}
+  <script>
+    var debug = true
+  </script>
+  {% else %}
+  <script>
+  var debug = false
+  </script>
+  {% endif %}
 
-<script src=" {% url 'app:conversation' %} "></script>
+
+<script>  
+  var num_games = {{ num_games }}
+  function getColorAtIndex(x) {
+    const step = 360 / num_games;
+    const hue = x * step;
+    const saturation = 100;
+    const lightness = 80;
+    const rgb = hslToRgb(hue, saturation, lightness);
+    return rgb;
+  }
+
+  function hslToRgb(h, s, l) {
+    h /= 360;
+    s /= 100;
+    l /= 100;
+    let r, g, b;
+    if (s === 0) {
+      r = g = b = l;
+    } else {
+      const hue2rgb = (p, q, t) => {
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+      };
+      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      const p = 2 * l - q;
+      r = Math.round(hue2rgb(p, q, h + 1 / 3)*255);
+      g = Math.round(hue2rgb(p, q, h)*255);
+      b = Math.round(hue2rgb(p, q, h - 1 / 3)*255);
+    }
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  var games = {{ games|safe }};
+  var keyMessage = "";
+  for (var i = 0; i < games.length; i++){
+    // set color of game
+    // append game to key message as a list item
+    keyMessage += "<span style='color: " + getColorAtIndex(i) + "'>" + games[i]
+    if (i < games.length - 1){
+      keyMessage += ", </span> "
+    }
+    else{
+      keyMessage += ". </span>"
+    }
+  }
+</script>
+
 <body>
-  <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >  Find your QuestMaster
+  <div class="text-center text-white border-bottom"> <h1 class="display-1 align-middle" >  Find Your QuestGiver
   </h1></div>
   <br>
       <h5 class="card-title"> </h5>
       <div id="googleMap" style="height:50vh;transform-origin:top;transform:scale(0.95);">
-
       <script>
         // Generate google map
         var locations = '{{ locations|escapejs }}'
         locations = JSON.parse(locations)
-
+          // Return the interpolated color
         function myMap() {
           boundsNorth = 50.740400
           boundsSouth = 50.730000
@@ -31,6 +89,8 @@
 
           var mapProp = {
             // center it on forum
+            scrollwheel: false, 
+            disableDoubleClickZoom: true,
             center: new google.maps.LatLng(50.735344013066786,-3.533710030939591),
             restriction: {
               latLngBounds: {
@@ -51,7 +111,7 @@
 
           // If click on map, clear dialogue screens!
           map.addListener("click", () => {
-            emptyScene();
+            keyScene();
           });
           for (let i = 0; i < locations.length; i++) {
             building = locations[i].fields
@@ -62,10 +122,9 @@
             }
             var labelMarker = {
               text: (building.name),
-              color: "white",
-              fontSize: "16px",
+              color: getColorAtIndex(building.game-1),
               fontFamily: "Courier New",
-              className: "maplabel"
+              className: "maplabel",
             }
             
             var positionMarker = {
@@ -104,7 +163,8 @@
         src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=myMap"
       ></script>
       </div>
-
+  
+  <div id="key"></div>
   <div id="talking">
     <div class="container-fluid">
         <div class="row g-2 form-group">
@@ -122,6 +182,7 @@
   <br>
 
 </body>
+<script src=" {% url 'app:conversation' %} "></script>
 
 {% endif %}
 

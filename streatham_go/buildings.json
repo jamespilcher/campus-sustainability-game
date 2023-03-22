@@ -20,7 +20,7 @@
       "longitude": "-3.535271915803187",
       "message": "*BELCH* Oh hello there traveller. Care to *BURP* help me out with something? I'm by the top of the *WURP* hill.",
       "icon": "app/icons/northcott.png",
-      "game": 1
+      "game": 2
     }
   },
   {
@@ -32,7 +32,7 @@
       "longitude": "-3.534539161978226",
       "message": "Salutations young one. I require some assistance. You couldn't spare me some precious time could you? I reside on Stocker Road.",
       "icon": "app/icons/greathall.png",
-      "game": 1
+      "game": 3
     }
   },
   {
@@ -44,7 +44,7 @@
       "longitude": "-3.5360465251645556",
       "message": "GREETINGS STUDENT. I AM HERE TO OFFER YOU A TASK. WILL YOU ACCEPT? I AM FORWARDING MY CO-ORDINATES TO YOU NOW.",
       "icon": "app/icons/peterchalk.png",
-      "game": 1
+      "game": 4
     }
   },
   {
@@ -56,7 +56,7 @@
       "longitude": "-3.5364699499494314",
       "message": "A pleasure to hear from you again. Please, we should reconvene at my tower. You really must see the city from the top. It is marvellous.",
       "icon": "app/icons/physics.png",
-      "game": 1
+      "game": 5
     }
   },
   {
@@ -80,7 +80,7 @@
       "longitude": "-3.5370780472341403",
       "message": "Hey the view here is amazing. You should come check it out! Stocker Road, can't miss it!",
       "icon": "app/icons/sportspark.png",
-      "game": 1
+      "game": 2
     }
   },
   {
@@ -92,7 +92,7 @@
       "longitude": "-3.533506820884475",
       "message": "Wassah dudeeee. Hey check it we got a real cool thing going on here. N Park Road. Be there or be square bro.",
       "icon": "app/icons/laver.png",
-      "game": 1
+      "game": 3
     }
   },
   {
@@ -104,7 +104,7 @@
       "longitude": "-3.5325805866801314",
       "message": "How do you do? Would you care to assist me? N Park Road. The one with loads of stairs!",
       "icon": "app/icons/harrison.png",
-      "game": 1
+      "game": 4
     }
   },
   {
@@ -116,7 +116,7 @@
       "longitude": "-3.530602170926035",
       "message": " help_needed = true, location = 'EX4 4RN' ",
       "icon": "app/icons/swiot.png",
-      "game": 1
+      "game": 5
     }
   },
   {
@@ -140,7 +140,7 @@
       "longitude": "-3.529888429494681",
       "message": "My goodness. It is so good to see you. Let's catch up at the usual spot on Rennes Drive. I have something for you!",
       "icon": "app/icons/business.png",
-      "game": 1
+      "game": 2
     }
   },
   {
@@ -152,7 +152,7 @@
       "longitude": "-3.5296850179419477",
       "message": "Looking slightly more sober today! Maybe I can help with that hangover? St German's Road. The path is a bit less perilous in daylight!",
       "icon": "app/icons/lemongrove.png",
-      "game": 1
+      "game": 3
     }
   },
   {
@@ -164,7 +164,7 @@
       "longitude": "-3.533160818474208",
       "message": "*ahem* H-h-hello again. C-c-ca-can you help? P-p-puh-prince of wales road.",
       "icon": "app/icons/hatherly.png",
-      "game": 1
+      "game": 4
     }
   },
   {
@@ -176,7 +176,7 @@
       "longitude": "-3.535080342831906",
       "message": "Your highness demands your attention. She awaits you at The Queen's Drive.",
       "icon": "app/icons/queens.png",
-      "game": 1
+      "game": 5
     }
   },
   {
@@ -200,7 +200,7 @@
       "longitude": "-3.5374977559130816",
       "message": "You are telling me you haven't seen the hall? You must come at once! On Streatham Drive with all the gardens and the fountains. Please come and explore for yourself!",
       "icon": "app/icons/reed.png",
-      "game": 1
+      "game": 2
     }
   }
 ]

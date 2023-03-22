@@ -1,8 +1,11 @@
 buildingName = "";
+buildingGame = "";
+buildingColour = "";
 buildingLatitude = "";
 buildingLongitude = "";
 buildingMessage = "";
 buildingIcon = "";
+keyScene();
 
 userLatitude = null;
 userLongitude = null;
@@ -19,7 +22,6 @@ function watchLocation() {
 function updateLocation(position) {
     userLatitude = position.coords.latitude;
     userLongitude = position.coords.longitude;
-    console.log(userLatitude, userLongitude);
 }
 
 // Call watchLocation() to start watching the user's location
@@ -27,6 +29,8 @@ watchLocation();
 
 function buildingSetter(building) {
     buildingName = building.name;
+    buildingGame = games[building.game-1];
+    buildingColour = getColorAtIndex(building.game-1);
     buildingLatitude = Number(building.latitude);
     buildingLongitude = Number(building.longitude);
     buildingMessage = building.message;
@@ -34,7 +38,12 @@ function buildingSetter(building) {
 }
 
 function say(msg) {
-    document.getElementById("dialogue").innerHTML = msg;
+
+    document.getElementById("key").innerHTML = ""
+    if (msg){
+        msg = "<h2 class='border-bottom' style='color:" + buildingColour + "'>" + buildingName + " | " + buildingGame + "</h2>" + msg;
+    }
+    document.getElementById("dialogue").innerHTML = msg
 }
 
 function updateIcon(icon) {
@@ -52,10 +61,11 @@ function updateButtons(responses) {
     document.getElementById("buttons").innerHTML = responses;
 }
 
-function emptyScene() {
+function keyScene() {
     say("");
-    updateButtons("");
     updateIcon("");
+    updateButtons("");
+    document.getElementById("key").innerHTML = "<h2 class='border-bottom'> Available Games: </h2>" + keyMessage;
 }
 
 function verifyingLocationScene() {
@@ -85,7 +95,7 @@ function welcomeScene() {
 function okayThenScene() {
     say("Very well.");
     responses =
-        "<button type='button' class='btn btn-danger' onclick='emptyScene()'>Explore</button>";
+        "<button type='button' class='btn btn-danger' onclick='keyScene()'>Explore</button>";
     updateButtons(responses);
 }
 
@@ -107,7 +117,7 @@ function readyScene() {
 function unsuccessfulLocationCheckScene() {
     say("Sorry, I can't seem to verify that you are here...");
     responses =
-        "<button type='button' class='btn btn-danger' onclick='emptyScene()'>Explore</button>";
+        "<button type='button' class='btn btn-danger' onclick='keyScene()'>Explore</button>";
     updateButtons(responses);
 }
 
@@ -120,10 +130,14 @@ function getLocation() {
 }
 
 function isValidLocation(userLatitude, userLongitude) {
-    userDist = Math.sqrt(
-        (userLatitude - buildingLatitude) ** 2 +
-        (userLongitude - buildingLongitude) ** 2
-    );
-    console.log(userDist);
+    if (debug) {
+        userDist = 0;
+    }
+    else{
+        userDist = Math.sqrt(
+            (userLatitude - buildingLatitude) ** 2 +
+            (userLongitude - buildingLongitude) ** 2
+        );
+    }
     return userDist <= 0.0008;
 }
