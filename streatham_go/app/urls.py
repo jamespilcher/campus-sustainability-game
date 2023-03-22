@@ -16,6 +16,8 @@ urlpatterns = [
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     # ladning page
     path('', views.index, name='index'),
+    # hangman
+    path('hangman/', views.hangman, name='hangman'),
     # trivia page
     path('trivia/', views.trivia, name='trivia'),
     # play page

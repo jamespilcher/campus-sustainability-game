@@ -6,3 +6,5 @@ from .wordsearch import *
 from .trivia import *
 from .play import *
 from .conversation import *
+from .hangman import *
+from .conversation import *
