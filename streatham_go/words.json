@@ -5,7 +5,6 @@
       "fields": {
         "word": "upcycle",
         "definition": "The process of taking waste materials and transforming them into new products.",
-        "hint": "This word refers to a practice that is becoming increasingly popular in the sustainable fashion and design industries.",
         "fact": "Upcycling not only helps reduce waste but also reduces the need for new resources to be extracted and processed, making it an eco-friendly alternative to traditional manufacturing."
       }
     },
@@ -15,7 +14,6 @@
       "fields": {
         "word": "biodegradable",
         "definition": "Materials that can be broken down by natural biological processes into harmless substances.",
-        "hint": "This word is often used to describe environmentally friendly products, such as packaging materials and cleaning supplies.",
         "fact": "Biodegradable materials help reduce the amount of waste that ends up in landfills and oceans, and can also help lower carbon emissions by reducing the need for fossil fuel-derived products."
       }
     },
@@ -25,7 +23,6 @@
       "fields": {
         "word": "carbon footprint",
         "definition": "The total amount of greenhouse gases, mainly carbon dioxide, that are released into the atmosphere as a result of human activities, such as driving a car or using electricity.",
-        "hint": "This word is often used to describe the impact that individuals and organizations have on the environment.",
         "fact": "Reducing your carbon footprint can help mitigate climate change by lowering the amount of greenhouse gases that are released into the atmosphere."
       }
     },
@@ -35,7 +32,6 @@
         "fields": {
         "word": "compost",
         "definition": "Organic matter decomposed for use as fertilizer",
-        "hint": "This word is often associated with gardening and sustainable agriculture.",
         "fact": "Composting helps reduce the amount of organic waste that ends up in landfills, where it can release methane, a potent greenhouse gas."
       }
     },
@@ -45,7 +41,6 @@
       "fields": {
         "word": "circular economy",
         "definition": "An economic system with a focus on reusing, repairing, and recycling products and materials.",
-        "hint": "This word is often used to describe a more sustainable and environmentally friendly approach to economic activity.",
         "fact": "Implementing a circular economy can help reduce the environmental impact of industrial production and consumption by reducing waste, conserving resources, and lowering carbon emissions."
       }
     },
@@ -56,7 +51,6 @@
       "fields": {
         "word": "organic",
         "definition": "The use of farming and production methods that do not involve synthetic chemicals.",
-        "hint": "This word is often used to describe a more sustainable and environmentally friendly approach to economic activity.",
         "fact": "Organic farming makes up 2.9% of total agricultural land in the UK"
       }
     },
@@ -66,8 +60,7 @@
       "pk": 7,
       "fields": {
         "word": "recycling",
-        "definition": "Reusing waste materials to create new products",
-        "hint": "One of the 3 R's of sustainability",
+        "definition": "One of the 3 R's of sustainability",
         "fact": "Recycling a single plastic bottle will save enough energy to power a lightbulb for three hours or more."
       }
     },
@@ -77,7 +70,6 @@
       "fields": {
         "word": "sustainable",
         "definition": "Eco-friendly practices for long-term resource use",
-        "hint": "This word faces many challenges including resource depletion, climate change, inequality, and political instability.",
         "fact": "Sustainability has three main pillars, which are often referred to as the 'triple bottom line': economic, social, and environmental sustainability. "
       }
     },
@@ -88,7 +80,6 @@
       "fields": {
         "word": "renewable",
         "definition": "An energy source that can be replenished naturally",
-        "hint": "",
         "fact": "Renewable energy generates between 3 — 5 times more jobs than non-renewable sectors!"
       }
     },
@@ -98,7 +89,6 @@
       "fields": {
         "word": "vegan",
         "definition": "Person who abstains from animal products in diet",
-        "hint": "",
         "fact": "Eating a vegan diet can reduce your carbon footprint by 73%!"
       }
     },
@@ -108,7 +98,6 @@
       "fields": {
         "word": "vegetarian",
         "definition": "Person who excludes meat from their diet",
-        "hint": "",
         "fact": "On average, vegetarians have a 40% lower risk of developing cancer compared to meat eaters!"
       }
     },
@@ -118,7 +107,6 @@
       "fields": {
         "word": "biofuel",
         "definition": "Renewable energy derived from organic materials, like plants, or poop.",
-        "hint": "",
         "fact": "Biodiesel is not toxic or flammable and is biodegradable!"
       }
     },
@@ -128,7 +116,6 @@
       "fields": {
         "word": "endangered",
         "definition": "Species at risk of extinction due to habitat loss or other factors",
-        "hint": "",
         "fact": "99% of currently threatened species are at risk from human activities."
       }
     },
@@ -138,7 +125,6 @@
       "fields": {
         "word": "ecosystem",
         "definition": "Community of living organisms and their environment",
-        "hint": "",
         "fact": "Half the world's species live in tropical rainforests!"
       }
     }
