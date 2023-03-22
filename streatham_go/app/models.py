@@ -45,11 +45,7 @@ class Leaderboard(models.Model):
     level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
     numGamesPlayed = models.IntegerField(default=0)
-    timesPlayedCrossword = models.IntegerField(default=0)
-    timesPlayedHangman = models.IntegerField(default=0)
-    timesPlayedTrivia = models.IntegerField(default=0)
-    timesPlayedTicTacToe = models.IntegerField(default=0)
-    timesPlayedWordSearch = models.IntegerField(default=0)
+    timesPlayedToday = models.IntegerField(default=0)
     profilePictureIndex = models.IntegerField(default=0)
 
     # Gets the rank of the user within the leaderboard
