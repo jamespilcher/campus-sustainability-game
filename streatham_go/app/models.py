@@ -10,16 +10,6 @@ class Game(models.Model):
     file = models.CharField(max_length=50)
 
 
-# Questions Model
-class Question(models.Model):
-    question = models.CharField(max_length=200)
-    a = models.CharField(max_length=200)
-    b = models.CharField(max_length=200)
-    c = models.CharField(max_length=200)
-    d = models.CharField(max_length=200)
-    answer = models.CharField(max_length=1)
-
-
 # Location model
 class Location(models.Model):
     # the name of the building
