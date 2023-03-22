@@ -161,7 +161,6 @@ const getNewQuestion = () => {
     // Changes the choice placeholder text to the current choices
     choices.forEach((choice) => {
       const number = choice.dataset["letter"];
-      console.log(number);
       choice.textContent = currentQuestion[number];
     });
 
@@ -170,12 +169,9 @@ const getNewQuestion = () => {
 };
 
 function toGamePage(btnId) {
-    console.log(btnId);
     
     if (btnId === "homeBtn") {
         home.style.display = "none";
-        console.log(home.style.display);
-        console.log(game.style.display);
         game.style.display = "block";
         endWin.style.display = "none";
         endLose.style.display = "none";
@@ -188,15 +184,11 @@ function toGamePage(btnId) {
 }
 
 function replyToClick(btnId) {
-    console.log(btnId);
     let btn = document.getElementById(btnId);
     const selectedChoice = btnId.slice(-1);
     const selectedAnswer = currentQuestion['answer'];
-    console.log(selectedChoice);
-    console.log(selectedAnswer);
 
     let classToApply = selectedAnswer == selectedChoice ? 'correct' : 'incorrect';
-    console.log(classToApply);
 
     if(classToApply === 'correct') {
                 incrementScore();
@@ -216,8 +208,6 @@ function checkScore() {
     // If the user scores 2 or over after answering 3 questions, the win page will be displayed
     // If the user scores under 2 after answering 3 questions, the lose page will be displayed
     if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
-        console.log("Current Score: " + score);
-        console.log("Current Question: " + questionCounter);
         win = true;
 
         home.style.display = "none";
@@ -226,7 +216,6 @@ function checkScore() {
         endLose.style.display = "none";
         finalScoreWin.innerText = score;
     } else{
-        console.log("Current Score: " + score);
         win = false;
         home.style.display = "none";
         game.style.display = "none";
@@ -237,24 +226,13 @@ function checkScore() {
 }
 
 function toEndPage(){
-    console.log("GAME: " + game.style.display);
-    console.log("ENDWIN: " + endWin.style.display);
-    console.log("ENDLOSE: " + endLose.style.display);
-    console.log("COUNTER" + questionCounter);
-    console.log("MAX" + MAX_QUESTIONS);
 
     if(questionCounter >= MAX_QUESTIONS) {
-
         checkScore();
         finalScoreWin.innerText = score;
-        console.log("IN IF");
 
-        console.log("FINALSCORE: " + score);
-        console.log("GAME: " + game.style.display);
-        console.log("ENDWIN: " + endWin.style.display);
-        console.log("ENDLOSE: " + endLose.style.display);
     } else {
-        console.log("IN ELSE");
+        
     }
 }
 
