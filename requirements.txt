@@ -6,12 +6,10 @@ Django==4.1.6
 django-bootstrap5==22.2
 django-environ==0.9.0
 django-jquery==3.1.0
-django-scheduler==0.10.1
 django-static-fontawesome==5.15.4.0
 exceptiongroup==1.1.0
 Faker==12.0.1
 flake8==6.0.0
-icalendar==5.0.4
 iniconfig==2.0.0
 mccabe==0.7.0
 mixer==7.2.2
@@ -25,7 +23,6 @@ PyJWT==2.6.0
 pytest==7.2.1
 pytest-django==4.5.2
 python-dateutil==2.8.2
-pytz==2022.7.1
 six==1.16.0
 sqlparse==0.4.3
 tomli==2.0.1
