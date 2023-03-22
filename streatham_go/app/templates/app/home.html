@@ -55,8 +55,8 @@
     }
     return `rgb(${r}, ${g}, ${b})`;
   }
-  var games = {{ games|safe }}
-  var keyMessage = ""
+  var games = {{ games|safe }};
+  var keyMessage = "";
   for (var i = 0; i < games.length; i++){
     // set color of game
     // append game to key message as a list item
@@ -168,7 +168,7 @@
   <div id="talking">
     <div class="container-fluid">
         <div class="row g-2 form-group">
-            <div class="col-3 col-lg-1 mx-auto text-end align-text-top" id ="icon" style="image-rendering: pixelated">
+            <div class="col-3 col-lg-1 mx-auto" id ="icon" style="image-rendering: pixelated">
             </div>
             <div class="col" id="dialogue">
             </div>

@@ -37,8 +37,13 @@ function buildingSetter(building) {
     buildingIcon = building.icon;
 }
 
-function say(msg) {
-    document.getElementById("dialogue").innerHTML = msg;
+function say(msg, key=false) {
+    if (key) {
+        document.getElementById("dialogue").innerHTML = "<h2 class='border-bottom'> Available Games: </h2>" + msg;
+    }
+    else{
+        document.getElementById("dialogue").innerHTML = "<h2 class='border-bottom' style='color:" + buildingColour + "'>" + buildingName + " | " + buildingGame + "</h2>" + msg;
+    }
 }
 
 function updateIcon(icon) {
@@ -57,9 +62,9 @@ function updateButtons(responses) {
 }
 
 function keyScene() {
-    say(keyMessage);
+    say(keyMessage, true);
     updateButtons("");
-    document.getElementById("icon").innerHTML = "<h1> Key: </h1>";
+    updateIcon("");
 }
 
 function verifyingLocationScene() {
@@ -72,7 +77,7 @@ function openInMaps() {
 }
 
 function welcomeScene() {
-    say(buildingMessage + "<span style='color:" + buildingColour + "'> (" + buildingGame + ")</span>");
+    say(buildingMessage);
     googleMaps =
         "https://maps.google.com/?q=" + buildingLatitude + "," + buildingLongitude;
 
