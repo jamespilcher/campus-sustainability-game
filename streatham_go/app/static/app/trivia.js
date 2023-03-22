@@ -14,7 +14,7 @@ let currentQuestion = {};
 let score = 0;
 let availableQuestions = [];
 let questionCounter = 0;
-let win = false;
+let userWon = false;
 
 // An array that contains the questions, answers, and correct answer
 let questions = [
@@ -208,7 +208,8 @@ function checkScore() {
     // If the user scores 2 or over after answering 3 questions, the win page will be displayed
     // If the user scores under 2 after answering 3 questions, the lose page will be displayed
     if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
-        win = true;
+
+        userWin = true;
 
         home.style.display = "none";
         game.style.display = "none";
@@ -216,7 +217,9 @@ function checkScore() {
         endLose.style.display = "none";
         finalScoreWin.innerText = score;
     } else{
-        win = false;
+    
+        userWon = false;
+        
         home.style.display = "none";
         game.style.display = "none";
         endWin.style.display = "none";
