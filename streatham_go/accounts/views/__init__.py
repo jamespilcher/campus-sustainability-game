@@ -6,3 +6,4 @@ from .profile import *
 from .activate import *
 from .search import *
 from .add import *
+from .xp import *

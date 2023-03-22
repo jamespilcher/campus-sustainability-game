@@ -19,5 +19,7 @@ urlpatterns = [
     # add friend page
     path('profile/<username>/add', views.add, name='add'),
     # activate user page
-    path('<username>/activate/', views.activate, name='activate')
+    path('<username>/activate/', views.activate, name='activate'),
+    # add xp path
+    path('<username>/xp', views.xp, name='xp'),
 ]
