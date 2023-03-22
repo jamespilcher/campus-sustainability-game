@@ -2,6 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
+# Games Model
+class Game(models.Model):
+    # The name of the game
+    name = models.CharField(max_length=50)
+    # The file name of the game
+    file = models.CharField(max_length=50)
+
+
+# Questions Model
 class Question(models.Model):
     question = models.CharField(max_length=200)
     a = models.CharField(max_length=200)
@@ -29,14 +38,23 @@ class Word(models.Model):
         return words
 
 
+# Location model
 class Location(models.Model):
+    # the name of the building
     name = models.CharField(max_length=50)
+    # the longitude of the building
     latitude = models.CharField(max_length=50)
+    # the latitude of the building
     longitude = models.CharField(max_length=50)
+    # a message given by the building
     message = models.CharField(max_length=200)
+    # the icon of the building
     icon = models.ImageField(upload_to='app/icons/', blank=True, null=True)
+    # The name of the game that is played at the building
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
 
+# The leaderboard model
 class Leaderboard(models.Model):
     # One to one relationship with the User model
     # When a user is deleted, their leaderboard entry is deleted

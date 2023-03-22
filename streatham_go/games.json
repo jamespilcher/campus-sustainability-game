@@ -1,0 +1,42 @@
+[
+    {
+        "model": "app.game",
+        "pk": 1,
+        "fields": {
+            "name": "TicTacToe",
+            "file": "tictactoe.html"
+        }
+    },
+    {
+        "model": "app.game",
+        "pk": 2,
+        "fields": {
+            "name": "Crossword",
+            "file": "crossword.html"
+        }
+    },
+    {
+        "model": "app.game",
+        "pk": 3,
+        "fields": {
+            "name": "Trivia",
+            "file": "trivia.html"
+        }
+    },
+    {
+        "model": "app.game",
+        "pk": 4,
+        "fields": {
+            "name": "WordSearch",
+            "file": "wordsearch.html"
+        }
+    },
+    {
+        "model": "app.game",
+        "pk": 5,
+        "fields": {
+            "name": "Hangman",
+            "file": "hangman.html"
+        }
+    }
+]
