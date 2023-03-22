@@ -7,4 +7,3 @@ from .activate import *
 from .search import *
 from .add import *
 from .xp import *
-from .privacypolicy import *
