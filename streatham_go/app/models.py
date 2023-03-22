@@ -28,6 +28,7 @@ class Word(models.Model):
             })
         return words
 
+
 class Location(models.Model):
     name = models.CharField(max_length=50)
     latitude = models.CharField(max_length=50)
