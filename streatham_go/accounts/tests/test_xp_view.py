@@ -120,7 +120,6 @@ def test_xp_view_level_up(user, client):
     assert leaderboard_entry.level == 2
 
 
-
 @pytest.mark.django_db
 # test the xp view wehn the user is not logged in
 def test_xp_view_unauthenticated(client, user):
