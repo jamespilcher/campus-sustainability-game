@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
-from app.models import Location
+from app.models import Location, Game
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core import serializers
@@ -30,11 +30,19 @@ def home(request):
                                  "admin panel."))
     else:
         # if there are locations, get the locations from the database
+        num_games = Game.objects.count()
+
+        # Get all games from the model
+        games_model = Game.objects.all()
+        games = [game.name for game in games_model]
+
         locations = serializers.serialize("json", Location.objects.all())
         # set the context variable
         context = {
             'locations': locations,
-            'GOOGLE_API_KEY': settings.GOOGLE_API_KEY
+            'num_games': num_games,
+            'games': games,
+            'GOOGLE_API_KEY': settings.GOOGLE_API_KEY,
         }
 
     # render the home page

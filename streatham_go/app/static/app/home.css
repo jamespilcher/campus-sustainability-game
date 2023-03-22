@@ -6,8 +6,8 @@
 .maplabel {
     font-size: 20px;
     font-weight: bold;
-    background-color: #930000;
     padding: 3px;
+    background-color: black;
     white-space: nowrap;
     text-align: center;
   }
@@ -20,6 +20,13 @@
 
 h1 {
   color: #ffebcf;
+}
+
+h2 {
+  color: #ffebcf;
+  padding: 0px;
+  margin: 0;
+
 }
 
 #talking{
