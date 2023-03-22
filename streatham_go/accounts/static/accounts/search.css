@@ -17,3 +17,7 @@ h1{
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
+
+.colour {
+  background-color: #f4f0d7;
+}
