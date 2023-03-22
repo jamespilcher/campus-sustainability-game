@@ -1,8 +1,3 @@
-import threading
-import schedule
-import time
-from datetime import datetime, timedelta
-from django.core.management import call_command
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -96,22 +91,4 @@ class Leaderboard(models.Model):
 
 
 def reset_times_played_today():
-    # Leaderboard.objects.update(timesPlayedToday=0)
-    # Update every leaderboard object to set timesPlayedToday to 0
-    Leaderboard.objects.all().update(timesPlayedToday=0)
-
-    print("Times played today reset")
-
-# Call reset_times_played_today() every day at midnight
-
-
-# def run_threaded(job_func):
-#     job_thread = threading.Thread(target=job_func)
-#     job_thread.start()
-
-
-# schedule.every(10).seconds.do(run_threaded, reset_times_played_today)
-
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+    Leaderboard.objects.update(timesPlayedToday=0)
