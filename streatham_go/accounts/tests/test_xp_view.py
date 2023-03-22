@@ -80,6 +80,48 @@ def test_xp_view_add_xp(user, client):
 
 
 @pytest.mark.django_db
+# test the xp view
+def test_xp_view_level_up(user, client):
+    """
+        Test the xp view
+
+        Test the xp view increments the level when the xp
+        reaches 100
+    """
+    # login the user
+    client.login(username=user.username, password=pytest.USER_PASSWORD)
+    # get the url
+    url = reverse('accounts:xp', args=[user.username])
+
+    # get the leaderboard entry
+    leaderboard_entry = Leaderboard.objects.get(user=user)
+    # set the xp and quiz count to 0
+    leaderboard_entry.xp = 90
+    # set the quiz count to 0
+    leaderboard_entry.quiz_count = 0
+    # set the level to 1
+    leaderboard_entry.level = 1
+    # save the leaderboard entry
+    leaderboard_entry.save()
+
+    # get the response
+    responce = client.get(url, follow=True)
+
+    # get the leaderboard entry
+    leaderboard_entry = Leaderboard.objects.get(user=user)
+
+    # assert the response status code is 200
+    assert responce.status_code == 200
+    # assert the xp is 100 / (0 + 4)
+    assert leaderboard_entry.xp == 15
+    # assert the quiz count is 1
+    assert leaderboard_entry.quiz_count == 1
+    # assert the level is 1
+    assert leaderboard_entry.level == 2
+
+
+
+@pytest.mark.django_db
 # test the xp view wehn the user is not logged in
 def test_xp_view_unauthenticated(client, user):
     """

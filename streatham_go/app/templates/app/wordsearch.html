@@ -1,31 +1,19 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+{% load static %}
 
-<link rel="stylesheet" href="{% static 'app/wordsearch.css' %}">
-<!DOCTYPE html>
-<html>
-  <head>
-
-    <style>
-      td {
-        border: 1px solid black;
-        width: 40px;
-        height: 40px;
-        text-align: center;
-      }
-      word-search-container{ 
-        margin-top: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="word-search-container">
-      <h1>Word Search</h1>
-    </div>
-    <p id="timer"></p>
-    <div id="words"></div>
-    <script src=" {% static 'app\wordsearch.js' %} "></script>
-
-  </body>
-</html>
-
-{% endblock %}
+<style>
+  td {
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+  }
+  word-search-container{ 
+    margin-top: 10px;
+  }
+</style>
+<div id="word-search-container">
+  <h1>Word Search</h1>
+</div>
+<p id="timer"></p>
+<div id="words"></div>
+<script src=" {% static 'app\wordsearch.js' %} "></script>

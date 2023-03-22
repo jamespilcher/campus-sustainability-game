@@ -22,5 +22,7 @@ urlpatterns = [
     path('play/<token>', views.play, name='play'),
     # conversation javascript (this needs to be rendered)
     path('app/conversion.js', views.conversation, name='conversation'),
+    # play javascript (this needs to be rendered)
+    path('app/play.js', views.play_js, name='play_js'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # also add the static files to the url patterns
