@@ -1,19 +1,46 @@
 {% load static %}
+<link rel="stylesheet" href="{% static 'app/wordsearch.css' %}">
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+      }
+      word-search-container{ 
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div id="game-container">
+      <div id="word-search-container">
+        <h1>Word Search</h1>
+      </div>
+      <p id="timer"></p>
+      <div id="words"></div>
+    </div>
 
-<style>
-  td {
-    border: 1px solid black;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-  }
-  word-search-container{ 
-    margin-top: 10px;
-  }
-</style>
-<div id="word-search-container">
-  <h1>Word Search</h1>
-</div>
-<p id="timer"></p>
-<div id="words"></div>
-<script src=" {% static 'app\wordsearch.js' %} "></script>
+    <div id="win-container">
+      <h1 id= "win-text">
+        Well Done! You have completed this quest!
+        I shall have another quest for you tomorrow!
+      </h1>
+    </div>
+
+    <div id="lose-container">
+      <h1 id= "lose-text">
+        Unlucky traveller, you have failed this quest!
+        Please come by again tomorrow to have another go!
+      </h1>
+    </div>
+
+    <script src=" {% static 'app\wordsearch.js' %} "></script>
+  </body>
+</html>
+
+{% endblock %}

@@ -5,6 +5,9 @@ var gameOver = false;
 const numRows = 11;
 const numCols = 11;
 const table = createTable(numRows, numCols);
+const wordSearchContainer = document.getElementById('game-container');
+const displayLose = document.getElementById('lose-container');
+const displayWin = document.getElementById('win-container');
 //var score = 0;
 
 // Function to create the wordsearch grid table
@@ -114,14 +117,9 @@ function addClickListeners(words) {
   var score = 0;
   //scoreDisplayBox(score);
   displayWordList(words);
-  console.log("WORD LIST: " + words);
-  //console.log('Score: ' + score);
-  console.log("WIN CONDITION");
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
-      table.rows[i].cells[j].addEventListener("click", function () {
-        // For testing purposes
-        // console.log("WORDLIST LENGTH: " + words.length);
+      table.rows[i].cells[j].addEventListener('click', function() {
 
         // Max score is 6
         // Corresponding to number of words in the word list
@@ -165,10 +163,7 @@ function addClickListeners(words) {
                   table.rows[j].cells[word.startX].style.pointerEvents = "none";
                 }
               }
-              // Word found condition starts here
-              console.log("WORD FOUND: " + word.word);
               score++;
-              console.log("Score: " + score); // Displays word to console once it has been found (testing purposes)
               //scoreDisplayBox(score);
               checkWin(score);
               // loop that goes through words and removes word.word from it
@@ -198,8 +193,15 @@ function checkWin(score) {
   if (score >= 6) {
     //alert('You won!');
     userWon = true;
-    console.log("Win Condition Reached");
-    return win;
+    wordSearchContainer.style.display = 'none';
+    displayLose.style.display = 'none';
+    displayWin.style.display = 'block';
+    return userWon;
+  }
+  else{
+    // wordSearchContainer.style.display = 'none';
+    // displayLose.style.display = 'block';
+    // displayWin.style.display = 'none';
   }
 }
 
@@ -211,15 +213,15 @@ function displayWordList(words) {
     document.body.removeChild(previousWordList);
   }
 
-  const wordList = document.createElement("div");
-
+  const wordList = document.createElement('div');
+  wordList.setAttribute('id', 'wordList');
   wordList.style.margin = "0 auto";
   wordList.style.marginTop = "10px";
   wordList.style.width = "fit-content";
 
   for (let i = 0; i < words.length; i++) {
-    const word = document.createElement("div");
-    word.setAttribute = ("id", "wordsToFind");
+    const word = document.createElement('div');
+    word.setAttribute = ('id', 'wordsToFind');
     word.textContent = words[i];
     word.style.display = "inline-block";
     word.style.marginRight = "10px";
@@ -230,7 +232,7 @@ function displayWordList(words) {
   }
   document.body.appendChild(wordList);
   previousWordList = wordList;
-  wordList.setAttribute = ("id", "visualWordList");
+  // wordList.setAttribute = ('id', 'visualWordList');
   return wordList;
 }
 
@@ -393,12 +395,11 @@ function displayTimer() {
     if (timeLeft == 0) {
       clearInterval(timer);
       userWon = false;
-      console.log("Run out of time");
       document.getElementById("wordsearchgrid").style.display = "none";
       document.getElementById("timer").style.display = "none";
-      // document.getElementById('visualWordList').style.display = "none";
-      // document.getElementById("wordsToFind").style.display = "none";
-    }
+      wordList.style.display = "none";
+      displayLose.style.display = "block";
+  }
   }, 1000);
 }
 
@@ -421,12 +422,11 @@ displayTimer();
 // }
 
 function runGame(table, words, wordCoords) {
-  fillEmptyCells(table);
-  insertWords(words, table);
-  console.log(wordCoords);
-  //selectWord(table, words);
-  document.body.appendChild(table);
-  addClickListeners(words);
+    fillEmptyCells(table);
+    insertWords(words, table);
+    //selectWord(table, words);
+    document.body.appendChild(table);
+    addClickListeners(words);
 }
 
 // Styling

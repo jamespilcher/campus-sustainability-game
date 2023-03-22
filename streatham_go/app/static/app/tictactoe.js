@@ -177,7 +177,6 @@ function setPlayerTurn(player) {
 // Called when the restart button is clicked
 function restartGame() {
   gamesPlayed++;
-  console.log(gamesPlayed);
   gameRunning = true;
   switchStartingPlayer();
 
@@ -263,7 +262,6 @@ function handleGameOver(winner) {
   if (gamesPlayed < 3) {
     restart.style.display = "block";
   } else {
-    console.log("HERE");
     restart.style.display = "none";
     if (xScore > oScore) {
       document.getElementById("score").innerHTML =
@@ -274,7 +272,6 @@ function handleGameOver(winner) {
         "You failed to win... Better luck next time!";
       userWon = false;
     }
-    console.log(userWon);
   }
   gameRunning = false;
 }
