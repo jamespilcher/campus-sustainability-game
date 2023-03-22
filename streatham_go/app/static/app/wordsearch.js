@@ -223,9 +223,8 @@ function displayWordList(wordsList) {
     word.textContent = wordsList[i];
     word.style.display = "inline-block";
     word.style.marginRight = "10px";
-    word.style.fontSize = "20px";
-    word.style.fontWeight = "bold";
-    word.style.color = "black";
+    word.style.fontSize = "25px";
+    word.style.color = "#ffebcf";
     wordList.appendChild(word);
   }
   document.body.appendChild(wordList);
@@ -290,9 +289,8 @@ function scoreDisplayBox(score) {
   scoreDisplay.style.margin = "0 auto";
   scoreDisplay.style.marginTop = "10px";
   scoreDisplay.style.width = "fit-content";
-  scoreDisplay.style.fontSize = "20px";
-  scoreDisplay.style.fontWeight = "bold";
-  scoreDisplay.style.color = "black";
+  scoreDisplay.style.fontSize = "25px";
+  scoreDisplay.style.color = "#ffebcf";
   document.body.appendChild(scoreDisplay);
 }
 
@@ -302,9 +300,8 @@ function displayTimer() {
   document.getElementById("timer").style.margin = "0 auto";
   document.getElementById("timer").style.marginTop = "10px";
   document.getElementById("timer").style.width = "fit-content";
-  document.getElementById("timer").style.fontSize = "20px";
-  document.getElementById("timer").style.fontWeight = "bold";
-  document.getElementById("timer").style.color = "black";
+  document.getElementById("timer").style.fontSize = "25px";
+  document.getElementById("timer").style.color = "#ffebcf";
   var timer = setInterval(function () {
     if (userWon) {
       clearInterval(timer);
