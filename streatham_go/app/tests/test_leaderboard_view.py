@@ -30,7 +30,7 @@ def user() -> User:
 # Test for viewing the leaderboard page when logged in as a valid user.
 def test_leaderboard_view_authenticated(user, client):
     client.login(username=user.username, password=pytest.USER_PASSWORD)
-    Leaderboard.objects.create(user=user, level=1, quiz_count=0)
+    Leaderboard.objects.create(user=user, level=1)
 
     url = reverse('app:leaderboard')
     response = client.get(url, follow=True)
@@ -71,10 +71,14 @@ def test_leaderboard_view_with_users(client, user):
         pytest.USER_PASSWORD
     )
     leaderboard_data = [
-        Leaderboard.objects.create(user=user_1, level=3, quiz_count=0, xp=0),
-        Leaderboard.objects.create(user=user_2, level=3, quiz_count=1, xp=50),
-        Leaderboard.objects.create(user=user_3, level=2, quiz_count=2, xp=50),
-        Leaderboard.objects.create(user=user, level=1, quiz_count=0, xp=50)
+        Leaderboard.objects.create(
+            user=user_1, level=3, xp=0, numGamesPlayed=10),
+        Leaderboard.objects.create(
+            user=user_2, level=3, xp=50, numGamesPlayed=8),
+        Leaderboard.objects.create(
+            user=user_3, level=2, xp=50, numGamesPlayed=5),
+        Leaderboard.objects.create(
+            user=user, level=1, xp=50, numGamesPlayed=2)
     ]
     for lb in leaderboard_data:
         lb.save()
@@ -104,10 +108,10 @@ def test_leaderboard_view_with_users(client, user):
     # users with higher level should be first
     # users with same level should be sorted by highest xp
     expected_user_data = [
-        {'username': 'user2', 'level': 3, 'quiz_count': 1, 'xp': 50},
-        {'username': 'user1', 'level': 3, 'quiz_count': 0, 'xp': 0},
-        {'username': 'user3', 'level': 2, 'quiz_count': 2, 'xp': 50},
-        {'username': 'testUser', 'level': 1, 'quiz_count': 0, 'xp': 50},
+        {'username': 'user2', 'level': 3, 'xp': 50, 'numGamesPlayed': 8},
+        {'username': 'user1', 'level': 3, 'xp': 0, 'numGamesPlayed': 10},
+        {'username': 'user3', 'level': 2, 'xp': 50, 'numGamesPlayed': 5},
+        {'username': 'testUser', 'level': 1, 'xp': 50, 'numGamesPlayed': 2},
     ]
     assert response.context['user_data'] == expected_user_data
 
