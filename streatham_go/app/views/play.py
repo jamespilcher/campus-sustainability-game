@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
-from ..models import Location
+from ..models import Location, Word
 from ..tokens import validate_game_jwt
 
 
@@ -10,6 +10,12 @@ from ..tokens import validate_game_jwt
 def play(request, token):
     # initalize the context variable
     context = {}
+
+    # get the words data
+
+    word_data = Word.objects.all()
+
+    words = Word.get_words(word_data)
 
     # get the building name from the token
     buildingName = validate_game_jwt(request, token)
@@ -26,6 +32,7 @@ def play(request, token):
         # set the context variables
         context['building_name'] = buildingName
         context['game_content'] = game_data
+        context['words'] = words
 
     # render the play page
     return render(request, 'app/play.html', context)

@@ -5,11 +5,9 @@ const popup = document.getElementById("message-container");
 const notification = document.getElementById("notification-container");
 const finalMessage = document.getElementById("final-message");
 
+console.log(words)
 // get the element with the class name "points"
 let pointsElement = document.querySelector(".points");
-
-// Flag to indicate if user won
-let userWon = false;
 
 // Get all the body parts of the figure as a NodeList
 const figureParts = document.querySelectorAll(".person-part");
