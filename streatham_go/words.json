@@ -1,0 +1,53 @@
+[
+    {
+      "model": "app.word",
+      "pk": 1,
+      "fields": {
+        "word": "upcycle",
+        "definition": "Upcycling refers to the process of taking waste materials and transforming them into new products with a higher value or quality. It's different from recycling, which typically breaks down materials to be used again in a new product.",
+        "hint": "This word refers to a practice that is becoming increasingly popular in the sustainable fashion and design industries.",
+        "fact": "Upcycling not only helps reduce waste but also reduces the need for new resources to be extracted and processed, making it an eco-friendly alternative to traditional manufacturing."
+      }
+    },
+    {
+      "model": "app.word",
+      "pk": 2,
+      "fields": {
+        "word": "biodegradable",
+        "definition": "Biodegradable refers to materials that can be broken down by natural biological processes into harmless substances, such as water, carbon dioxide, and biomass.",
+        "hint": "This word is often used to describe environmentally friendly products, such as packaging materials and cleaning supplies.",
+        "fact": "Biodegradable materials help reduce the amount of waste that ends up in landfills and oceans, and can also help lower carbon emissions by reducing the need for fossil fuel-derived products."
+      }
+    },
+    {
+      "model": "app.word",
+      "pk": 3,
+      "fields": {
+        "word": "carbon footprint",
+        "definition": "A carbon footprint is the total amount of greenhouse gases, mainly carbon dioxide, that are released into the atmosphere as a result of human activities, such as driving a car or using electricity.",
+        "hint": "This word is often used to describe the impact that individuals and organizations have on the environment.",
+        "fact": "Reducing your carbon footprint can help mitigate climate change by lowering the amount of greenhouse gases that are released into the atmosphere."
+      }
+    },
+    {
+      "model": "app.word",
+      "pk": 4,
+        "fields": {
+        "word": "composting",
+        "definition": "Composting is the process of breaking down organic materials, such as food scraps and yard waste, into a nutrient-rich soil amendment.",
+        "hint": "This word is often associated with gardening and sustainable agriculture.",
+        "fact": "Composting helps reduce the amount of organic waste that ends up in landfills, where it can release methane, a potent greenhouse gas."
+      }
+    },
+    {
+      "model": "app.word",
+      "pk": 5,
+      "fields": {
+        "word": "circular economy",
+        "definition": "A circular economy is an economic system that aims to eliminate waste and keep resources in use for as long as possible by reusing, repairing, and recycling products and materials.",
+        "hint": "This word is often used to describe a more sustainable and environmentally friendly approach to economic activity.",
+        "fact": "Implementing a circular economy can help reduce the environmental impact of industrial production and consumption by reducing waste, conserving resources, and lowering carbon emissions."
+      }
+    }
+
+]
