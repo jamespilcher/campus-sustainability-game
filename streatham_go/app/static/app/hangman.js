@@ -5,16 +5,14 @@ const popup = document.getElementById("message-container");
 const notification = document.getElementById("notification-container");
 const finalMessage = document.getElementById("final-message");
 
-console.log(words)
 // get the element with the class name "points"
 let pointsElement = document.querySelector(".points");
-
 // Get all the body parts of the figure as a NodeList
 const figureParts = document.querySelectorAll(".person-part");
 
 // Randomly select a word from the words array
-let selectedWord = words[Math.floor(Math.random() * words.length)];
-let selectedWordWord = selectedWord['word'];
+let selectedWord = words[Math.floor(Math.random() * words.length)]
+let selectedWordWord = selectedWord.word;
 
 // Arrays to hold the correctly and incorrectly guessed letters
 const correctLetters = [];
@@ -23,8 +21,7 @@ const wrongLetters = [];
 // Display the selected word with correctly guessed letters and input boxes for the remaining letters
 function displayWord() {
   wordE1.innerHTML = `
-      ${selectedWordWord
-        .split("")
+      ${selectedWordWord.split("")
         .map(
           (letter, index) =>
             `<span class="letter" data-index="${index}">${
@@ -60,6 +57,7 @@ function handleInputBoxInput(e) {
   if (inputLetter && inputLetter.length === 1) {
     const selectedLetter = selectedWordWord[index];
     const remainingSelectedLetters = selectedWordWord
+      .split("")
       .slice(index + 1)
       .concat(selectedWordWord.slice(0, index));
     // If the input letter matches the selected letter, add it to correctLetters array
@@ -165,7 +163,8 @@ playAgainBtn.addEventListener("click", () => {
   correctLetters.splice(0);
   wrongLetters.splice(0);
 
-  selectedWordWord = words[Math.floor(Math.random() * words.length)];
+  let selectedWord = words[Math.floor(Math.random() * words.length)]
+  let selectedWordWord = selectedWord.word;
 
   displayWord();
 
