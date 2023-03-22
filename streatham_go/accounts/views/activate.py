@@ -39,8 +39,8 @@ def activate(request, username):
 
             # Create a leaderboard entry for the user now they're verified
 
-            # Randomly generate number between 1 and 10.
-            profilePictureIndex = random.randint(1, 10)
+            # Randomly generate number between 0 and 6 (7 profile pictures)
+            profilePictureIndex = random.randint(0, 6)
             leaderboard = Leaderboard.objects.create(
                 user=user, profilePictureIndex=profilePictureIndex)
 
