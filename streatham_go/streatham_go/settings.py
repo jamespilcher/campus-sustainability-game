@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_static_fontawesome",
     "django_bootstrap5",
+    "django.contrib.sites",
+    "schedule",
     "accounts",
     "jquery",
     "app",
@@ -77,6 +79,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.sites.middleware.CurrentSiteMiddleware",
 ]
 
 ROOT_URLCONF = "streatham_go.urls"
