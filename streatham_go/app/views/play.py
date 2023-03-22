@@ -24,7 +24,7 @@ def play(request, token):
     game_data = render_to_string('app/' + building.game.file)
 
     # set the context variables
-    context['game_name'] = buildingName
+    context['building_name'] = buildingName
     context['game_content'] = game_data
 
     # render the play page

@@ -37,13 +37,13 @@ function buildingSetter(building) {
     buildingIcon = building.icon;
 }
 
-function say(msg, key=false) {
-    if (key) {
-        document.getElementById("dialogue").innerHTML = "<h2 class='border-bottom'> Available Games: </h2>" + msg;
+function say(msg) {
+
+    document.getElementById("key").innerHTML = ""
+    if (msg){
+        msg = "<h2 class='border-bottom' style='color:" + buildingColour + "'>" + buildingName + " | " + buildingGame + "</h2>" + msg;
     }
-    else{
-        document.getElementById("dialogue").innerHTML = "<h2 class='border-bottom' style='color:" + buildingColour + "'>" + buildingName + " | " + buildingGame + "</h2>" + msg;
-    }
+    document.getElementById("dialogue").innerHTML = msg
 }
 
 function updateIcon(icon) {
@@ -62,9 +62,10 @@ function updateButtons(responses) {
 }
 
 function keyScene() {
-    say(keyMessage, true);
-    updateButtons("");
+    say("");
     updateIcon("");
+    updateButtons("");
+    document.getElementById("key").innerHTML = "<h2 class='border-bottom'> Available Games: </h2>" + keyMessage;
 }
 
 function verifyingLocationScene() {
