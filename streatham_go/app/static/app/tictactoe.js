@@ -1,6 +1,5 @@
-const playerTurn = document.getElementById("playerTurn");
-const gameState = document.getElementById("winner");
-const restart = document.getElementById("restart");
+const playerTurn = document.getElementById('playerTurn');
+const restart = document.getElementById('restart');
 
 let gameRunning = true;
 let currentPlayer = "X";
@@ -29,9 +28,6 @@ const winningConditions = [
 
 // The initial grid state, with empty strings signifying empty cells
 let gridState = ["", "", "", "", "", "", "", "", ""];
-
-const winningMessage = () => `Player ${currentPlayer} has won!`;
-const drawMessage = () => `Game ended in a draw!`;
 
 // Called when a cell is clicked
 function replyToClick(cellID) {
@@ -169,6 +165,12 @@ function switchStartingPlayer() {
 
 // Updates the player turn text
 function setPlayerTurn(player) {
+  if (player === "X") {
+    player = "You";
+  }
+  else{
+    player = "Pollutonia";
+  }
   playerTurn.innerHTML = "Turn: " + player;
 }
 
@@ -188,7 +190,6 @@ function restartGame() {
   });
 
   // Hide the game state and restart button
-  gameState.style.display = "none";
   restart.style.display = "none";
 
   // If starting player is computer, call computerMove()
@@ -259,8 +260,6 @@ function handleGameOver(winner) {
     "Score: " + xScore + " - " + oScore;
 
   // Show the game state and restart button
-  gameState.innerHTML = winner ? winningMessage() : drawMessage();
-  gameState.style.display = "block";
   if (gamesPlayed < 3) {
     restart.style.display = "block";
   } else {
@@ -271,8 +270,8 @@ function handleGameOver(winner) {
         "You won the game! Congratulations!";
       userWon = true;
     } else {
-      document.getElementById("score").innerHTML =
-        "You lost the game! Better luck next time!";
+      document.getElementById('score').innerHTML = 
+        "You failed to win... Better luck next time!";
       userWon = false;
     }
     console.log(userWon);

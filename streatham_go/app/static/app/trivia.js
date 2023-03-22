@@ -226,7 +226,6 @@ function checkScore() {
     console.log("Current Score: " + score);
     console.log("Current Question: " + questionCounter);
     userWon = true;
-
     home.style.display = "none";
     game.style.display = "none";
     endWin.style.display = "block";
