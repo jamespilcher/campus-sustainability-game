@@ -3,29 +3,6 @@
 
 <body>
     <center>
-        <script>
-            window.onload = choosePic;
-
-            var newPP = new Array(
-                "{% static 'accounts/profpic/pp1.png' %}",
-                "{% static 'accounts/profpic/pp2.png' %}",
-                "{% static 'accounts/profpic/pp3.png' %}",
-                "{% static 'accounts/profpic/pp4.png' %}",
-                "{% static 'accounts/profpic/pp5.png' %}",
-                "{% static 'accounts/profpic/pp6.png' %}",
-                "{% static 'accounts/profpic/pp7.png' %}", );
-
-            var previousIndex = -1;
-
-            function choosePic() {
-                var randomNum = Math.floor(Math.random() * newPP.length);
-                while (randomNum == previousIndex) {
-                    randomNum = Math.floor(Math.random() * newPP.length);
-                }
-                previousIndex = randomNum;
-                document.getElementById("profile-pic").src = newPP[randomNum];
-            }
-        </script>
         <div class="text-center text-white border-bottom">
             <h1 class="display-1 align-middle"> {{current_user.username}}
             </h1>
@@ -127,6 +104,21 @@
 
         <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
         <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
+        <script>
+            var newPP = new Array(
+                "{% static 'accounts/profpic/pp1.png' %}",
+                "{% static 'accounts/profpic/pp2.png' %}",
+                "{% static 'accounts/profpic/pp3.png' %}",
+                "{% static 'accounts/profpic/pp4.png' %}",
+                "{% static 'accounts/profpic/pp5.png' %}",
+                "{% static 'accounts/profpic/pp6.png' %}",
+                "{% static 'accounts/profpic/pp7.png' %}", );
+
+            var index = 0
+            index = "{{current_user_data.profilePictureIndex}}"
+            console.log(index);
+            document.getElementById("profile-pic").src = newPP[index];
+        </script>
     </center>
 </body>
 {% endblock %}
