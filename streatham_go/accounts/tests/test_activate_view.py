@@ -12,6 +12,12 @@ pytest.USER_PASSWORD = '12345'
 @pytest.fixture
 # create a user fixture
 def user() -> User:
+    """
+        Create a user fixture
+
+        Returns:
+            User: The user
+    """
     # create a user
     u = User.objects.create_user('ethanhofton',
                                  'eh736@exeter.ac.uk',
@@ -29,6 +35,12 @@ def user() -> User:
 @pytest.fixture
 # create a user fixture
 def user2() -> User:
+    """
+        Create a user fixture
+
+        Returns:
+            User: The user
+    """
     # create a user
     u = User.objects.create_user('admin',
                                  'streathamgo@gmail.com',
@@ -46,6 +58,13 @@ def user2() -> User:
 @pytest.mark.django_db
 # test the activate view when authenticated
 def test_activate_view_authenticated(user, client):
+    """
+        Test the activate view when authenticated
+
+        check that the user is redirected to the home page
+        when they are already authenticated and try to access the
+        activate view
+    """
     # login the user
     client.login(username=user.username, password=pytest.USER_PASSWORD)
 
@@ -63,6 +82,12 @@ def test_activate_view_authenticated(user, client):
 @pytest.mark.django_db
 # test the activate view with a wrong username
 def test_activate_view_wrong_username(user, client):
+    """
+        Test the activate view with a wrong username
+
+        check that the user_not_found context variable is true
+        when the username is not found
+    """
     # get the url
     url = reverse('accounts:activate',
                   kwargs={'username': user.username + '_incorect'})
@@ -78,6 +103,12 @@ def test_activate_view_wrong_username(user, client):
 @pytest.mark.django_db
 # test the activate view with a wrong token
 def test_activate_view_wrong_token(user, client):
+    """
+        Test the activate view with a wrong token
+
+        check that the invalid_token context variable is true
+        when the token is not valid and the user is not activated
+    """
     # set the user activity to false
     user.is_active = False
     # save the user
@@ -105,6 +136,12 @@ def test_activate_view_wrong_token(user, client):
 @pytest.mark.django_db
 # test the activate view with a valid token
 def test_activate_view_valid_token_inactive_user(user, client):
+    """
+        Test the activate view with a valid token
+
+        check that the success context variable is true and the user is
+        activated when the token is valid and the user is not activated
+    """
     # set the user activity to false
     user.is_active = False
     # save the user
@@ -134,6 +171,12 @@ def test_activate_view_valid_token_inactive_user(user, client):
 @pytest.mark.django_db
 # test the activate view with a valid token for the wrong user
 def test_activate_view_valid_token_wrong_user(user, user2, client):
+    """
+        Test the activate view with a valid token for the wrong user
+
+        check that the invalid_token context variable is true and the user is
+        not activated when the token is valid but for the wrong user
+    """
     # get user2 token
     user2_token = email_verification_token.make_token(user2)
 
@@ -164,6 +207,12 @@ def test_activate_view_valid_token_wrong_user(user, user2, client):
 @pytest.mark.django_db
 # test the activate view with a valid token for an active user
 def test_activate_view_valid_token_active_user(user, client):
+    """
+        Test the activate view with a valid token for an active user
+
+        check that the invalid_token context variable is true and the user is
+        not activated when the token is valid but the user is already active
+    """
     # set the user activity to true
     user.is_active = False
     # save the user

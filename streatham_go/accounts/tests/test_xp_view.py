@@ -15,6 +15,12 @@ pytest.USER_WRONG_PASSWORD = 'wrong_password'
 # create a user fixture
 @pytest.fixture
 def user() -> User:
+    """
+        Create a user fixture
+
+        Returns:
+            User: The user
+    """
     # create a user
     u = User.objects.create_user('ethanhofton',
                                  'eh736@exeter.ac.uk',
@@ -39,6 +45,12 @@ def user() -> User:
 @pytest.mark.django_db
 # test the xp view
 def test_xp_view_add_xp(user, client):
+    """
+        Test the xp view
+
+        test the xp view adds the correct ammount of xp
+        based on the number of games played
+    """
     # login the user
     client.login(username=user.username, password=pytest.USER_PASSWORD)
     # get the url
@@ -70,6 +82,12 @@ def test_xp_view_add_xp(user, client):
 @pytest.mark.django_db
 # test the xp view wehn the user is not logged in
 def test_xp_view_unauthenticated(client, user):
+    """
+        Test the xp view when the user is not logged in
+
+        test the xp view redirects to the login page
+        when the user is not logged in
+    """
     # get the url
     url = reverse('accounts:xp', args=[user.username])
     # get the response
