@@ -4,8 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
 <link rel="stylesheet" type="text/css" href="{% static "accounts/search.css" %}" />
 <div class="text-center text-white border-bottom"><h1 class="display-1 align-middle" >Search</h1></div>
-    <br>
-<div class="card mt-5">
+<div class="card mt-5 rounded-0 colour">
     {# icon and search-box #}
         <div class="card-body">
             <div class="row justify-content-md-center align-middle">
@@ -20,8 +19,8 @@
 </div>
 
 {# artist-list section #}
-<div class="card mt-3">
-    <div class="card-body">
+<div class="card mt-3 rounded-0 colour">
+    <div class="card-body ">
         <div id="replaceable-content">
             {% include 'accounts/search-results-partial.html' %}
         </div>

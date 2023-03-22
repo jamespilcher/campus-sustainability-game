@@ -7,7 +7,7 @@
   }
 }
 h1{
-  color: rgb(255, 193, 193);
+  color: rgb(255, 223, 223);
 }
 .blink {
   text-decoration: blink;
@@ -16,4 +16,8 @@ h1{
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
+}
+
+.colour {
+  background-color: #f4f0d7;
 }
