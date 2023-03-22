@@ -88,7 +88,3 @@ class Leaderboard(models.Model):
                 'numGamesPlayed': user_leaderboard_data.numGamesPlayed
             })
         return user_data
-
-
-def reset_times_played_today():
-    Leaderboard.objects.update(timesPlayedToday=0)
