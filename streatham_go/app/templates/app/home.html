@@ -20,6 +20,7 @@
 
 
 <script>  
+  var facts = {{ facts|safe}}
   var num_games = {{ num_games }}
   function getColorAtIndex(x) {
     const step = 360 / num_games;

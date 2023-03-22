@@ -14,7 +14,6 @@ let currentQuestion = {};
 let score = 0;
 let availableQuestions = [];
 let questionCounter = 0;
-let userWon = false;
 
 // An array that contains the questions, answers, and correct answer
 let questions = [

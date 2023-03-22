@@ -5,7 +5,6 @@ buildingLatitude = "";
 buildingLongitude = "";
 buildingMessage = "";
 buildingIcon = "";
-const facts = []
 keyScene();
 
 userLatitude = null;
@@ -39,8 +38,6 @@ function buildingSetter(building) {
 }
 
 function say(msg) {
-
-    document.getElementById("key").innerHTML = ""
     if (msg){
         msg = "<h2 class='border-bottom' style='color:" + buildingColour + "'>" + buildingName + " | " + buildingGame + "</h2>" + msg;
     }
@@ -79,17 +76,25 @@ function openInMaps() {
 }
 
 function welcomeScene() {
+    document.getElementById("key").innerHTML = ""
     say(buildingMessage);
     googleMaps =
         "https://maps.google.com/?q=" + buildingLatitude + "," + buildingLongitude;
 
     responses =
-        "<button type='button' class='btn btn-danger' onclick='say(\"Insult\")'>Insult</button>" +
+        "<button type='button' class='btn btn-danger' onclick='factScene()'>Wisdom</button>" +
         "<button type='button' class='btn btn-success' onclick='getLocation()'>I'm here</button>" +
         "<a class='btn btn-warning' href=" +
         googleMaps +
         " target='_blank'>Open in Maps</a>";
     updateIcon(buildingIcon);
+    updateButtons(responses);
+}
+
+function factScene(){
+    say(facts[Math.floor(Math.random()*facts.length)]);
+    responses =
+        "<button type='button' class='btn btn-danger' onclick='welcomeScene()'>Back</button>";
     updateButtons(responses);
 }
 
