@@ -14,7 +14,7 @@ let currentQuestion = {};
 let score = 0;
 let availableQuestions = [];
 let questionCounter = 0;
-let win = false;
+let userWon = false;
 
 // An array that contains the questions, answers, and correct answer
 let questions = [
@@ -218,7 +218,7 @@ function checkScore() {
     if(score >= 2 && questionCounter >= MAX_QUESTIONS) {
         console.log("Current Score: " + score);
         console.log("Current Question: " + questionCounter);
-        win = true;
+        userWon = true;
 
         home.style.display = "none";
         game.style.display = "none";
@@ -227,7 +227,7 @@ function checkScore() {
         finalScoreWin.innerText = score;
     } else{
         console.log("Current Score: " + score);
-        win = false;
+        userWon = false;
         home.style.display = "none";
         game.style.display = "none";
         endWin.style.display = "none";
