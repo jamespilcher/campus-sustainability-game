@@ -40,7 +40,10 @@ class Location(models.Model):
 class Leaderboard(models.Model):
     # One to one relationship with the User model
     # When a user is deleted, their leaderboard entry is deleted
-    # User has a level, xp value, and quiz_count
+    # User has a level, xp value, and numGamesPlayed value
+    # timesPlayedToday is the number of times the user has played a game today,
+    # which will be reset daily
+    # profilePictureIndex is the index to use when getting user profile picture
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=1)
     xp = models.IntegerField(default=0)
