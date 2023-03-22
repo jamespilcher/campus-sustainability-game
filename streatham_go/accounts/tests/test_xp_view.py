@@ -58,10 +58,10 @@ def test_xp_view_add_xp(user, client):
 
     # get the leaderboard entry
     leaderboard_entry = Leaderboard.objects.get(user=user)
-    # set the xp and quiz count to 0
+    # set the xp to 0
     leaderboard_entry.xp = 0
-    # set the quiz count to 0
-    leaderboard_entry.quiz_count = 0
+    # set the numGamesPlayed to 0
+    leaderboard_entry.numGamesPlayed = 0
     # save the leaderboard entry
     leaderboard_entry.save()
 
@@ -73,10 +73,10 @@ def test_xp_view_add_xp(user, client):
 
     # assert the response status code is 200
     assert responce.status_code == 200
-    # assert the xp is 100 / (0 + 4)
-    assert leaderboard_entry.xp == int(100 / (0 + 4))
-    # assert the quiz count is 1
-    assert leaderboard_entry.quiz_count == 1
+    # assert the xp is 20
+    assert leaderboard_entry.xp == 20
+    # assert the numGamesPlayed is 1
+    assert leaderboard_entry.numGamesPlayed == 1
 
 
 @pytest.mark.django_db
@@ -97,8 +97,8 @@ def test_xp_view_level_up(user, client):
     leaderboard_entry = Leaderboard.objects.get(user=user)
     # set the xp and quiz count to 0
     leaderboard_entry.xp = 90
-    # set the quiz count to 0
-    leaderboard_entry.quiz_count = 0
+    # set the numGamesPlayed to 0
+    leaderboard_entry.numGamesPlayed = 0
     # set the level to 1
     leaderboard_entry.level = 1
     # save the leaderboard entry
@@ -112,10 +112,10 @@ def test_xp_view_level_up(user, client):
 
     # assert the response status code is 200
     assert responce.status_code == 200
-    # assert the xp is 100 / (0 + 4)
-    assert leaderboard_entry.xp == 15
+    # assert the xp is 10 (90 + 20 % 100)
+    assert leaderboard_entry.xp == 10
     # assert the quiz count is 1
-    assert leaderboard_entry.quiz_count == 1
+    assert leaderboard_entry.numGamesPlayed == 1
     # assert the level is 1
     assert leaderboard_entry.level == 2
 
