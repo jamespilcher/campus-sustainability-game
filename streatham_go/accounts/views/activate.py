@@ -42,7 +42,7 @@ def activate(request, username):
             # Randomly generate number between 1 and 10.
             profilePictureIndex = random.randint(1, 10)
             leaderboard = Leaderboard.objects.create(
-                user=user, profilePictureIndex=profilePictureIndex)
+                user=user, timesPlayedToday=25, profilePictureIndex=profilePictureIndex)
 
             # Save the leaderboard
             leaderboard.save()

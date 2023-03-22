@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_static_fontawesome",
     "django_bootstrap5",
+    "django_crontab",
     "schedule",
     "accounts",
     "jquery",
@@ -166,3 +167,10 @@ LOGIN_URL = "accounts:login"
 # Allow Inactive Users to login so custom error message can be displayed
 AUTHENTICATION_BACKENDS = (('django.contrib.auth.backends.'
                             'AllowAllUsersModelBackend'), )
+
+
+# Import reset_times_played_today function from cron.py
+
+CRONJOBS = [
+    ('*/1 * * * *', 'accounts.management.commands.reset_times_played_today', '>> /tmp/cron.log')
+]
