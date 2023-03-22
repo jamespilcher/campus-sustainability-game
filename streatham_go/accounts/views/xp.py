@@ -20,10 +20,16 @@ def xp(request, username):
     leaderboardEntry = Leaderboard.objects.get(user=user)
     # calculate the xp
     xp = _calculate_xp(leaderboardEntry.quiz_count)
+    # check if there is a level increase
+    leavel_increase = leaderboardEntry.xp + xp >= 100
     # add the xp to the leaderboard entry
-    leaderboardEntry.xp += xp
+    leaderboardEntry.xp = (leaderboardEntry.xp + xp) % 100
     # increment the quiz count
     leaderboardEntry.quiz_count += 1
+    # check if there is a level increase
+    if leavel_increase:
+        # increment the level
+        leaderboardEntry.level += 1
     # save the leaderboard entry
     leaderboardEntry.save()
     # return a 200 response
