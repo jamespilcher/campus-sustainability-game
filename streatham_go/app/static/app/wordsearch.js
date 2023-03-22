@@ -113,15 +113,9 @@ function addClickListeners(words) {
   var score = 0;
   //scoreDisplayBox(score);
   displayWordList(words);
-  console.log("WORD LIST: " + words);
-  //console.log('Score: ' + score);
-  console.log('WIN CONDITION');
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
       table.rows[i].cells[j].addEventListener('click', function() {
-
-        // For testing purposes
-        // console.log("WORDLIST LENGTH: " + words.length);
 
         // Max score is 6
         // Corresponding to number of words in the word list
@@ -158,10 +152,7 @@ function addClickListeners(words) {
                   table.rows[j].cells[word.startX].style.pointerEvents = 'none';
                 }
               }
-              // Word found condition starts here
-              console.log('WORD FOUND: ' + word.word);
               score++;
-              console.log('Score: ' + score); // Displays word to console once it has been found (testing purposes)
               //scoreDisplayBox(score);
               checkWin(score);
               // loop that goes through words and removes word.word from it
@@ -189,7 +180,6 @@ function checkWin(score) {
   if (score >= 6) {
     //alert('You won!');
     win = true;
-    console.log('Win Condition Reached');
     return win;
   }
 }
@@ -387,7 +377,6 @@ function displayTimer(){
     if (timeLeft == 0) {
       clearInterval(timer);
       win = false;
-      console.log('Run out of time');
       document.getElementById("wordsearchgrid").style.display = "none";
       document.getElementById("timer").style.display = "none";
       // document.getElementById('visualWordList').style.display = "none";
@@ -417,7 +406,6 @@ displayTimer();
 function runGame(table, words, wordCoords) {
     fillEmptyCells(table);
     insertWords(words, table);
-    console.log(wordCoords);
     //selectWord(table, words);
     document.body.appendChild(table);
     addClickListeners(words);
