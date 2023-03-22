@@ -66,12 +66,15 @@ class Leaderboard(models.Model):
     @classmethod
     def get_current_user_data(self, user, leaderboard_data):
         return leaderboard_data.filter(user=user).first()
-    
+
     # Gets the profile picture index of the user
     @classmethod
     def get_profile_picture_index(self, user):
-        return Leaderboard.objects.filter(
-            user=user).first().profilePictureIndex
+        leaderboard = Leaderboard.objects.filter(user=user).first()
+        if leaderboard:
+            return leaderboard.profilePictureIndex
+        else:
+            return 0
 
     # Gets the leaderboard data for all users
     @classmethod
@@ -85,4 +88,3 @@ class Leaderboard(models.Model):
                 'numGamesPlayed': user_leaderboard_data.numGamesPlayed
             })
         return user_data
-    
