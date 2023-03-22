@@ -5,6 +5,9 @@ var gameOver = false;
 const numRows = 11;
 const numCols = 11;
 const table = createTable(numRows, numCols);
+const wordSearchContainer = document.getElementById('game-container');
+const displayLose = document.getElementById('lose-container');
+const displayWin = document.getElementById('win-container');
 //var score = 0;
 
 // Function to create the wordsearch grid table
@@ -21,7 +24,6 @@ function createTable(rows, cols) {
   }
   return table;
 }
-
 
 // Function to fill the empty cells with random letters, checks each cell first to see if they are empty
 function fillEmptyCells(table) {
@@ -180,7 +182,15 @@ function checkWin(score) {
   if (score >= 6) {
     //alert('You won!');
     win = true;
+    wordSearchContainer.style.display = 'none';
+    displayLose.style.display = 'none';
+    displayWin.style.display = 'block';
     return win;
+  }
+  else{
+    // wordSearchContainer.style.display = 'none';
+    // displayLose.style.display = 'block';
+    // displayWin.style.display = 'none';
   }
 }
 
@@ -194,13 +204,16 @@ function displayWordList(words) {
   }
 
   const wordList = document.createElement('div');
+  wordList.setAttribute('id', 'wordList');
 
   wordList.style.margin = '0 auto';
   wordList.style.marginTop = '10px';
   wordList.style.width = 'fit-content';
 
   for (let i = 0; i < words.length; i++) {
+
     const word = document.createElement('div');
+
     word.setAttribute = ('id', 'wordsToFind');
     word.textContent = words[i];
     word.style.display = 'inline-block';
@@ -212,10 +225,9 @@ function displayWordList(words) {
   }
   document.body.appendChild(wordList);
   previousWordList = wordList;
-  wordList.setAttribute = ('id', 'visualWordList');
+  // wordList.setAttribute = ('id', 'visualWordList');
   return wordList;
 }
-
 
 //Random word selection prototype
 
@@ -379,8 +391,8 @@ function displayTimer(){
       win = false;
       document.getElementById("wordsearchgrid").style.display = "none";
       document.getElementById("timer").style.display = "none";
-      // document.getElementById('visualWordList').style.display = "none";
-      // document.getElementById("wordsToFind").style.display = "none";
+      wordList.style.display = "none";
+      displayLose.style.display = "block";
   }
   }, 1000);
 }
