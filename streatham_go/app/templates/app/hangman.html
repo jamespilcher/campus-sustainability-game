@@ -1,8 +1,8 @@
-{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
+{% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'app/hangman.css' %}">
 
 <h1>Hangman</h1>
-<p>Guess a letters!</p>
+<p>Guess some letters!</p>
 <div class="interface-container">
     <svg height="240" width="180" class="person-container">
         <!-- Head -->
@@ -38,4 +38,3 @@
 </div>
 
 <script src="{% static 'app/hangman.js' %}"></script>
-{% endblock %}
