@@ -22,4 +22,6 @@ urlpatterns = [
     path('<username>/activate/', views.activate, name='activate'),
     # add xp path
     path('<username>/xp', views.xp, name='xp'),
+    # add privacy policy path
+    path('privacypolicy/', views.privacypolicy, name='privacypolicy'),
 ]
