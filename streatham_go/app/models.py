@@ -12,7 +12,7 @@ class Question(models.Model):
 
 
 class Word(models.Model):
-    word = models.CharField(max_length=11)
+    word = models.CharField(max_length=20)
     definition = models.CharField(max_length=200)
     hint = models.CharField(max_length=200)
     fact = models.CharField(max_length=200)
@@ -24,7 +24,6 @@ class Word(models.Model):
         for word in word_data:
             words.append({
                 'word': word.word,
-                'definition': word.definition,
                 'hint': word.hint,
                 'fact': word.fact
             })
