@@ -8,7 +8,7 @@
       "longitude": "-3.533710030939591",
       "message": "You there! Yes, you! Come and join me on campus for a special quest!",
       "icon": "app/icons/forum.png",
-      "game": 1
+      "game": 3
     }
   },
   {
@@ -116,7 +116,7 @@
       "longitude": "-3.530602170926035",
       "message": " help_needed = true, location = 'EX4 4RN' ",
       "icon": "app/icons/swiot.png",
-      "game": 5
+      "game": 3
     }
   },
   {
