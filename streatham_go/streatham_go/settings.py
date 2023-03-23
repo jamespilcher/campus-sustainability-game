@@ -23,7 +23,7 @@ environ.Env.read_env(SETTINGS_DIR.joinpath('.env'))
 
 # check if in dev env
 DEBUG = env('DEBUG') == 'True'
-VERSION_MAJOR = 1
+VERSION_MAJOR = 2
 VERSION_MINOR = 0
 VERSION_PATCH = 0
 
@@ -51,7 +51,9 @@ STATIC_URL = 'static/'
 STATIC_ROOT = '/usr/local/var/www/static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/usr/local/var/www/media/'
+# USE FOR PRODUCTION (and copy the mdia folder to the server)
+# MEDIA_ROOT = '/usr/local/var/www/media/'
+MEDIA_ROOT = SETTINGS_DIR.parent.joinpath('media')
 
 # Application definition
 
