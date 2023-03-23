@@ -19,11 +19,13 @@ def profile(request, username):
     leaderboard_data = Leaderboard.objects.order_by('-level', '-xp')
     current_user_data = Leaderboard.get_current_user_data(
         user, leaderboard_data)
+    profile_picture_index = Leaderboard.get_profile_picture_index(user)
 
     # Set the context variables
     context = {
         'current_user': user,
         'current_user_data': current_user_data,
+        'profile_picture_index': profile_picture_index,
         'are_friends': Friend.are_friends(request.user, user),
         'self': Friend.is_self(request.user, user),
         'friends': Friend.get_friends(user),

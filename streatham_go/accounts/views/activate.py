@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
@@ -37,7 +38,12 @@ def activate(request, username):
             user.save()
 
             # Create a leaderboard entry for the user now they're verified
-            leaderboard = Leaderboard.objects.create(user=user)
+
+            # Randomly generate number between 0 and 6 (7 profile pictures)
+            profilePictureIndex = random.randint(0, 6)
+            leaderboard = Leaderboard.objects.create(
+                user=user, profilePictureIndex=profilePictureIndex)
+
             # Save the leaderboard
             leaderboard.save()
 
