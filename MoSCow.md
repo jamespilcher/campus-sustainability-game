@@ -5,6 +5,7 @@
   - Hangman
   - Crosswords
   - Wordsearch
+  - Tic Tac Toe
 - You only see the buildings challenge if your location is verified at said building (via GPS)
 - You get points for the question which add to your 'xp' and total points is shown on the leaderboard
 
