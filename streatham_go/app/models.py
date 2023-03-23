@@ -9,16 +9,6 @@ class Game(models.Model):
     # The file name of the game
     file = models.CharField(max_length=50)
 
-
-# Questions Model
-class Question(models.Model):
-    question = models.CharField(max_length=200)
-    a = models.CharField(max_length=200)
-    b = models.CharField(max_length=200)
-    c = models.CharField(max_length=200)
-    d = models.CharField(max_length=200)
-    answer = models.CharField(max_length=1)
-
 # Word Model
 class Word(models.Model):
     word = models.CharField(max_length=20)
