@@ -1,9 +1,10 @@
 ## Summary of the Game
 
-- Each day a building is selected to give out a given challenge (you find out at a certain time the day before):
-  - Quiz questions
-  - sustainable action
-  - read an article and (locally)
+- Each building has its own minigame:
+  - Trivia
+  - Hangman
+  - Crosswords
+  - Wordsearch
 - You only see the buildings challenge if your location is verified at said building (via GPS)
 - You get points for the question which add to your 'xp' and total points is shown on the leaderboard
 
