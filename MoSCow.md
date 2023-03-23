@@ -1,6 +1,7 @@
 ## Summary of the Game
 
-- Each building has its own minigame:
+- Used to explore campus
+- Each building has its own minigame and unique personality:
   - Trivia
   - Hangman
   - Crosswords
@@ -13,7 +14,7 @@
 
 ### Must have:
 
-    - Challenges: Quiz questions about sustainability
+    - Minigames: Quiz questions about sustainability
     - Promote Sustainability using gamification.
     - A way of verifying what buildings people are in using GPS.
     - Global Leaderboard to see top 10 players
@@ -41,3 +42,6 @@
     - Double points at certain times of day
 
 ### Won't have:
+
+    - Customisable character that moves live on the game
+    - A daily building that changes for double points
