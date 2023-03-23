@@ -7,7 +7,7 @@ from . import views
 # set the app name
 app_name = 'app'
 # create a list of url patterns
-urlpatterns = [
+urlpatterns = ([
     # home page
     path('home/', views.home, name='home'),
     # leaderboard page
@@ -21,4 +21,5 @@ urlpatterns = [
     # play javascript (this needs to be rendered)
     path('app/play.js', views.play_js, name='play_js'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # also add the static files to the url patterns

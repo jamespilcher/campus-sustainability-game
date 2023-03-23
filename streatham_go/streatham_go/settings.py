@@ -51,7 +51,9 @@ STATIC_URL = 'static/'
 STATIC_ROOT = '/usr/local/var/www/static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/usr/local/var/www/media/'
+# USE FOR PRODUCTION (and copy the mdia folder to the server)
+# MEDIA_ROOT = '/usr/local/var/www/media/'
+MEDIA_ROOT = SETTINGS_DIR.parent.joinpath('media')
 
 # Application definition
 
