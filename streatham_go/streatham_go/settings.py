@@ -48,10 +48,10 @@ INTERNAL_IPS = ('.localhost', '127.0.0.1', '[::1]')
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+STATIC_ROOT = '/usr/local/var/www/static/'
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR.joinpath('media')
+MEDIA_ROOT = '/usr/local/var/www/media/'
 
 # Application definition
 
