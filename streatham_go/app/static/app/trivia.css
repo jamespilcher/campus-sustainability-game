@@ -43,7 +43,9 @@ h1{
     align-items: center;
     justify-content: center;
     max-width: 80rem;
-    margin: 0 auto;
+    margin-left: 50;
+    margin-right: 50;
+    margin-top: 20;
     padding: 2rem;
  }
 

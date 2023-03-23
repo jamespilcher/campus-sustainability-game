@@ -16,7 +16,6 @@ h1{
 h2 {
     color: #ffffff;
     font-size: 36px;
-    
 }
 
 p {
@@ -59,6 +58,7 @@ a.btn:hover {
     h2.header {
         font-size: 26px;
         padding-top: 10px;
+        font-size: 26px;
     }
     img {
         position: center;
