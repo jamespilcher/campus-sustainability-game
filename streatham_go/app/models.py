@@ -9,6 +9,7 @@ class Game(models.Model):
     # The file name of the game
     file = models.CharField(max_length=50)
 
+
 # Word Model
 class Word(models.Model):
     word = models.CharField(max_length=20)
@@ -26,6 +27,7 @@ class Word(models.Model):
                 'fact': word.fact
             })
         return words
+
 
 # Location model
 class Location(models.Model):
