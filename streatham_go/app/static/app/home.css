@@ -6,8 +6,45 @@
 .maplabel {
     font-size: 20px;
     font-weight: bold;
-    background-color: #930000;
     padding: 3px;
+    background-color: black;
     white-space: nowrap;
     text-align: center;
+  }
+
+.buildinglabel{
+  font-weight: bold;
+  background-color: #930000;
+  padding: 3px;
+}
+
+h1 {
+  color: #ffebcf;
+}
+
+h2 {
+  color: #ffebcf;
+  padding: 0px;
+  margin: 0;
+
+}
+
+#talking{
+  color: white;
+  font-size: 20px;
+}
+
+.fixed-bottom-offset {
+  position: fixed;
+  bottom: 10vh;
+  left: 0;
+  right: 0;
+}
+
+.bottom {
+    position: fixed;
+    bottom: 2vh;
+    width: 75%;
+    left: 50%;
+    margin-left: -37.5%;
   }

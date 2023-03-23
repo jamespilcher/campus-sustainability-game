@@ -23,7 +23,7 @@ environ.Env.read_env(SETTINGS_DIR.joinpath('.env'))
 
 # check if in dev env
 DEBUG = env('DEBUG') == 'True'
-VERSION_MAJOR = 1
+VERSION_MAJOR = 2
 VERSION_MINOR = 0
 VERSION_PATCH = 0
 
@@ -43,9 +43,17 @@ if not DEBUG:
 SECRET_KEY = env('SECRET_KEY')
 GOOGLE_API_KEY = env('GOOGLE_API_KEY')
 
+# List of IP addresses that allows {% debug %} to work
+INTERNAL_IPS = ('.localhost', '127.0.0.1', '[::1]')
+
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR.joinpath('staticfiles')
+STATIC_ROOT = '/usr/local/var/www/static/'
+
+MEDIA_URL = 'media/'
+# USE FOR PRODUCTION (and copy the mdia folder to the server)
+# MEDIA_ROOT = '/usr/local/var/www/media/'
+MEDIA_ROOT = SETTINGS_DIR.parent.joinpath('media')
 
 # Application definition
 

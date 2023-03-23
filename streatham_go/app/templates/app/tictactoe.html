@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/tictactoe.css' %}">
+<div id="container">
+    <h2>Beat the Pollutonia in 3 rounds!</h2>
+    <h2 id="playerTurn">Turn: You</h2>
+    <h2 id="score">Score: 0-0</h2>
+    <div id="grid">
+        <div class="row">
+            <div class="cell" id="cell1" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell2" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell3" onClick="replyToClick(this.id)"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell4" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell5" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell6" onClick="replyToClick(this.id)"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell7" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell8" onClick="replyToClick(this.id)"></div>
+            <div class="cell" id="cell9" onClick="replyToClick(this.id)"></div>
+        </div>
+    </div>
+    <button id="restart" onClick="restartGame()">Next round!</button>
+</div>
+<script src="{% static 'app/tictactoe.js' %}"></script>

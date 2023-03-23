@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {%load static %}
+
+{% if error %}
+<div class="text-center text-white border-bottom">
+    <h1 class="display-1 align-middle" >
+        {{error}}
+    </h1>
+</div>
+<center>
+    <p class="mt-2 h3">
+        The token you gave is invalid or has expired. Please try again.
+    </p>
+        <a href="{% url 'app:home' %}" class="mt-2 btn btn-primary">Back to Home</a>
+</center>
+{% else %}
+<div class="text-center text-white border-bottom">
+    <h1 class="display-1 align-middle" >
+        {{building_name}}
+    </h1>
+</div>
+
+<script>
+    var userWon = false;
+    const words = {{ words|safe}};
+</script>
+
+{{game_content|safe}}
+
+<script src="{% url 'app:play_js' %}"></script>
+
+{% endif %}
+
+
+{% endblock %}

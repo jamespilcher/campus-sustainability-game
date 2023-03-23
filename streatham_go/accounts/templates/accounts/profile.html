@@ -1,141 +1,124 @@
 {% extends 'base.html' %} {% load django_bootstrap5 %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
 
-<center>
 <body>
-    <script>
-        window.onload = choosePic;
-
-        var newPP = new Array(
-            "{% static 'accounts/profpic/pp1.jpeg' %}",
-            "{% static 'accounts/profpic/pp2.jpeg' %}",
-            "{% static 'accounts/profpic/pp3.jpeg' %}",
-            "{% static 'accounts/profpic/pp4.jpeg' %}",
-            "{% static 'accounts/profpic/pp5.png' %}",
-            "{% static 'accounts/profpic/pp6.jpeg' %}", );
-
-        var previousIndex = -1;
-
-        function choosePic() {
-            var randomNum = Math.floor(Math.random() * newPP.length);
-            while (randomNum == previousIndex) {
-                randomNum = Math.floor(Math.random() * newPP.length);
-            }
-            previousIndex = randomNum;
-            document.getElementById("profile-pic").src = newPP[randomNum];
-        }
-    </script>
-
-    <img class="mb-4" id="profile-pic" alt="" width="120" height="120" />
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>
-                {{current_user.username}}
-                </h1>
-            </div>
+    <center>
+        <div class="text-center text-white border-bottom">
+            <h1 class="display-1 align-middle"> {{current_user.username}}
+            </h1>
         </div>
-        <div class="row">
-            <div class="col">
-                {% if not self %}
-                <button id="friend-button" class="btn btn-primary {% if are_friends %}disabled{% endif %}" {% if are_friends%}disabled{% endif %}>
+        <img class="" id="profile-pic" alt="" width="120" height="120" />
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    </h1>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {% if not self %}
+                    <button id="friend-button" class="btn btn-primary {% if are_friends %}disabled{% endif %}" {% if are_friends%}disabled{% endif %}>
                     {% if are_friends %}
                     Friends
                     {% elif not self %}
                     Add Friend
                     {% endif %}
-                </button>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    {% if current_user_data.level %}
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-1">
-                {{current_user_data.level}}
-            </div>
-            <div class="col">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}" style="width: {{ current_user_data.xp }}%;">
-                        {{current_user_data.xp}}
-                    </div>
+                </button> {% endif %}
                 </div>
             </div>
-            <div class="col-1">
-                {{ current_user_data.level|add:1 }}
-            </div>
         </div>
-    </div>
-    {% endif %}
 
-    <div class="container-fluid mt-3">
-        <div class="row gy-3">
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        Badges
-                    </div>
-                    <div class="card-body">
-                        
+        {% if current_user_data.level %}
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-1 text">
+                    {{current_user_data.level}}
+                </div>
+                <div class="col">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ current_user_data.xp }}" style="width: {{ current_user_data.xp }}%;">
+                            {{current_user_data.xp}}
+                        </div>
                     </div>
                 </div>
+                <div class="col-1 text">
+                    {{ current_user_data.level|add:1 }}
+                </div>
             </div>
-            <div class="col-12 col-sm-6">
-                <div class="card">
-                    <div class="card-header">
-                        Friends
-                    </div>
-                    <div class="card-body">
-                        <div clss="container">
-                            {% if friends %}
-                                {% for friend in friends %}  
-                                <div class="row gy-3"> 
+        </div>
+        {% endif %}
+
+        <div class="container-fluid mt-3">
+            <div class="row gy-3">
+                <div class="col-12 col-sm-12">
+                    <div class="card rounded-0 colour">
+                        <div class="card-header">
+                            Friends
+                        </div>
+                        <div class="card-body">
+                            <div clss="container">
+                                {% if friends %} {% for friend in friends %}
+                                <div class="row gy-3">
                                     <div class="col-12">
-                                        <h3><a class="link" href="{% url 'accounts:profile' friend.username %}">{{friend.username}}</a><h3>
+                                        <h3><a class="link" href="{% url 'accounts:profile' friend.username %}">{{friend.username}}</a>
+                                            <h3>
                                     </div>
-                                </div> 
-                                {% endfor %}
-                            {% else %}
+                                </div>
+                                {% endfor %} {% else %}
                                 <p class="lead" style="margin-bottom:0;">Nothing To See Here...</p>
-                            {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {% if current_user == user %}
-    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        {% if current_user == user %}
+        <button type="button" class="btn btn-primary mt-3 rounded-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Account Details
       </button>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> Account Details </h5>
-                </div>
-                <div class="modal-body">
-                    <span>Username: {{user.username}}</span><br />
-                    <span>First Name: {{user.first_name}}</span><br />
-                    <span>Last Name: {{user.last_name}}</span><br />
-                    <span>Email: {{user.email}}</span><br />
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> Account Details </h5>
+                    </div>
+                    <div class="modal-body">
+                        <span>Username: {{user.username}}</span><br />
+                        <span>First Name: {{user.first_name}}</span><br />
+                        <span>Last Name: {{user.last_name}}</span><br />
+                        <span>Email: {{user.email}}</span><br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    {% endif %}
+        {% endif %}
 
-    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'accounts/javascript/profile.js' %}"></script>
+        <script>
+            var newPP = new Array(
+                "{% static 'accounts/profpic/pp1.png' %}",
+                "{% static 'accounts/profpic/pp2.png' %}",
+                "{% static 'accounts/profpic/pp3.png' %}",
+                "{% static 'accounts/profpic/pp4.png' %}",
+                "{% static 'accounts/profpic/pp5.png' %}",
+                "{% static 'accounts/profpic/pp6.png' %}",
+                "{% static 'accounts/profpic/pp7.png' %}", );
 
-</center>
-
+            var index = 0
+            index = "{{current_user_data.profilePictureIndex}}"
+            console.log(index);
+            document.getElementById("profile-pic").src = newPP[index];
+        </script>
+    </center>
+</body>
 {% endblock %}

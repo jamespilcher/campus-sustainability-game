@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/wordsearch.css' %}">
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+      }
+      word-search-container{ 
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div id="game-container">
+      <div id="word-search-container">
+      </div>
+      <p id="timer"></p>
+      <div id="words"></div>
+    </div>
+
+    <div id="win-container">
+      <h1 id= "win-text">
+        Nicely done old friend. Feel free to play again!
+      </h1>
+    </div>
+
+    <div id="lose-container">
+      <h1 id= "lose-text">
+        Unlucky traveller... You haven't succeeded this time...
+      </h1>
+    </div>
+
+    <script src=" {% static 'app\wordsearch.js' %} "></script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+h1 {
+    text-align: center;
+    color: #ffebcf;
+}
+
+.cell{
+    width: 100px;
+    height: 100px;
+    border: 2px solid;
+    box-shadow: 0 0 0 2px;
+    line-height: 75px;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+#gameContainer{
+    font-family: "IM Fell English";
+    text-align: center;
+}
+
+#cellContainer{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 300px;
+    margin: auto;
+}
+
+#game-container{
+    display: block;
+}
+
+#win-container{
+    display: none;
+}
+
+#lose-container{
+    display: none;
+}

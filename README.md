@@ -30,11 +30,13 @@ making sure that you are running the terminal as admin.
 ```
 Set-ExecutionPolicy RemoteSigned
 ```
+
 Then you may run this line.
 
 ```
 .venv\Scripts\activate
 ```
+
 After running the scripts, you may return to the original setting
 by entering the following command:
 
@@ -55,7 +57,7 @@ touch streatham_go/streatham_go/.env
 ```
 
 open new file and add the following settings.
-**NOTE** If using DEBUG=True, EMAIL_* settings not needed
+**NOTE** If using DEBUG=True, EMAIL\_\* settings not needed
 
 - `DEBUG=[True|False]`
 - `SECRET_KEY=[a secret key (can be anything)]`
@@ -72,26 +74,23 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-### 6. Populate Database
+### 6. Populate Database (IN ORDER)
 
 ```
-cd streatham_go
-python3 manage.py loaddata questions.json
+python3 manage.py loaddata games.json
 python3 manage.py loaddata buildings.json
+python3 manage.py loaddate words.json
 ```
 
 ### 7. Run Tests (optional)
 
 ```
-cd streatham_go
 pytest
 ```
-
 
 ### 8. Start Dev Server
 
 ```
-cd streatham_go
 python3 manage.py runserver
 ```
 
@@ -104,45 +103,3 @@ To do so (in base directory):
 ```
 pip3 freeze > requirements.txt
 ```
-
-## Summary of the Game
-
-- Each day a building is selected to give out a given challenge (you find out at a certain time the day before):
-  - Quiz questions
-  - sustainable action
-  - read an article and (locally)
-- You only see the buildings challenge if your location is verified at said building (via GPS)
-- You get points for the question which add to your 'xp' and total points is shown on the leaderboard
-
-## MoSCoW
-
-### Must have:
-
-    - Challenges: Quiz questions about sustainability
-    - Promote Sustainability using gamification.
-    - A way of verifying what buildings people are in using GPS.
-    - Global Leaderboard to see top 10 players
-    - Gamekeepers that monitor the state of the game.
-    - Log in system.
-    - Personified buildings
-    - A list of multiple choice quiz questions.
-
-### Should have:
-
-    - Challenges
-    - Stat tracking
-    - Points decrease a factor of time since seeing the question
-    - Gamekeepers monitor reports and set daily challenges.
-
-### Could have:
-
-    - Challenges: Articles
-    - Private Leaderboards For Friends.
-    - Different views on the leaderboard (last week, last month, total)
-    - At home challenges that add to 'player points'
-    - Individual/Friendship Stats, private character levelling.
-    - Extra 'streak' points
-    - Item shops (at certain a certain building?)
-    - Double points at certain times of day
-
-### Won't have:
