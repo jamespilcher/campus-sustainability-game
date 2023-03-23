@@ -10,19 +10,15 @@ app_name = 'app'
 urlpatterns = [
     # home page
     path('home/', views.home, name='home'),
-    # word search page
-    path('wordsearch/', views.wordsearch, name='wordsearch'),
     # leaderboard page
     path('leaderboard/', views.leaderboard, name='leaderboard'),
     # ladning page
     path('', views.index, name='index'),
-    # hangman
-    path('hangman/', views.hangman, name='hangman'),
-    # trivia page
-    path('trivia/', views.trivia, name='trivia'),
     # play page
     path('play/<token>', views.play, name='play'),
     # conversation javascript (this needs to be rendered)
     path('app/conversion.js', views.conversation, name='conversation'),
+    # play javascript (this needs to be rendered)
+    path('app/play.js', views.play_js, name='play_js'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # also add the static files to the url patterns

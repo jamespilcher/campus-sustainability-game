@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core import serializers
 from ..tokens import generate_game_jwt
+from app.models import Leaderboard
 
 
 @login_required
@@ -17,7 +18,10 @@ def home(request):
         # get the building name from the form
         buildingName = request.POST.get('building')
         # generate the game token
-        token = generate_game_jwt(request.user, buildingName)
+        # get user leaderbaord entry
+        leaderboard_entry = Leaderboard.objects.get(user=request.user)
+        token = generate_game_jwt(request.user, leaderboard_entry.xp,
+                                  leaderboard_entry.level, buildingName)
 
         # redirect to the play page with the token
         return redirect('app:play', token=token)

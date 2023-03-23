@@ -23,7 +23,7 @@ const winningConditions = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6]
+  [2, 4, 6],
 ];
 
 // The initial grid state, with empty strings signifying empty cells
@@ -31,12 +31,15 @@ let gridState = ["", "", "", "", "", "", "", "", ""];
 
 // Called when a cell is clicked
 function replyToClick(cellID) {
-
   // cellID is in form cell1 - cell9, so need to get the number then -1 to get index
   let cellIndex = cellID.replace(/^\D+/g, "") - 1;
 
   // If cell is already filled, or game is over, or it's the computer's turn, do nothing
-  if (gridState[cellIndex] !== "" || !gameRunning || currentPlayer === PLAYER_O) {
+  if (
+    gridState[cellIndex] !== "" ||
+    !gameRunning ||
+    currentPlayer === PLAYER_O
+  ) {
     return;
   }
 
@@ -46,8 +49,8 @@ function replyToClick(cellID) {
 
   let winner = checkForGameOver();
   switch (winner) {
-    case (PLAYER_X):
-    case (PLAYER_O):
+    case PLAYER_X:
+    case PLAYER_O:
       handleGameOver(winner);
       break;
     case "D":
@@ -119,20 +122,20 @@ function computerMove() {
     }
 
     // Pick a random empty cell
-    let randomIndex = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    let randomIndex =
+      possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
 
     // Get the cell element and update it with computer's symbol and colour
     gridState[randomIndex] = PLAYER_O;
     setCell(`cell${randomIndex + 1}`, PLAYER_O, PLAYER_O_COLOUR);
-
   }
 
   // Check if the game is over after the computer's move
   checkForGameOver();
   let winner = checkForGameOver();
   switch (winner) {
-    case (PLAYER_X): // Player won
-    case (PLAYER_O): // Computer won
+    case PLAYER_X: // Player won
+    case PLAYER_O: // Computer won
       handleGameOver(winner);
       break;
     case "D": // Draw
@@ -146,7 +149,6 @@ function setCell(cellID, playerSymbol, color) {
   cell.innerHTML = playerSymbol;
   cell.style.color = color;
 }
-
 
 // Switches the current player
 function switchPlayer() {
@@ -180,8 +182,8 @@ function restartGame() {
 
   // Reset the grid state and clear the cells
   gridState = ["", "", "", "", "", "", "", "", ""];
-  let cells = document.querySelectorAll('.cell');
-  cells.forEach(cell => {
+  let cells = document.querySelectorAll(".cell");
+  cells.forEach((cell) => {
     cell.innerHTML = "";
     cell.style.backgroundColor = "white";
   });
@@ -206,7 +208,7 @@ function checkForGameOver() {
     let c = gridState[winCondition[2]];
 
     // Continue if any cell is empty
-    if (a === '' || b === '' || c === '') {
+    if (a === "" || b === "" || c === "") {
       continue;
     }
 
@@ -241,14 +243,20 @@ function handleGameOver(winner) {
     let b = gridState[winCondition[1]];
     let c = gridState[winCondition[2]];
     if (a === b && b === c && c === winner) {
-      document.querySelector(`#cell${winCondition[0] + 1}`).style.backgroundColor = "yellow";
-      document.querySelector(`#cell${winCondition[1] + 1}`).style.backgroundColor = "yellow";
-      document.querySelector(`#cell${winCondition[2] + 1}`).style.backgroundColor = "yellow";
+      document.querySelector(
+        `#cell${winCondition[0] + 1}`
+      ).style.backgroundColor = "yellow";
+      document.querySelector(
+        `#cell${winCondition[1] + 1}`
+      ).style.backgroundColor = "yellow";
+      document.querySelector(
+        `#cell${winCondition[2] + 1}`
+      ).style.backgroundColor = "yellow";
     }
-
   }
   // Update the score text
-  document.getElementById('score').innerHTML = "Score: " + xScore + " - " + oScore;
+  document.getElementById("score").innerHTML =
+    "Score: " + xScore + " - " + oScore;
 
   // Show the game state and restart button
   if (gamesPlayed < 3) {
@@ -256,10 +264,12 @@ function handleGameOver(winner) {
   } else {
     restart.style.display = "none";
     if (xScore > oScore) {
-      document.getElementById('score').innerHTML = "You won the game! Congratulations!";
+      document.getElementById("score").innerHTML =
+        "You won the game! Congratulations!";
       userWon = true;
     } else {
-      document.getElementById('score').innerHTML = "You failed to win... Better luck next time!";
+      document.getElementById('score').innerHTML = 
+        "You failed to win... Better luck next time!";
       userWon = false;
     }
   }

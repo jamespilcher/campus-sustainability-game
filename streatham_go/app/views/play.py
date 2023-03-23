@@ -17,15 +17,21 @@ def play(request, token):
     if buildingName is None:
         # if the toekn is invalid, set the error message
         context['error'] = "Invalid token"
+    else:
+        # get the building from the database
+        building = Location.objects.filter(name=buildingName).first()
+        # get the game data from the building
+        game_data = render_to_string('app/' + building.game.file)
 
-    # get the building from the database
-    building = Location.objects.filter(name=buildingName).first()
-    # get the game data from the building
-    game_data = render_to_string('app/' + building.game.file)
-
-    # set the context variables
-    context['building_name'] = buildingName
-    context['game_content'] = game_data
+        # set the context variables
+        context['building_name'] = buildingName
+        context['game_content'] = game_data
 
     # render the play page
     return render(request, 'app/play.html', context)
+
+
+@login_required
+def play_js(request):
+    return render(request, 'app/play.js',
+                  content_type='application/javascript')
