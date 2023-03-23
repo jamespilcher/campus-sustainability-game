@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
-from app.models import Location, Game
+from app.models import Location, Game, Word
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core import serializers
@@ -35,7 +35,11 @@ def home(request):
     else:
         # if there are locations, get the locations from the database
         num_games = Game.objects.count()
-
+        word_data = Word.objects.all()
+        words = Word.get_words(word_data)
+        facts = []
+        for word in words:
+            facts.append(word['fact'])
         # Get all games from the model
         games_model = Game.objects.all()
         games = [game.name for game in games_model]
@@ -46,6 +50,7 @@ def home(request):
             'locations': locations,
             'num_games': num_games,
             'games': games,
+            'facts': facts,
             'GOOGLE_API_KEY': settings.GOOGLE_API_KEY,
         }
 

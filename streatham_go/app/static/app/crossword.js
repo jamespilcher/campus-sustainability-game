@@ -11,29 +11,11 @@ and the words to place */
 const gridSize = 12;
 const wordsToPlace = 6;
 const wordsDict = {
-  'recycling': 'Reusing waste materials to create new products',
-  'sustainable': 'Eco-friendly practices for long-term resource use',
-  'renewable': 'Energy source that can be replenished naturally',
-  'ecosystem': 'Community of living organisms and their environment',
-  'conservation': 'Protection and preservation of natural resources',
-  'organic': 'Pertaining to farming without synthetic chemicals',
-  'pollution': 'Contamination of air, water, or soil by harmful substances',
-  'vegan': 'Person who abstains from animal products in diet',
-  'vegetarian': 'Person who excludes meat from their diet',
-  'reusable': 'Able to be used multiple times, reducing waste',
-  'compost': 'Organic matter decomposed for use as fertilizer',
-  'solar': 'Relating to energy derived from the sun\'s rays',
-  'carpooling': 'Shared vehicle rides to decrease fuel use and emissions',
-  'deforestation': 'Clearing of forests for agriculture or development',
-  'afforestation': 'Planting trees to create new forests or woodlands',
-  'biofuel': 'Renewable energy derived from organic materials, like plants',
-  'endangered': 'Species at risk of extinction due to habitat loss or other factors',
 };
 
 let usableWords = [];
 let placedWords = [];
 let currentOrientation;
-let userWon = false;
 
 // Create a 2d array of size gridSize x gridSize to store the value of each cell
 const gridValues = new Array(gridSize);
@@ -47,9 +29,21 @@ let orientations = {
   down: 0,
 };
 
+generateWordsDict();
+
 // Call functions to create and generate the crossword grid
 createGrid();
 generateGrid();
+
+/**
+ * populates the wordsDict using the Words Model data.
+ */
+function generateWordsDict() {
+  for (let i = 0; i < words.length; i++) {
+    wordsDict[words[i].word] = words[i].hint;
+  }
+}
+
 
 /**
  * Creates a grid by populating an HTML table with gridSize x gridSize cells.

@@ -6,7 +6,6 @@ let currentPlayer = "X";
 let startingPlayer = currentPlayer;
 let xScore = 0;
 let oScore = 0;
-let userWon = false;
 let gamesPlayed = 1;
 
 const PLAYER_X = "X";

@@ -10,6 +10,25 @@ class Game(models.Model):
     file = models.CharField(max_length=50)
 
 
+# Word Model
+class Word(models.Model):
+    word = models.CharField(max_length=20)
+    hint = models.CharField(max_length=200)
+    fact = models.CharField(max_length=200)
+
+    # Gets the word data for all words
+    @classmethod
+    def get_words(self, word_data):
+        words = []
+        for word in word_data:
+            words.append({
+                'word': word.word,
+                'hint': word.hint,
+                'fact': word.fact
+            })
+        return words
+
+
 # Location model
 class Location(models.Model):
     # the name of the building
