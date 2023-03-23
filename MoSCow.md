@@ -1,9 +1,12 @@
 ## Summary of the Game
 
-- Each day a building is selected to give out a given challenge (you find out at a certain time the day before):
-  - Quiz questions
-  - sustainable action
-  - read an article and (locally)
+- Used to explore campus
+- Each building has its own minigame and unique personality:
+  - Trivia
+  - Hangman
+  - Crosswords
+  - Wordsearch
+  - Tic Tac Toe
 - You only see the buildings challenge if your location is verified at said building (via GPS)
 - You get points for the question which add to your 'xp' and total points is shown on the leaderboard
 
@@ -11,7 +14,7 @@
 
 ### Must have:
 
-    - Challenges: Quiz questions about sustainability
+    - Minigames: Quiz questions about sustainability
     - Promote Sustainability using gamification.
     - A way of verifying what buildings people are in using GPS.
     - Global Leaderboard to see top 10 players
@@ -39,3 +42,6 @@
     - Double points at certain times of day
 
 ### Won't have:
+
+    - Customisable character that moves live on the game
+    - A daily building that changes for double points

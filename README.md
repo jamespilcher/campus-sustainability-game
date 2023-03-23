@@ -77,22 +77,20 @@ python3 manage.py migrate
 ### 6. Populate Database (IN ORDER)
 
 ```
-cd streatham_go
 python3 manage.py loaddata games.json
 python3 manage.py loaddata buildings.json
+python3 manage.py loaddate words.json
 ```
 
 ### 7. Run Tests (optional)
 
 ```
-cd streatham_go
 pytest
 ```
 
 ### 8. Start Dev Server
 
 ```
-cd streatham_go
 python3 manage.py runserver
 ```
 
