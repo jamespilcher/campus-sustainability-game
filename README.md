@@ -69,7 +69,6 @@ open new file and add the following settings.
 ### 5. Migrate Database
 
 ```
-cd streatham_go
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
@@ -80,6 +79,7 @@ python3 manage.py migrate
 cd streatham_go
 python3 manage.py loaddata games.json
 python3 manage.py loaddata buildings.json
+python3 manage.py loaddate words.json
 ```
 
 ### 7. Run Tests (optional)
